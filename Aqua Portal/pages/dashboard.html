@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- =============== WEBSITE META DATA =============== -->
+    <title>Dashboard | Aqua Portal</title>
+    <link rel="shortcut icon" href="../assets/img/logo.avif" type="image/x-icon">
+
+    <!-- =============== AUTHOR META DATA =============== -->
+    <meta name="author" content="Sarfraj Shaikh">
+    <meta name="publisher" content="Sarfraj Shaikh">
+    <meta name="creator" content="Sarfraj Shaikh">
+
+    <!-- =============== CSS FILE =============== -->
+    <link rel="stylesheet" href="../assets/files/css/pages/dashboard.css">
+
+    <!-- =============== JS FILE =============== -->
+    <script src="../assets/files/js/pages/dashboard.js" defer></script>
+
+    <!-- =============== ICON CDN =============== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <!-- =============== AOS & ANIMATE CDN =============== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- =============== LOADER =============== -->
+    <div class="page-loader" id="pageLoader">
+        <div class="dot-spinner">
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+        </div>
+    </div>
+
+    <!-- =============== NO NETWORK =============== -->
+    <div class="no-internet" id="noInternet">
+        <div class="no-internet-card">
+
+            <div class="icon-circle">
+                <i class="ri-wifi-off-line"></i>
+            </div>
+
+            <h2>No Internet</h2>
+            <p>
+                You're offline. Please check your Wi-Fi or mobile data connection.
+            </p>
+
+            <div class="btn-group">
+                <button class="retry-btn" onclick="location.reload()">
+                    <i class="ri-refresh-line"></i> Retry
+                </button>
+            </div>
+
+            <span class="hint">
+                Waiting for network...
+            </span>
+
+        </div>
+    </div>
+
+    <!-- =============== NAVBAR =============== -->
+    <nav class="navbar" id="navBar">
+
+        <div class="nav-left" id="navLeft">
+            <img src="../assets/img/logo.avif" alt="Aqua Portal" loading="lazy">
+            <p id="navWebName"></p>
+        </div>
+
+        <div class="nav-right">
+
+            <div class="cta-btn" id="navPrimaryCtaBtn">
+                <i class="ri-home-line"></i>
+                <span>Home</span>
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- =============== NAVBAR =============== -->
+    <!-- Dashboard Wrapper -->
+    <div class="dashboard">
+
+        <!-- Profile Card -->
+        <div class="profile-card">
+            <div class="profile-top">
+                <div class="profile-img">
+                    <img src="https://i.pravatar.cc/150?img=12" alt="User Profile">
+                </div>
+
+                <div class="profile-info">
+                    <h2>Rohit Sharma</h2>
+                    <p><i class="ri-time-line"></i> Last Login: <span>25 April 2026</span></p>
+                </div>
+            </div>
+
+            <button class="logout-btn">
+                <i class="ri-logout-box-r-line"></i> Logout
+            </button>
+        </div>
+
+        <!-- Dashboard Options -->
+        <div class="options-grid">
+
+            <div class="option-card">
+                <div class="icon">
+                    <i class="ri-store-2-line"></i>
+                </div>
+                <h3>Businesses</h3>
+                <p>Manage your business listings and details.</p>
+                <a href="#">Open <i class="ri-arrow-right-line"></i></a>
+            </div>
+
+            <div class="option-card">
+                <div class="icon">
+                    <i class="ri-user-3-line"></i>
+                </div>
+                <h3>About Me</h3>
+                <p>Update your personal profile information.</p>
+                <a href="#">Open <i class="ri-arrow-right-line"></i></a>
+            </div>
+
+            <div class="option-card">
+                <div class="icon">
+                    <i class="ri-contacts-book-2-line"></i>
+                </div>
+                <h3>All Contacts</h3>
+                <p>View and manage all saved contacts.</p>
+                <a href="#">Open <i class="ri-arrow-right-line"></i></a>
+            </div>
+
+            <div class="option-card">
+                <div class="icon">
+                    <i class="ri-play-list-2-line"></i>
+                </div>
+                <h3>Playlist</h3>
+                <p>Access your saved playlists and tracks.</p>
+                <a href="#">Open <i class="ri-arrow-right-line"></i></a>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <p>© 2026 MyDashboard. All Rights Reserved.</p>
+            <p>Developed by <span>Rohit Sharma</span></p>
+        </footer>
+
+    </div>
+
+
+</body>
+
+</html>

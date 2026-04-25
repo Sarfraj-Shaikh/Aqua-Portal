@@ -226,21 +226,11 @@ function loginRedirect(email, pass, name, number, pfp) {
 
     let tickBox = document.getElementById("morning");
 
-    if (tickBox.checked === true) {
-
         document.cookie = "email=" + email + "; max-age = 518400; path=/";
         document.cookie = "password=" + pass + "; max-age = 518400; path=/";
         document.cookie = "name=" + name + "; max-age = 518400; path=/";
         document.cookie = "number=" + number + "; max-age = 518400; path=/";
         document.cookie = "pfp=" + pfp + "; max-age = 518400; path=/";
-
-    } else {
-
-        document.cookie = "email=" + email + "; max-age = 0; path=/";
-        document.cookie = "password=" + pass + "; max-age = 0; path=/";
-        document.cookie = "name=" + name + "; max-age = 0; path=/";
-        document.cookie = "number=" + number + "; max-age = 0; path=/";
-        document.cookie = "pfp=" + pfp + "; max-age = 0; path=/";
 
         let loginData = {
             id: email,
@@ -254,8 +244,6 @@ function loginRedirect(email, pass, name, number, pfp) {
         sessionStorage.setItem("loggedInUser", email);
         localStorage.setItem("loggedUser", email);
         sessionStorage.setItem(loginData.id, JSON.stringify(loginData));
-        
-    }
 
     isLogin();
 }
@@ -281,7 +269,7 @@ function isLogin() {
 
                 } else {
 
-                    alert("PFP is not empty 1");
+                    window.open("./dashboard.html", "_self");
 
                 }
 
@@ -303,7 +291,7 @@ function isLogin() {
 
             } else {
 
-                alert("PFP is not empty")
+                window.open("./dashboard.html", "_self");
 
             }
         }

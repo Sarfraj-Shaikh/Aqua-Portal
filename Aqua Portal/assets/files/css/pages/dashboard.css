@@ -379,116 +379,195 @@ body {
     font-weight: 500;
 }
 
-/* =============== UPLOAD PHOTO SECTION =============== */
-.main-container {
+/* =============== DASHBOARD SECTION =============== */
+
+.dashboard {
     width: 100%;
-    background-color: #F4F6F9;
     margin-top: 70px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.main-container .upload-con {
-    width: 40%;
-    background-color: #FFFFFF;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     flex-direction: column;
-    padding: 40px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    margin-bottom: 20px;
+    gap: 25px;
 }
 
-.upload-con h2 {
-    font-size: 24px;
-    margin-bottom: 8px;
+/* Profile Card */
+.profile-card {
+    background: linear-gradient(135deg, #121c32, #0f172a);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 22px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
-.upload-con h3 {
+.profile-top {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.profile-img {
+    width: 85px;
+    height: 85px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    flex-shrink: 0;
+}
+
+.profile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info h2 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.profile-info p {
+    margin-top: 6px;
     font-size: 14px;
-    color: #666666;
-    font-weight: 500;
-    margin-bottom: 15px;
-}
-
-.upload-con img {
-    width: 150px;
-    height: 150px;
-    border-radius: 360%;
-    margin: 10px;
-    border: 2px solid #808080;
-}
-
-.btnBox {
-    margin-top: 10px;
-    width: 100%;
+    opacity: 0.85;
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column;
-    gap: 10px;
+    gap: 6px;
 }
 
-.btnBox label {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #F9FAFB;
-    padding: 10px;
-    border: 1px solid #d3d2d2;
-    border-radius: 10px;
+.profile-info p i {
     font-size: 16px;
-    height: 50px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease-in-out;
+    color: #38bdf8;
 }
 
-.btnBox label i {
-    margin-right: 5px;
+/* Logout Button */
+.logout-btn {
+    border: none;
+    outline: none;
+    background: #ef4444;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+}
+
+/* Options Grid */
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.option-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 20px;
+    transition: 0.3s ease;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.option-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(56, 189, 248, 0.4);
+}
+
+.option-card .icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: rgba(56, 189, 248, 0.12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.option-card .icon i {
+    font-size: 24px;
+    color: #38bdf8;
+}
+
+.option-card h3 {
     font-size: 18px;
-}
-
-.btnBox label:hover {
-    background-color: #DBEAFE;
-    border: 1px solid #2261EA;
-    color: #2261EA;
-    transition: all 0.3s ease-in-out;
-}
-
-.btnBox .btn {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #2261EA;
-    padding: 10px;
-    border: 1px solid #DBEAFE;
-    border-radius: 10px;
-    font-size: 16px;
-    height: 50px;
-    cursor: pointer;
     font-weight: 600;
-    transition: all 0.3s ease-in-out;
-    color: #DBEAFE;
-    display: none;
+    margin-bottom: 6px;
 }
 
-.btnBox .btn:hover {
-    background-color: #DBEAFE;
-    border: 1px solid #2261EA;
-    color: #2261EA;
-    transition: all 0.3s ease-in-out;
+.option-card p {
+    font-size: 14px;
+    opacity: 0.8;
+    line-height: 1.4;
+    margin-bottom: 14px;
+}
+
+.option-card a {
+    text-decoration: none;
+    color: #38bdf8;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s ease;
+}
+
+.option-card a:hover {
+    color: #7dd3fc;
+}
+
+/* Footer */
+.dashboard-footer {
+    padding: 18px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.85;
+}
+
+.dashboard-footer span {
+    color: #38bdf8;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .options-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .profile-top {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .options-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-info p {
+        justify-content: center;
+    }
 }
 
 /* =============== RESPONSIVE SECTION =============== */
-
 
 @media (max-width: 992px) {
 
@@ -532,55 +611,6 @@ body {
         margin-inline: 8px;
         font-size: 16px;
     }
-
-    /* =============== UPLOAD PHOTO SECTION =============== */
-
-    .main-container .upload-con {
-        width: 80%;
-        padding: 40px;
-        margin-bottom: 20px;
-    }
-
-    .upload-con h2 {
-        font-size: 24px;
-        margin-bottom: 8px;
-    }
-
-    .upload-con h3 {
-        font-size: 14px;
-        margin-bottom: 15px;
-    }
-
-    .upload-con img {
-        width: 150px;
-        height: 150px;
-        margin: 10px;
-    }
-
-    .btnBox {
-        margin-top: 10px;
-        width: 100%;
-        gap: 10px;
-    }
-
-    .btnBox label {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        height: 50px;
-    }
-
-    .btnBox label i {
-        margin-right: 5px;
-        font-size: 18px;
-    }
-
-    .btnBox .btn {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-    }
-
 }
 
 @media (max-width: 768px) {
@@ -625,55 +655,6 @@ body {
         margin-inline: 8px;
         font-size: 16px;
     }
-
-    /* =============== UPLOAD PHOTO SECTION =============== */
-
-    .main-container .upload-con {
-        width: 90%;
-        padding: 40px;
-        margin-bottom: 20px;
-    }
-
-    .upload-con h2 {
-        font-size: 24px;
-        margin-bottom: 8px;
-    }
-
-    .upload-con h3 {
-        font-size: 14px;
-        margin-bottom: 25px;
-    }
-
-    .upload-con img {
-        width: 150px;
-        height: 150px;
-        margin: 10px;
-    }
-
-    .btnBox {
-        margin-top: 20px;
-        width: 100%;
-        gap: 10px;
-    }
-
-    .btnBox label {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        height: 50px;
-    }
-
-    .btnBox label i {
-        margin-right: 5px;
-        font-size: 18px;
-    }
-
-    .btnBox .btn {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-    }
-
 }
 
 @media (max-width: 576px) {
@@ -716,57 +697,6 @@ body {
 
     .nav-right .cta-btn span {
         margin-inline: 8px;
-        font-size: 16px;
-    }
-
-    /* =============== UPLOAD PHOTO SECTION =============== */
-
-    .main-container .upload-con {
-        width: 100%;
-        padding: 40px;
-        border-radius: 0px;
-        box-shadow: none;
-        height: 100%;
-        margin-bottom: 20px;
-    }
-
-    .upload-con h2 {
-        font-size: 24px;
-        margin-bottom: 8px;
-    }
-
-    .upload-con h3 {
-        font-size: 14px;
-        margin-bottom: 25px;
-    }
-
-    .upload-con img {
-        width: 150px;
-        height: 150px;
-        margin: 10px;
-    }
-
-    .btnBox {
-        margin-top: 20px;
-        width: 100%;
-        gap: 10px;
-    }
-
-    .btnBox label {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        height: 50px;
-    }
-
-    .btnBox label i {
-        margin-right: 5px;
-        font-size: 18px;
-    }
-
-    .btnBox .btn {
-        width: 100%;
-        padding: 10px;
         font-size: 16px;
     }
 
@@ -818,55 +748,5 @@ body {
         display: none;
     }
 
-    /* =============== UPLOAD PHOTO SECTION =============== */
-
-    .main-container .upload-con {
-        width: 100%;
-        padding: 40px;
-        border-radius: 0px;
-        box-shadow: none;
-        height: 100%;
-        margin-bottom: 20px;
-    }
-
-    .upload-con h2 {
-        font-size: 20px;
-        margin-bottom: 8px;
-    }
-
-    .upload-con h3 {
-        font-size: 14px;
-        margin-bottom: 25px;
-    }
-
-    .upload-con img {
-        width: 150px;
-        height: 150px;
-        margin: 10px;
-    }
-
-    .btnBox {
-        margin-top: 20px;
-        width: 100%;
-        gap: 10px;
-    }
-
-    .btnBox label {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        height: 50px;
-    }
-
-    .btnBox label i {
-        margin-right: 5px;
-        font-size: 18px;
-    }
-
-    .btnBox .btn {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-    }
 
 }

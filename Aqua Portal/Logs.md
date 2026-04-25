@@ -1,3 +1,23 @@
+
+---
+
+# Profile Photo (DP)
+### Log No: 5
+
+## Time Line
+- **Date: ** 25-4-2026
+- **Start at** 05:10 PM
+- **Complete at** 06:26 PM
+
+## Features
+- 3rd Release
+- Maked Responsive
+- Added Photo Upload Size Conditions (Max 5 MB)
+- Added Home Page Redirection Based On Auth Condition (User is login or not)
+- Updated Login Systems (We Store Login Details On Both Cookies & Session Storage at Same Time)
+- Added Redirection Security In Registration Page (SignUp)
+- Created Dashboard Page (HTML, CSS, JS - Only Page Was Created, Code Not Written)
+
 ---
 
 # Profile Photo (DP)

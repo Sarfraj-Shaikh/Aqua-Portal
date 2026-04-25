@@ -382,5 +382,32 @@ function clearInput() {
 
 }
 
+/* =============== AUTHENTICATION CHECK =============== */
+
+function isLogin() {
+
+    let isLoggedIn = false;
+
+    if (document.cookie.length > 0) {
+        isLoggedIn = true;
+    }
+
+    if (sessionStorage.length > 0) {
+        isLoggedIn = true;
+    }
+
+    if (isLoggedIn) {
+
+        window.open("./dashboard.html", "_self");
+
+    } else {
+
+        location.assign("./login.html");
+
+    }
+}
+
+isLogin();
+
 
 
