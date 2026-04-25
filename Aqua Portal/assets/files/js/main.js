@@ -56,4 +56,4 @@ const heroWelText = document.getElementById("heroWelText");
 heroWelText.innerHTML = `Welcome To ${webDetail.title}`;
 
 const heroSubTitle = document.getElementById("heroSubTitle");
-heroSubTitle.innerHTML = `Welcome To ${webDetail.slogan}`;
+heroSubTitle.innerHTML = `${webDetail.slogan}`;
