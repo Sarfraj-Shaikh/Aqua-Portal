@@ -106,22 +106,34 @@
             </div>
 
             <div class="input-container">
+
                 <p class="title">Email ID</p>
-                <div class="input-box">
+
+                <div class="input-box" id="emailIBox">
+
                     <i class="ri-mail-line"></i>
                     <input type="email" inputmode="email" id="emailInput" placeholder="Enter Your Email ID" autocomplete="off">
+
                 </div>
-                <p class="errorText">Error Message</p>
+
+                <p class="errorText" id="errorText1">Error Message</p>
+
             </div>
 
             <div class="input-container">
+
                 <p class="title">Password</p>
-                <div class="input-box">
+
+                <div class="input-box" id="passIBox">
+
                     <i class="ri-lock-line"></i>
                     <input type="password" id="passwordInput" placeholder="Enter Your Password" autocomplete="off">
-                    <i class="ri-eye-line passIcon"></i>
+                    <i class="ri-eye-line passIcon" id="passToggleIcon" onclick="passToggle()"></i>
+
                 </div>
-                <p class="errorText">Error Message</p>
+
+                <p class="errorText" id="errorText2">Error Message</p>
+
             </div>
 
             <div class="remBox">
@@ -143,7 +155,7 @@
                 </div>
             </div>
 
-            <div class="loginBtn">
+            <div class="loginBtn" onclick="formVal()">
                 Login Now
             </div>
 
