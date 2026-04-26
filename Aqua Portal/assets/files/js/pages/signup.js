@@ -402,12 +402,12 @@ function isLogin() {
 
     } else {
 
-        location.assign("./login.html");
+        location.assign("./signup.html");
 
     }
 }
 
-isLogin();
+// isLogin();
 
 
 

@@ -92,73 +92,80 @@
 
     </nav>
 
-    <!-- =============== NAVBAR =============== -->
-    <!-- Dashboard Wrapper -->
+    <!-- =============== DASHBOARD =============== -->
     <div class="dashboard">
 
-        <!-- Profile Card -->
-        <div class="profile-card">
-            <div class="profile-top">
-                <div class="profile-img">
-                    <img src="https://i.pravatar.cc/150?img=12" alt="User Profile">
-                </div>
+        <div class="pfp-bg">
 
-                <div class="profile-info">
-                    <h2>Rohit Sharma</h2>
-                    <p><i class="ri-time-line"></i> Last Login: <span>25 April 2026</span></p>
+            <img src="../assets/img/default-dp.jpg" alt="Profile" loading="lazy" id="userPfp">
+
+            <div class="pfp-info">
+
+                <h3 id="userName">Aqua Portal</h3>
+                <p>
+                    <i class="ri-mail-line"></i>
+                    <span id="userEmail">your-email@gmail.com</span>
+                </p>
+
+                <div class="logout-btn" id="logoutBtn">
+                    <i class="ri-logout-box-r-line"></i> Logout
                 </div>
             </div>
-
-            <button class="logout-btn">
-                <i class="ri-logout-box-r-line"></i> Logout
-            </button>
         </div>
 
-        <!-- Dashboard Options -->
-        <div class="options-grid">
+        <!-- =============== DASHBOARD CARDS =============== -->
+        <div class="card-bg">
 
-            <div class="option-card">
-                <div class="icon">
-                    <i class="ri-store-2-line"></i>
+            <div class="card">
+
+                <i class="ri-store-2-line"></i>
+
+                <div class="info">
+                    <h3>Businesses</h3>
+                    <p>Manage your business listings and details.</p>
                 </div>
-                <h3>Businesses</h3>
-                <p>Manage your business listings and details.</p>
-                <a href="#">Open <i class="ri-arrow-right-line"></i></a>
+
             </div>
 
-            <div class="option-card">
-                <div class="icon">
-                    <i class="ri-user-3-line"></i>
+            <div class="card">
+
+                <i class="ri-user-3-line"></i>
+
+                <div class="info">
+                    <h3>About Me</h3>
+                    <p>Update your personal profile information.</p>
                 </div>
-                <h3>About Me</h3>
-                <p>Update your personal profile information.</p>
-                <a href="#">Open <i class="ri-arrow-right-line"></i></a>
+
             </div>
 
-            <div class="option-card">
-                <div class="icon">
-                    <i class="ri-contacts-book-2-line"></i>
+            <div class="card" onclick='window.open("./contact.html", "_self")'>
+
+                <i class="ri-contacts-book-2-line"></i>
+
+                <div class="info">
+                    <h3>All Contacts</h3>
+                    <p>View and manage all saved contacts.</p>
                 </div>
-                <h3>All Contacts</h3>
-                <p>View and manage all saved contacts.</p>
-                <a href="#">Open <i class="ri-arrow-right-line"></i></a>
+
             </div>
 
-            <div class="option-card">
-                <div class="icon">
-                    <i class="ri-play-list-2-line"></i>
+            <div class="card">
+
+                <i class="ri-play-list-2-line"></i>
+
+                <div class="info">
+                    <h3>Video Player</h3>
+                    <p>Custom video player for smooth experiences.</p>
                 </div>
-                <h3>Playlist</h3>
-                <p>Access your saved playlists and tracks.</p>
-                <a href="#">Open <i class="ri-arrow-right-line"></i></a>
+
             </div>
 
         </div>
 
-        <!-- Footer -->
+        <!-- =============== FOOTER & CREDIT SECTION =============== -->
         <footer class="dashboard-footer">
-            <p>© 2026 MyDashboard. All Rights Reserved.</p>
-            <p>Developed by <span>Rohit Sharma</span></p>
+            <p id="copyright">© 2026 MyDashboard. All Rights Reserved.</p>
+            <p>Developed by <span id="devCredit">Shaikh Sarfraj</span></p>
         </footer>
 
     </div>

@@ -1,6 +1,57 @@
 
 ---
 
+# Dashboard
+### Log No: 8
+
+## Time Line
+- **Date: ** 26-4-2026
+- **Start at** 02:08 PM
+- **Complete at** 03:49 PM
+
+## Features
+- 4th Release
+- Created Contact Page (HTML, CSS, JS)
+- Maked Contact Page Responsive
+- Updated Folder Structure (ReadMe.md - Line No: 200)
+
+---
+
+# Dashboard
+### Log No: 7
+
+## Time Line
+- **Date: ** 26-4-2026
+- **Start at** 01:05 PM
+- **Complete at** 02:05 PM
+
+## Features
+- 4th Release
+- Added Dynamic Year (Footer Section)
+- Added Dynamic Website Name & Developer Name & Link Support (Footer Section)
+- Rendred User Data To Show His Profile Details
+- Removed Authentication Security From All Pages Due To Redirection Issue & Not Working Properly (Except Login & Home Page)
+
+---
+
+# BUG Fix
+### Log No: 6
+
+## Time Line
+- **Date: ** 26-4-2026
+- **Start at** 11:24 AM
+- **Complete at** 12:49 PM
+
+## Features
+- 4th Release
+- Added Only Image Can Upload (Profile Photo Page)
+- Updated ReadMe File (Line No: 280 - 342)
+- Updated Folder Structure (ReadMe.md - Line No: 200)
+- Fixes Dashboard UI Design
+- Maked Dashboard Responsive Design
+
+---
+
 # Profile Photo (DP)
 ### Log No: 5
 

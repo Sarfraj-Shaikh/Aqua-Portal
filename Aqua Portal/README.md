@@ -208,6 +208,8 @@ Aqua Portal/
 │── Task.md
 │
 ├── Pages/
+│   ├── contact.html
+│   ├── dashboard.html
 │   ├── login.html
 │   ├── profile-photo.html
 │   ├── signup.html
@@ -218,6 +220,8 @@ Aqua Portal/
 │   │   │   ├── common.css
 │   │   │   ├── style.css
 │   │   │   ├── pages/
+│   │   │       ├── contact.css
+│   │   │       ├── dashboard.css
 │   │   │       ├── login.css
 │   │   │       ├── profile-photo.css
 │   │   │       ├── signup.css
@@ -226,6 +230,8 @@ Aqua Portal/
 │   │       ├── common.js
 │   │       ├── main.js
 │   │       ├── pages/
+│   │           ├── contact.js
+│   │           ├── dashboard.js
 │   │           ├── login.js
 │   │           ├── profile-photo.js
 │   │           ├── signup.js
@@ -276,3 +282,67 @@ Humne registration form par kuch strong validations implement ki hain, taaki use
 
 ## Note
 Login page par bhi **Email ID aur Password** ke liye same validation rules follow kiye jayenge.
+
+## Home Page Redirect Restrictions
+
+Humne **login** aur **non-login users** ke liye **separate redirection flow** implement kiya hai taaki security aur user experience maintain rahe.
+
+### ✅ Logged-in User Behavior
+- Agar user **login** hai, toh navbar ka CTA button **"Login"** se change hokar **"Dashboard"** ho jayega.
+- Hero section me **"Login"** button hide ho jayega.
+- **"Get Started"** button bhi update hokar **"Dashboard"** me convert ho jayega.
+
+👉 Agar user **Dashboard** button par click karta hai, toh user directly **Dashboard page** par redirect ho jayega.
+
+### ✅ Non-Logged-in User Behavior
+- Agar user **login nahi hai**, toh system **default redirection flow** follow karega (jo pehle se non-login users ke liye tha).
+- Navbar aur hero section me **Login button visible** rahega.
+
+## Registration (Signup) Page Redirection
+
+Signup page par bhi humne **login** aur **non-login users** ke liye redirection rules apply kiye hain.
+
+### ✅ Logged-in User Behavior
+- Agar user already **login** hai, toh usko automatically **Dashboard page** par redirect kar diya jayega.
+- Is case me signup page access nahi hoga.
+
+### ✅ Non-Logged-in User Behavior
+- Agar user **login nahi hai**, toh signup page normally open hoga aur **koi redirection apply nahi hoga**.
+
+### ⚠️ Note
+Agar user ko **new account create** karna hai, toh pehle current logged-in account ko **logout** karna zaroori hai.
+
+## Login Page Redirection
+
+Login page par humne logged-in users ke liye strict redirection flow implement kiya hai.
+
+### ✅ Logged-in User Behavior
+Agar user already **login** hai aur dubara **Login page access** karne ki koshish karta hai, toh usko direct login page par rehne nahi diya jayega.
+
+System pehle check karega:
+
+- **Agar user ne profile photo upload nahi ki hai**, toh user ko **Profile Photo Upload page** par redirect kar diya jayega.
+- **Agar profile photo already uploaded hai**, toh user ko directly **Dashboard page** par redirect kar diya jayega.
+
+### ✅ Non-Logged-in User Behavior
+Agar user **login nahi hai**, toh login page normally open hoga aur **koi redirection apply nahi hoga**.
+
+## Profile Photo Upload Redirection
+
+Profile photo upload page par bhi redirection rules apply kiye gaye hain.
+
+### ✅ Already Uploaded Photo
+- Agar user ne pehle se **profile photo upload** kar rakhi hai, toh user ko automatically **Dashboard page** par redirect kar diya jayega.
+
+### ✅ Photo Not Uploaded
+- Agar user ne abhi tak photo upload nahi ki hai, toh user **same page par continue** karega aur photo upload kar sakta hai.
+
+## Dashboard Page Redirection
+
+Dashboard page access ke liye authentication mandatory rakha gaya hai.
+
+### ✅ Logged-in User Behavior
+- Agar user **login** hai, toh dashboard page normally open hoga aur **koi redirection apply nahi hoga**.
+
+### ❌ Non-Logged-in User Behavior
+- Agar user **login nahi hai**, toh usko automatically **Login page** par redirect kar diya jayega.
