@@ -126,50 +126,21 @@ function readFile() {
 
 function updateData(imgUrl) {
 
-    document.cookie = "pfp=" + imgUrl + "; max-age = 518400; path=/";
+    if (sessionLogin === true) {
 
-    if (sessionStorage.getItem("loggedInUser") !== null) {
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        let userEmail = sessionStorage.getItem("currentUser");
 
-        let loggedUserEmail = sessionStorage.getItem("loggedInUser");
-        let userData = JSON.parse(sessionStorage.getItem(loggedUserEmail));
-        userData.pfp = imgUrl;
-        sessionStorage.setItem(loggedUserEmail, JSON.stringify(userData));
+        let currentDate = new Date();
 
-    }
+        for (let i = 0; i < users.length; i++) {
 
-    let loggedUserEmail2 = localStorage.getItem("loggedUser");
-    let key = btoa(loggedUserEmail2);
-    let storedData = localStorage.getItem(key);
-    let userObj = JSON.parse(atob(storedData));
-    userObj.profileImg = imgUrl;
-    localStorage.setItem(key, btoa(JSON.stringify(userObj)));
+            if (users[i].id === userEmail) {
 
-    window.open("./dashboard.html", "_self");
+                if (users[i].profileImg === "") {
 
-}
-
-function isLogin() {
-
-    if (document.cookie.length !== 0) {
-
-        let cookie = document.cookie.split("; ");
-
-        for (let i = 0; i < cookie.length; i++) {
-
-            let data = cookie[i].split("=");
-
-            let key = data[0];
-            let value = data[1] ? data[1] : "";
-
-            if (key === "pfp") {
-
-                if (value === "") {
-
-                    window.open("./profile-photo.html", "_self");
-
-                } else {
-
-                    window.open("./dashboard.html", "_self");
+                    users[i].profileImg = imgUrl;
+                    users[i].updatedAt = currentDate.toLocaleDateString() + " at " + currentDate.toLocaleTimeString();
 
                 }
 
@@ -177,25 +148,126 @@ function isLogin() {
             }
         }
 
+        localStorage.setItem("users", JSON.stringify(users));
+
+    } else {
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        let userEmail = localStorage.getItem("currentUser");
+
+        for (let i = 0; i < users.length; i++) {
+
+            if (users[i].id === userEmail) {
+
+                if (users[i].profileImg === "") {
+
+                    users[i].profileImg = imgUrl;
+
+                }
+
+                break;
+            }
+        }
+
+        localStorage.setItem("users", JSON.stringify(users));
+
     }
-    else if (sessionStorage.length !== 0) {
 
-        for (let i = 0; i < sessionStorage.length; i++) {
+    isLogin();
 
-            let key = sessionStorage.key(i);
-            let data = JSON.parse(sessionStorage.getItem(key));
+}
 
-            if (data.pfp === "") {
+/* =============== AUTHENTICATION CHECK =============== */
 
-                window.open("./profile-photo.html", "_self");
+let sessionLogin = false;
+
+function isLogin() {
+
+    if (sessionStorage.getItem("currentUser") === null) {
+
+        sessionLogin = false;
+
+        if (localStorage.getItem("currentUser") === null) {
+
+            window.open("./login.html", "_self");
+
+        } else {
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            let userEmail = localStorage.getItem("currentUser");
+            let noProfile = true;
+
+            for (let i = 0; i < users.length; i++) {
+
+                if (users[i].id === userEmail) {
+
+                    if (users[i].profileImg === "") {
+
+                        noProfile = true;
+
+                    } else {
+
+                        noProfile = false;
+
+                    }
+
+                    break;
+                }
+            }
+
+            if (noProfile === true) {
+
+                /* No operation will be performed here because the user is still on the profile upload page, and we have received login details for the current user. If profile photo details are provided, then the operation will be performed in the `else` part. */
 
             } else {
 
                 window.open("./dashboard.html", "_self");
 
             }
+
         }
+
+    } else {
+
+        sessionLogin = true;
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        let userEmail = sessionStorage.getItem("currentUser");
+        let noProfile = true;
+
+        for (let i = 0; i < users.length; i++) {
+
+            if (users[i].id === userEmail) {
+
+                if (users[i].profileImg === "") {
+
+                    noProfile = true;
+
+                } else {
+
+                    noProfile = false;
+
+                }
+
+                break;
+            }
+        }
+
+        if (noProfile === true) {
+
+            /* No operation will be performed here because the user is still on the profile upload page, and we have received login details for the current user. If profile photo details are provided, then the operation will be performed in the `else` part. */
+
+        } else {
+
+            window.open("./dashboard.html", "_self");
+
+        }
+
     }
+
 }
 
-// isLogin();
+isLogin();
+

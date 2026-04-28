@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- =============== WEBSITE META DATA =============== -->
-    <title>Dashboard | Aqua Portal</title>
+    <title>Contacts | Aqua Portal</title>
     <link rel="shortcut icon" href="../assets/img/logo.avif" type="image/x-icon">
 
     <!-- =============== AUTHOR META DATA =============== -->
@@ -84,8 +84,8 @@
         <div class="nav-right">
 
             <div class="cta-btn" id="navPrimaryCtaBtn">
-                <i class="ri-home-line"></i>
-                <span>Home</span>
+                <i class="ri-dashboard-line"></i>
+                <span>Dashboard</span>
             </div>
 
         </div>
@@ -102,33 +102,38 @@
                 Add New Contact
             </h3>
 
-            <div class="input-Box">
+            <div class="input-Box" id="nameIBox">
 
                 <p class="input-title">Name</p>
-                <input type="text" maxlength="15" placeholder="Enter Full Name">
-                <p class="errorText">Error Goes Here!</p>
+                <input type="text" maxlength="15" placeholder="Enter Full Name" id="nameInput">
+                <p class="errorText" id="errorText1">Error Goes Here!</p>
 
             </div>
 
-            <div class="input-Box">
+            <div class="input-Box" id="numberIBox">
 
                 <p class="input-title">Mobile Number</p>
-                <input type="text" maxlength="15" placeholder="Enter Mobile Number">
-                <p class="errorText">Error Goes Here!</p>
+                <input type="number" maxlength="10" placeholder="Enter Mobile Number" id="numberInput" inputmode="numeric">
+                <p class="errorText" id="errorText2">Error Goes Here!</p>
 
             </div>
 
-            <div class="input-Box">
+            <div class="input-Box" id="locationIBox">
 
                 <p class="input-title">Location</p>
-                <input type="text" maxlength="15" placeholder="Enter City/Location">
-                <p class="errorText">Error Goes Here!</p>
+                <input type="text" placeholder="Enter City/Location" id="locationInput">
+                <p class="errorText" id="errorText3">Error Goes Here!</p>
 
             </div>
 
-            <div class="addBtn">
+            <div class="addBtn" onclick="formVal()" id="addContactBtn">
                 <i class="ri-save-line"></i>
                 Save Now
+            </div>
+
+            <div class="updateBtn" onclick="formVal()" id="updateContactBtn">
+                <i class="ri-edit-circle-line"></i>
+                Update Now
             </div>
         </div>
 
@@ -136,17 +141,17 @@
 
             <div class="searchBox">
                 <i class="ri-search-line"></i>
-                <input type="text" placeholder="Search by Name or Number">
+                <input type="text" placeholder="Search by Name or Number" oninput="searchSavedContact()" id="saveContactSearch">
             </div>
 
-            <div class="notFound">
+            <div class="notFound" id="savedNotFound">
                 <i class="ri-cloud-off-line"></i>
                 <p>No Contact Found</p>
             </div>
 
-            <div class="list-card">
+            <div class="list-card" id="savedListCard">
 
-                <div class="left">
+                <!-- <div class="left">
                     <p>
                         <i class="ri-user-line"></i>
                         Aqua Portal
@@ -162,9 +167,9 @@
                         Mumbai, India
                     </p>
 
-                </div>
+                </div> -->
 
-                <div class="right">
+                <!-- <div class="right">
 
                     <div class="btn">
                         <i class="ri-pencil-line"></i>
@@ -176,7 +181,8 @@
                         Delete
                     </div>
 
-                </div>
+                </div> -->
+                
             </div>
         </div>
 
@@ -184,15 +190,15 @@
 
             <div class="searchBox">
                 <i class="ri-search-line"></i>
-                <input type="text" placeholder="Search by Name or Number">
+                <input type="text" placeholder="Search by Name or Number" id="deletedContactSearch" oninput="searchDeletedContact()">
             </div>
 
-            <div class="notFound">
+            <div class="notFound" id="deletedNotFound">
                 <i class="ri-cloud-off-line"></i>
                 <p>Deleted Contact Not Found</p>
             </div>
 
-            <div class="list-card">
+            <div class="list-card" id="deletedCardList">
 
                 <div class="left">
                     <p>

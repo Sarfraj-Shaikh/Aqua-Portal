@@ -85,69 +85,161 @@ devCredit.addEventListener("click", function () {
 
 /* =============== AUTHENTICATION CHECK =============== */
 
+let sessionLogin = false;
+
 function isLogin() {
 
-    let isLoggedIn = false;
+    if (sessionStorage.getItem("currentUser") === null) {
 
-    if (document.cookie.length > 0) {
-        isLoggedIn = true;
-    }
+        sessionLogin = false;
 
-    if (sessionStorage.length > 0) {
-        isLoggedIn = true;
-    }
+        if (localStorage.getItem("currentUser") === null) {
 
-    if (isLoggedIn) {
+            window.open("./login.html", "_self");
 
-        window.open("./dashboard.html", "_self");
+        } else {
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            let userEmail = localStorage.getItem("currentUser");
+            let noProfile = true;
+
+            for (let i = 0; i < users.length; i++) {
+
+                if (users[i].id === userEmail) {
+
+                    if (users[i].profileImg === "") {
+
+                        noProfile = true;
+
+                    } else {
+
+                        noProfile = false;
+
+                    }
+
+                    break;
+                }
+            }
+
+            if (noProfile === true) {
+
+                window.open("./profile-photo.html", "_self");
+
+            } else {
+
+                /* No operation will be performed here because the user is still on the Dashboard page, and we have received login details for the current user. If profile photo details are provided, then the operation will be performed in the `if` part. */
+
+            }
+
+        }
 
     } else {
 
-        location.assign("./login.html");
+        sessionLogin = true;
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        let userEmail = sessionStorage.getItem("currentUser");
+        let noProfile = true;
+
+        for (let i = 0; i < users.length; i++) {
+
+            if (users[i].id === userEmail) {
+
+                if (users[i].profileImg === "") {
+
+                    noProfile = true;
+
+                } else {
+
+                    noProfile = false;
+
+                }
+
+                break;
+            }
+        }
+
+        if (noProfile === true) {
+
+            window.open("./profile-photo.html", "_self");
+
+        } else {
+
+            /* No operation will be performed here because the user is still on the Dashboard page, and we have received login details for the current user. If profile photo details are provided, then the operation will be performed in the `if` part. */
+
+        }
 
     }
+
 }
 
-// isLogin();
+isLogin();
 
 /* =============== USER PROFILE =============== */
-const userEmail = document.getElementById("userEmail");
-userEmail.textContent = localStorage.getItem("loggedUser");
 
-let loggedUserKey = localStorage.getItem("loggedUser");
+let userName = document.getElementById("userName");
+let userProfile = document.getElementById("userPfp");
+let userId = document.getElementById("userEmail");
 
-if (loggedUserKey) {
-    
-    let userId = loggedUserKey; 
+if (sessionLogin === true) {
 
-    let userData = localStorage.getItem(btoa(userId));
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let userEmail = sessionStorage.getItem("currentUser");
 
-    if (userData) {
+    for (let i = 0; i < users.length; i++) {
 
-        let userObj = JSON.parse(atob(userData));
-        document.getElementById("userName").innerText = userObj.name;
-        document.getElementById("userPfp").src = userObj.profileImg || "../assets/img/default-dp.jpg";
+        if (users[i].id === userEmail) {
+
+            userName.textContent = users[i].name;
+            userProfile.src = users[i].profileImg;
+            userId.textContent = users[i].id;
+
+            break;
+
+        }
+
+    }
+
+} else {
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let userEmail = localStorage.getItem("currentUser");
+
+    for (let i = 0; i < users.length; i++) {
+
+        if (users[i].id === userEmail) {
+
+            userName.textContent = users[i].name;
+            userProfile.src = users[i].profileImg;
+            userId.textContent = users[i].id;
+
+            break;
+
+        }
 
     }
 }
 
+
 /* =============== LOGOUT PROFILE =============== */
+
 const logoutBtn = document.getElementById("logoutBtn");
-logoutBtn.addEventListener("click", function() {
+logoutBtn.addEventListener("click", function () {
 
     let confirmLogout = window.confirm("Are you want to sure to Logout?");
 
-    if(confirmLogout) {
+    if (confirmLogout) {
 
-        localStorage.removeItem("loggedUser");
-        sessionStorage.removeItem("loggedInUser");
-        sessionStorage.clear();
+        if (sessionLogin === true) {
 
-        document.cookie = "email=; max-age = 0; path=/";
-        document.cookie = "password=; max-age = 0; path=/";
-        document.cookie = "name=; max-age = 0; path=/";
-        document.cookie = "number=; max-age = 0; path=/";
-        document.cookie = "pfp=; max-age = 0; path=/";
+            sessionStorage.removeItem("currentUser");
+
+        } else {
+
+            localStorage.removeItem("currentUser");
+        }
 
         window.open("./login.html", "_self");
     };

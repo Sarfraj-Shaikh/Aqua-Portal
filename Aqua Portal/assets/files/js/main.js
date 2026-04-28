@@ -53,56 +53,143 @@ heroSubTitle.innerHTML = `${webDetail.slogan}`;
 
 function isLogin() {
 
-    let getStartBtn = document.getElementById("getStartBtn");
-    let loginBtn = document.getElementById("loginBtn");
-    let navPrimaryCtaBtn = document.getElementById("navPrimaryCtaBtn");
+    if (sessionStorage.getItem("currentUser") === null) {
 
-    let isLoggedIn = false;
+        if (localStorage.getItem("currentUser") === null) {
 
-    if (document.cookie.length > 0) {
-        isLoggedIn = true;
-    }
+            getStartBtn.innerHTML = `<i class="ri-sparkling-line"></i> <span>Get Started</span>`;
+            navPrimaryCtaBtn.innerHTML = `<i class="ri-user-line"></i> <span>Login</span>`;
+            loginBtn.style.display = "flex";
 
-    if (sessionStorage.length > 0) {
-        isLoggedIn = true;
-    }
+            getStartBtn.onclick = function () {
 
-    if (isLoggedIn) {
+                window.open("./pages/signup.html", "_self");
 
-        getStartBtn.textContent = "Dashboard";
-        navPrimaryCtaBtn.innerHTML = `<i class="ri-user-line"></i>
-        <span>Dashboard</span>`;
+            };
+
+            navPrimaryCtaBtn.onclick = function () {
+
+                location.assign("./pages/login.html");
+            };
+
+        } else {
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            let userEmail = localStorage.getItem("currentUser");
+            let noProfile = true;
+
+            for (let i = 0; i < users.length; i++) {
+
+                if (users[i].id === userEmail) {
+
+                    if (users[i].profileImg === "") {
+
+                        noProfile = true;
+
+                    } else {
+
+                        noProfile = false;
+
+                    }
+
+                    break;
+                }
+            }
+
+            getStartBtn.innerHTML = `<i class="ri-user-line"></i> <span>Dashboard</span>`;
+            navPrimaryCtaBtn.innerHTML = `<i class="ri-user-line"></i> <span>Dashboard</span>`;
+            loginBtn.style.display = "none";
+
+            getStartBtn.onclick = function () {
+
+                if (noProfile === true) {
+
+                    window.open("./pages/profile-photo.html", "_self");
+
+
+                } else {
+
+                    window.open("./pages/dashboard.html", "_self");
+
+                }
+
+            };
+
+            navPrimaryCtaBtn.onclick = function () {
+
+                if (noProfile === true) {
+
+                    window.open("./pages/profile-photo.html", "_self");
+
+                } else {
+
+                    window.open("./pages/dashboard.html", "_self");
+
+                }
+            };
+
+        }
+
+    } else {
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        let userEmail = sessionStorage.getItem("currentUser");
+        let noProfile = true;
+
+        for (let i = 0; i < users.length; i++) {
+
+            if (users[i].id === userEmail) {
+
+                if (users[i].profileImg === "") {
+
+                    noProfile = true;
+
+                } else {
+
+                    noProfile = false;
+
+                }
+
+                break;
+            }
+        }
+
+        getStartBtn.innerHTML = `<i class="ri-user-line"></i> <span>Dashboard</span>`;
+        navPrimaryCtaBtn.innerHTML = `<i class="ri-user-line"></i> <span>Dashboard</span>`;
         loginBtn.style.display = "none";
 
         getStartBtn.onclick = function () {
 
-            window.open("./pages/dashboard.html", "_self");
+            if (noProfile === true) {
+
+                window.open("./pages/profile-photo.html", "_self");
+
+
+            } else {
+
+                window.open("./pages/dashboard.html", "_self");
+
+            }
 
         };
 
         navPrimaryCtaBtn.onclick = function () {
 
-            location.assign("./pages/dashboard.html");
+            if (noProfile === true) {
+
+                window.open("./pages/profile-photo.html", "_self");
+
+            } else {
+
+                window.open("./pages/dashboard.html", "_self");
+
+            }
         };
 
-    } else {
-
-        getStartBtn.textContent = "Get Started";
-        navPrimaryCtaBtn.innerHTML = `<i class="ri-user-line"></i>
-        <span>Login</span>`;
-        loginBtn.style.display = "flex";
-
-        getStartBtn.onclick = function () {
-
-            window.open("./pages/signup.html", "_self");
-
-        };
-
-        navPrimaryCtaBtn.onclick = function () {
-
-            location.assign("./pages/login.html");
-        };
     }
+
 }
 
 isLogin();

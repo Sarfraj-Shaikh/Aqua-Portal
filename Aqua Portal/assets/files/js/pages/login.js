@@ -170,122 +170,115 @@ function checkData() {
     let errorText2 = document.getElementById("errorText2");
     let inputBox2 = document.getElementById("passIBox");
 
-    if (localStorage.getItem(btoa(emailInput.value)) === null) {
+    let tickBox = document.getElementById("morning");
+
+    /* =============== FETCH USER DATA =============== */
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    let emailExist = false;
+    let passExist = false;
+
+    for (let i = 0; i < users.length; i++) {
+
+        if (users[i].id === emailInput.value) {
+
+            emailExist = true;
+
+            if (users[i].password === passwordInput.value) {
+
+                passExist = true;
+
+            }
+
+            break;
+        }
+    }
+
+    /* =============== CONDITION CHECKING FOR LOGIN =============== */
+
+    if (emailExist === false) {
 
         errorText1.style.display = "block";
-        errorText1.textContent = "Invalid Email ID";
+        errorText1.textContent = "Oops, Email ID Not Found";
         inputBox1.style.border = "2px solid red";
 
     } else {
 
-        for (let i = 0; i < localStorage.length; i++) {
+        errorText1.style.display = "none";
+        errorText1.textContent = "";
+        inputBox1.style.border = "1px solid #E5E7EB";
 
-            let key = localStorage.key(i);
-            let allUsers = JSON.parse(atob(localStorage.getItem(key)));
+        if (passExist === false) {
 
-            if (emailInput.value === allUsers.email) {
+            errorText2.style.display = "block";
+            errorText2.textContent = "Oops, Wrong Password";
+            inputBox2.style.border = "2px solid red";
 
-                errorText1.style.display = "none";
-                errorText1.textContent = "";
-                inputBox1.style.border = "1px solid #E5E7EB";
+        } else {
 
-                if (passwordInput.value === allUsers.password) {
+            errorText2.style.display = "none";
+            errorText2.textContent = "";
+            inputBox2.style.border = "1px solid #E5E7EB";
 
-                    errorText2.style.display = "none";
-                    errorText2.textContent = "";
-                    inputBox2.style.border = "1px solid #E5E7EB";
+            /* =============== SAVED LOGIN DATA =============== */
 
-                    if (allUsers.profileImg === "") {
+            if (tickBox.checked === true) {
 
-                        loginRedirect(allUsers.email, allUsers.password, allUsers.name, allUsers.number, allUsers.profileImg);
+                localStorage.setItem("currentUser", emailInput.value);
 
-                    }
+            } else {
 
-                } else {
-
-                    errorText2.style.display = "block";
-                    errorText2.textContent = "Oops, Wrong Password";
-                    inputBox2.style.border = "2px solid red";
-                }
+                sessionStorage.setItem("currentUser", emailInput.value);
 
             }
-            else {
 
-                errorText1.style.display = "block";
-                errorText1.textContent = "Oops, Email ID Not Found";
-                inputBox1.style.border = "2px solid red";
-
-            }
+            isLogin();
         }
 
     }
 
 }
 
-function loginRedirect(email, pass, name, number, pfp) {
-
-    let tickBox = document.getElementById("morning");
-
-        document.cookie = "email=" + email + "; max-age = 518400; path=/";
-        document.cookie = "password=" + pass + "; max-age = 518400; path=/";
-        document.cookie = "name=" + name + "; max-age = 518400; path=/";
-        document.cookie = "number=" + number + "; max-age = 518400; path=/";
-        document.cookie = "pfp=" + pfp + "; max-age = 518400; path=/";
-
-        let loginData = {
-            id: email,
-            email: email,
-            password: pass,
-            name: name,
-            number: number,
-            pfp: pfp
-        }
-
-        sessionStorage.setItem("loggedInUser", email);
-        localStorage.setItem("loggedUser", email);
-        sessionStorage.setItem(loginData.id, JSON.stringify(loginData));
-
-    isLogin();
-}
+/* =============== AUTHENTICATION CHECK =============== */
 
 function isLogin() {
 
-    if (document.cookie.length !== 0) {
+    if (sessionStorage.getItem("currentUser") === null) {
 
-        let cookie = document.cookie.split("; ");
+        if (localStorage.getItem("currentUser") === null) {
 
-        for (let i = 0; i < cookie.length; i++) {
+            /* 
 
-            let data = cookie[i].split("=");
+            No operation will be performed here because the user is still on the login page, and we have not received any login details for the current user. If login details are provided, then the operation will be performed in the `else` part. 
 
-            let key = data[0];
-            let value = data[1] ? data[1] : "";
+            */
 
-            if (key === "pfp") {
+        } else {
 
-                if (value === "") {
+            let users = JSON.parse(localStorage.getItem("users")) || [];
 
-                    window.open("./profile-photo.html", "_self");
+            let userEmail = localStorage.getItem("currentUser");
+            let noProfile = true;
 
-                } else {
+            for (let i = 0; i < users.length; i++) {
 
-                    window.open("./dashboard.html", "_self");
+                if (users[i].id === userEmail) {
 
+                    if (users[i].profileImg === "") {
+
+                        noProfile = true;
+
+                    } else {
+
+                        noProfile = false;
+
+                    }
+
+                    break;
                 }
-
-                break;
             }
-        }
 
-    }
-    else if (sessionStorage.length !== 0) {
-
-        for (let i = 0; i < sessionStorage.length; i++) {
-
-            let key = sessionStorage.key(i);
-            let data = JSON.parse(sessionStorage.getItem(key));
-
-            if (data.pfp === "") {
+            if (noProfile === true) {
 
                 window.open("./profile-photo.html", "_self");
 
@@ -294,8 +287,46 @@ function isLogin() {
                 window.open("./dashboard.html", "_self");
 
             }
+
         }
+
+    } else {
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        let userEmail = sessionStorage.getItem("currentUser");
+        let noProfile = true;
+
+        for (let i = 0; i < users.length; i++) {
+
+            if (users[i].id === userEmail) {
+
+                if (users[i].profileImg === "") {
+
+                    noProfile = true;
+
+                } else {
+
+                    noProfile = false;
+
+                }
+
+                break;
+            }
+        }
+
+        if (noProfile === true) {
+
+            window.open("./profile-photo.html", "_self");
+
+        } else {
+
+            window.open("./dashboard.html", "_self");
+
+        }
+
     }
+
 }
 
 isLogin();

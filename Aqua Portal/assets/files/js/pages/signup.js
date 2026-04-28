@@ -300,16 +300,56 @@ function registerAC() {
 
     let passwordInput = document.getElementById("passwordInput").value;
 
-    let user = {
+    /* =============== READ USERS ACCOUNTS =============== */
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    /* =============== DUPLICATE EMAIL SECURITY =============== */
+    let emailExist = false;
+
+    for (let i = 0; i < users.length; i++) {
+
+        if (users[i].email === emailInput) {
+
+            emailExist = true;
+            break;
+        }
+    }
+
+    /* =============== DUPLICATE NUMBER SECURITY =============== */
+    let numExist = false;
+
+    for (let i = 0; i < users.length; i++) {
+
+        if (users[i].number === numberInput) {
+
+            numExist = true;
+            break;
+        }
+
+    }
+
+    /* =============== SHORTER METHOD FOR DUPLICATE EMAIL & NUMBER SECURITY =============== */
+    
+    // let emailExist = users.some(user => user.email === emailInput);
+    // let numExist = users.some(user => user.number === numberInput);
+
+    /* =============== NEW USER DATA =============== */
+    let currentDate = new Date();
+
+    let newUser = {
         id: emailInput,
         name: nameInput,
         email: emailInput,
         number: numberInput,
         password: passwordInput,
-        profileImg: ""
+        profileImg: "",
+        createdAt: currentDate.toLocaleDateString() + " at " + currentDate.toLocaleTimeString(),
+        updatedAt: currentDate.toLocaleDateString() + " at " + currentDate.toLocaleTimeString()
     }
 
-    if (localStorage.getItem(btoa(emailInput)) !== null) {
+    /* =============== CHECK CONDITION FOR DATA STORE =============== */
+
+    if (emailExist === true) {
 
         errorText2.style.display = "block";
         errorText2.textContent = "Email ID Already Registered";
@@ -321,26 +361,7 @@ function registerAC() {
         errorText2.textContent = "";
         inputBox2.style.border = "1px solid #E5E7EB";
 
-        let numberExists = false;
-
-        for (let i = 0; i < localStorage.length; i++) {
-
-            let key = localStorage.key(i);
-            let allUsers = JSON.parse(atob(localStorage.getItem(key)));
-
-            if (allUsers.number === numberInput) {
-
-                numberExists = true;
-                break;
-                errorText3.style.display = "block";
-                errorText3.textContent = "Number already registered!";
-                inputBox3.style.border = "2px solid red";
-
-            }
-
-        }
-
-        if (numberExists) {
+        if (numExist === true) {
 
             errorText3.style.display = "block";
             errorText3.textContent = "Number already registered!";
@@ -352,8 +373,10 @@ function registerAC() {
             errorText3.textContent = "";
             inputBox3.style.border = "1px solid #E5E7EB";
 
-            let allData = JSON.stringify(user);
-            localStorage.setItem(btoa(user.id), btoa(allData));
+            /* =============== STORE USER DATA =============== */
+            users.push(newUser);
+
+            localStorage.setItem("users", JSON.stringify(users));
 
             setTimeout(function () {
 
@@ -386,28 +409,93 @@ function clearInput() {
 
 function isLogin() {
 
-    let isLoggedIn = false;
+    if (sessionStorage.getItem("currentUser") === null) {
 
-    if (document.cookie.length > 0) {
-        isLoggedIn = true;
-    }
+        if (localStorage.getItem("currentUser") === null) {
 
-    if (sessionStorage.length > 0) {
-        isLoggedIn = true;
-    }
+            /* 
 
-    if (isLoggedIn) {
+            No operation will be performed here because the user is still on the register page, and we have not received any login details for the current user. If login details are provided, then the operation will be performed in the `else` part. 
 
-        window.open("./dashboard.html", "_self");
+            */
+
+        } else {
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            let userEmail = localStorage.getItem("currentUser");
+            let noProfile = true;
+
+            for (let i = 0; i < users.length; i++) {
+
+                if (users[i].id === userEmail) {
+
+                    if (users[i].profileImg === "") {
+
+                        noProfile = true;
+
+                    } else {
+
+                        noProfile = false;
+
+                    }
+
+                    break;
+                }
+            }
+
+            if (noProfile === true) {
+
+                window.open("./profile-photo.html", "_self");
+
+            } else {
+
+                window.open("./dashboard.html", "_self");
+
+            }
+
+        }
 
     } else {
 
-        location.assign("./signup.html");
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        let userEmail = sessionStorage.getItem("currentUser");
+        let noProfile = true;
+
+        for (let i = 0; i < users.length; i++) {
+
+            if (users[i].id === userEmail) {
+
+                if (users[i].profileImg === "") {
+
+                    noProfile = true;
+
+                } else {
+
+                    noProfile = false;
+
+                }
+
+                break;
+            }
+        }
+
+        if (noProfile === true) {
+
+            window.open("./profile-photo.html", "_self");
+
+        } else {
+
+            window.open("./dashboard.html", "_self");
+
+        }
 
     }
+
 }
 
-// isLogin();
+isLogin();
 
 
 

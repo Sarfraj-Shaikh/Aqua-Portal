@@ -1,6 +1,45 @@
 
 ---
 
+# Contact Page
+### Log No: 10
+
+## Time Line
+- **Date: ** 28-4-2026
+- **Start at** 12:41 PM
+- **Complete at** 04:40 PM
+
+## Features
+- 5th Release
+- Added Create Contact Features
+- Added Load All Saved Contacts For Logged User For Specific Account Based
+- Added Edit/Update Contact Features
+- Add Delete and Restore Features
+- Added Search Features For Deleted and Saved Contacts
+
+---
+
+# BUG Fix
+### Log No: 9
+
+## Time Line
+- **Date: ** 28-4-2026
+- **Start at** 09:38 AM
+- **Complete at** 12:26 PM
+
+## Features
+- 5th Release
+- Register Multiple Users Issue Fixed (Structured Way)
+- Added (createdAt & updatedAt) Details in User Profile
+- User Can Login One Account at Time (Bug Fixes)
+- Profile Photo Upload Issue Fixed
+- Page Redirection Issue Fixed For Non-Logged Users (Registration, Login, Profile Photo, Dashboard, Home - Page)
+- About Me Option Hided From Dashboard Page
+- User Profile Details Showing & Fixed Logout Features From (Dashboard Page)
+- Business & Video Player Option Hided Temporary From (Dashboard Page)
+
+---
+
 # Dashboard
 ### Log No: 8
 
