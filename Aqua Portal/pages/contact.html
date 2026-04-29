@@ -73,6 +73,27 @@
         </div>
     </div>
 
+    <!-- =============== POPUP DIALOGUE =============== -->
+    <div class="popup-con" id="popupContainer">
+        <div class="popup" id="popupBox">
+
+            <div class="top">
+                <p class="title" id="popTitle">POPUP MESSAGE</p>
+                <i class="ri-close-large-line" id="popupCloseIcon"></i>
+            </div>
+
+            <p class="message" id="popupMessage">Your custom popup message box is now ready</p>
+
+            <div class="btns">
+
+                <div class="cancel-btn" id="popupCancelBtn">Cancel</div>
+
+                <div class="confirm-btn" id="popupConfirmBtn">Confirm</div>
+
+            </div>
+        </div>
+    </div>
+
     <!-- =============== NAVBAR =============== -->
     <nav class="navbar" id="navBar">
 
@@ -113,7 +134,8 @@
             <div class="input-Box" id="numberIBox">
 
                 <p class="input-title">Mobile Number</p>
-                <input type="number" maxlength="10" placeholder="Enter Mobile Number" id="numberInput" inputmode="numeric">
+                <input type="number" maxlength="10" placeholder="Enter Mobile Number" id="numberInput"
+                    inputmode="numeric">
                 <p class="errorText" id="errorText2">Error Goes Here!</p>
 
             </div>
@@ -141,7 +163,8 @@
 
             <div class="searchBox">
                 <i class="ri-search-line"></i>
-                <input type="text" placeholder="Search by Name or Number" oninput="searchSavedContact()" id="saveContactSearch">
+                <input type="text" placeholder="Search by Name or Number" oninput="searchSavedContact()"
+                    id="saveContactSearch">
             </div>
 
             <div class="notFound" id="savedNotFound">
@@ -182,7 +205,7 @@
                     </div>
 
                 </div> -->
-                
+
             </div>
         </div>
 
@@ -190,7 +213,8 @@
 
             <div class="searchBox">
                 <i class="ri-search-line"></i>
-                <input type="text" placeholder="Search by Name or Number" id="deletedContactSearch" oninput="searchDeletedContact()">
+                <input type="text" placeholder="Search by Name or Number" id="deletedContactSearch"
+                    oninput="searchDeletedContact()">
             </div>
 
             <div class="notFound" id="deletedNotFound">

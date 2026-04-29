@@ -217,7 +217,7 @@ function formVal() {
             errorText2.textContent = "Mobile Number Is Required";
 
         }
-        else if (contactNumber.value.match(indNum)) {
+        else if (contactNumber.value[0].match(indNum)) {
 
             if (contactNumber.value.length < 10) {
 
@@ -451,8 +451,77 @@ savedListCard.addEventListener("click", function (e) {
 
     if (deleteBtn) {
 
-        let index = deleteBtn.getAttribute("data-index");
-        deleteContact(index);
+        /* =============== POPUP DIALOGUE =============== */
+        let popupContainer = document.getElementById("popupContainer");
+        let popupBox = document.getElementById("popupBox");
+        let popTitle = document.getElementById("popTitle");
+        let popupMessage = document.getElementById("popupMessage");
+        let popupCloseIcon = document.getElementById("popupCloseIcon");
+        let popupCancelBtn = document.getElementById("popupCancelBtn");
+        let popupConfirmBtn = document.getElementById("popupConfirmBtn");
+
+        popupContainer.classList.add("active");
+        popupContainer.classList.add("animate__animated", "animate__fadeIn");
+        popupBox.classList.add("animate__animated", "animate__zoomIn");
+
+        popTitle.textContent = "CONFIRMATION";
+        popupMessage.textContent = "Are You Want To Sure To Delete This Contact?";
+
+        popupCloseIcon.onclick = () => {
+
+            popupContainer.classList.remove("active");
+            popupContainer.classList.remove("animate__fadeIn");
+            popupBox.classList.remove("animate__zoomIn");
+
+            popupContainer.classList.add("animate__fadeOut");
+            popupBox.classList.add("animate__zoomOut");
+
+            setTimeout(() => {
+
+                popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+                popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+            }, 250);
+
+        }
+
+        popupCancelBtn.onclick = () => {
+
+            popupContainer.classList.remove("active");
+            popupContainer.classList.remove("animate__fadeIn");
+            popupBox.classList.remove("animate__zoomIn");
+
+            popupContainer.classList.add("animate__fadeOut");
+            popupBox.classList.add("animate__zoomOut");
+
+            setTimeout(() => {
+
+                popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+                popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+            }, 250);
+
+        }
+
+        popupConfirmBtn.onclick = () => {
+
+            let index = deleteBtn.getAttribute("data-index");
+            deleteContact(index);
+
+            popupContainer.classList.remove("active");
+            popupContainer.classList.remove("animate__fadeIn");
+            popupBox.classList.remove("animate__zoomIn");
+
+            popupContainer.classList.add("animate__fadeOut");
+            popupBox.classList.add("animate__zoomOut");
+
+            setTimeout(() => {
+
+                popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+                popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+            }, 250);
+        }
 
     }
 
@@ -497,7 +566,7 @@ function editContact(index) {
     let contactId = contacts[index].id;
     let contactCreator = contacts[index].createdBy;
 
-    updateContactBtn.addEventListener("click", function () {
+    updateContactBtn.onclick = function () {
 
         const indNum = /[7-9]/g;
 
@@ -585,20 +654,7 @@ function editContact(index) {
                             errorText2.style.display = "none";
                             errorText2.textContent = "";
 
-                            let currentDate = new Date();
-
-                            contacts[index].name = contactName.value;
-                            contacts[index].number = contactNumber.value;
-                            contacts[index].id = "contact_" + contacts[index].number;
-                            contacts[index].location = contactLocation.value;
-                            contacts[index].updatedAt = currentDate.toLocaleDateString() + " at " + currentDate.toLocaleTimeString();
-
-                            localStorage.setItem("contacts", JSON.stringify(contacts));
-                            clearInput();
-                            loadSavedContacts();
-
-                            addContactBtn.style.display = "flex";
-                            updateContactBtn.style.display = "none";
+                            updateContact(index);
 
                         }
 
@@ -623,8 +679,118 @@ function editContact(index) {
 
         }
 
-    });
+    };
 
+}
+
+function updateContact(index) {
+
+    let currentUser = null;
+
+    if (sessionLogin === true) {
+
+        currentUser = sessionStorage.getItem("currentUser");
+
+    } else {
+
+        currentUser = localStorage.getItem("currentUser");
+
+    }
+
+    let contactName = document.getElementById("nameInput");
+    let contactNumber = document.getElementById("numberInput");
+    let contactLocation = document.getElementById("locationInput");
+
+    let addContactBtn = document.getElementById("addContactBtn");
+    let updateContactBtn = document.getElementById("updateContactBtn");
+
+    /* =============== POPUP DIALOGUE =============== */
+
+    let popupContainer = document.getElementById("popupContainer");
+    let popupBox = document.getElementById("popupBox");
+    let popTitle = document.getElementById("popTitle");
+    let popupMessage = document.getElementById("popupMessage");
+    let popupCloseIcon = document.getElementById("popupCloseIcon");
+    let popupCancelBtn = document.getElementById("popupCancelBtn");
+    let popupConfirmBtn = document.getElementById("popupConfirmBtn");
+
+    /* =============== LOAD ALL CONTACT DETAILS =============== */
+    let contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+
+    popupContainer.classList.add("active");
+    popupContainer.classList.add("animate__animated", "animate__fadeIn");
+    popupBox.classList.add("animate__animated", "animate__zoomIn");
+
+    popTitle.textContent = "CONFIRMATION";
+    popupMessage.textContent = "Are You Want To Sure To Update This Contact Details?";
+
+    popupCloseIcon.onclick = () => {
+
+        popupContainer.classList.remove("active");
+        popupContainer.classList.remove("animate__fadeIn");
+        popupBox.classList.remove("animate__zoomIn");
+
+        popupContainer.classList.add("animate__fadeOut");
+        popupBox.classList.add("animate__zoomOut");
+
+        setTimeout(() => {
+
+            popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+            popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+        }, 250);
+
+    }
+
+    popupCancelBtn.onclick = () => {
+
+        popupContainer.classList.remove("active");
+        popupContainer.classList.remove("animate__fadeIn");
+        popupBox.classList.remove("animate__zoomIn");
+
+        popupContainer.classList.add("animate__fadeOut");
+        popupBox.classList.add("animate__zoomOut");
+
+        setTimeout(() => {
+
+            popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+            popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+        }, 250);
+
+    }
+
+    popupConfirmBtn.onclick = () => {
+
+        let currentDate = new Date();
+
+        contacts[index].name = contactName.value;
+        contacts[index].number = contactNumber.value;
+        contacts[index].id = "contact_" + contacts[index].number;
+        contacts[index].location = contactLocation.value;
+        contacts[index].updatedAt = currentDate.toLocaleDateString() + " at " + currentDate.toLocaleTimeString();
+
+        localStorage.setItem("contacts", JSON.stringify(contacts));
+        clearInput();
+        loadSavedContacts();
+
+        addContactBtn.style.display = "flex";
+        updateContactBtn.style.display = "none";
+
+        popupContainer.classList.remove("active");
+        popupContainer.classList.remove("animate__fadeIn");
+        popupBox.classList.remove("animate__zoomIn");
+
+        popupContainer.classList.add("animate__fadeOut");
+        popupBox.classList.add("animate__zoomOut");
+
+        setTimeout(() => {
+
+            popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+            popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+        }, 250);
+    }
 }
 
 /* =============== DELETE CONTACT =============== */
@@ -782,8 +948,77 @@ deletedCardList.addEventListener("click", function (e) {
 
     if (restoreBtn) {
 
-        let index = restoreBtn.getAttribute("data-index");
-        restoreContact(index);
+        /* =============== POPUP DIALOGUE =============== */
+        let popupContainer = document.getElementById("popupContainer");
+        let popupBox = document.getElementById("popupBox");
+        let popTitle = document.getElementById("popTitle");
+        let popupMessage = document.getElementById("popupMessage");
+        let popupCloseIcon = document.getElementById("popupCloseIcon");
+        let popupCancelBtn = document.getElementById("popupCancelBtn");
+        let popupConfirmBtn = document.getElementById("popupConfirmBtn");
+
+        popupContainer.classList.add("active");
+        popupContainer.classList.add("animate__animated", "animate__fadeIn");
+        popupBox.classList.add("animate__animated", "animate__zoomIn");
+
+        popTitle.textContent = "CONFIRMATION";
+        popupMessage.textContent = "Are You Want To Sure To Restore This Deleted Contact?";
+
+        popupCloseIcon.onclick = () => {
+
+            popupContainer.classList.remove("active");
+            popupContainer.classList.remove("animate__fadeIn");
+            popupBox.classList.remove("animate__zoomIn");
+
+            popupContainer.classList.add("animate__fadeOut");
+            popupBox.classList.add("animate__zoomOut");
+
+            setTimeout(() => {
+
+                popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+                popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+            }, 250);
+
+        }
+
+        popupCancelBtn.onclick = () => {
+
+            popupContainer.classList.remove("active");
+            popupContainer.classList.remove("animate__fadeIn");
+            popupBox.classList.remove("animate__zoomIn");
+
+            popupContainer.classList.add("animate__fadeOut");
+            popupBox.classList.add("animate__zoomOut");
+
+            setTimeout(() => {
+
+                popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+                popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+            }, 250);
+
+        }
+
+        popupConfirmBtn.onclick = () => {
+
+            let index = restoreBtn.getAttribute("data-index");
+            restoreContact(index);
+
+            popupContainer.classList.remove("active");
+            popupContainer.classList.remove("animate__fadeIn");
+            popupBox.classList.remove("animate__zoomIn");
+
+            popupContainer.classList.add("animate__fadeOut");
+            popupBox.classList.add("animate__zoomOut");
+
+            setTimeout(() => {
+
+                popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+                popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+            }, 250);
+        }
 
     }
 

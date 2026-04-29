@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- =============== WEBSITE META DATA =============== -->
-    <title>Profile Photo | Aqua Portal</title>
+    <title>Admin Login | Aqua Portal</title>
     <link rel="shortcut icon" href="../assets/img/logo.avif" type="image/x-icon">
 
     <!-- =============== AUTHOR META DATA =============== -->
@@ -14,10 +15,12 @@
     <meta name="creator" content="Sarfraj Shaikh">
 
     <!-- =============== CSS FILE =============== -->
-    <link rel="stylesheet" href="../assets/files/css/pages/profile-photo.css">
+    <link rel="stylesheet" href="./assets/files/css/common.css">
+    <link rel="stylesheet" href="./assets/files/css/style.css">
 
     <!-- =============== JS FILE =============== -->
-    <script src="../assets/files/js/pages/profile_photo.js" defer></script>
+    <script src="./assets/files/js/common.js" defer></script>
+    <script src="./assets/files/js/main.js" defer></script>
 
     <!-- =============== ICON CDN =============== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
@@ -28,7 +31,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
 </head>
+
 <body>
 
     <!-- =============== LOADER =============== -->
@@ -71,58 +76,49 @@
         </div>
     </div>
 
-    <!-- =============== NAVBAR =============== -->
-    <nav class="navbar" id="navBar">
+    <!-- =============== LOGIN SECTION =============== -->
+    <div class="login-con">
 
-        <div class="nav-left" id="navLeft">
-            <img src="../assets/img/logo.avif" alt="Aqua Portal" loading="lazy">
-            <p id="navWebName"></p>
-        </div>
+        <div class="login-box">
 
-        <div class="nav-right">
+            <h2>Admin Login</h2>
+            <p>Login to access your admin dashboard.</p>
 
-            <div class="cta-btn" id="navPrimaryCtaBtn">
-                <i class="ri-home-line"></i>
-                <span>Home</span>
-            </div>
+            <form>
 
-        </div>
+                <div class="input-box">
+                    <label>Email ID</label>
 
-    </nav>
+                    <div class="input">
+                        <i class="ri-mail-line"></i>
+                        <input type="email" id="emailInput" placeholder="Enter Your Email ID"  autocomplete="off">
+                    </div>
 
-    <!-- =============== UPLOAD PHOTO SECTION =============== -->
-    <div class="main-container">
+                    <p class="errorText"></p>
 
-        <div class="upload-con">
-
-            <div class="headBox">
-                <h2>Upload Your Profile Photo</h2>
-                <h3>Upload a profile picture (Max 1MB)</h3>
-            </div>
-
-            <img src="../assets/img/default-dp.jpg" alt="Profile Photo" loading="lazy" id="userPic">
-
-            <div class="btnBox">
-
-                <label for="fileInput" id="fileLabel">
-
-                   <i class="ri-attachment-line"></i>
-                    Choose Profile Photo
-
-                    <input type="file" id="fileInput" hidden accept="image/*">
-
-                </label>
-
-                <div class="btn" id="nextBtn">
-                    Next
                 </div>
 
-            </div>
+                <div class="input-box">
+                    <label>Password</label>
 
+                    <div class="input">
+                        <i class="ri-lock-line"></i>
+                        <input type="password" id="passwordInput" minlength="6" placeholder="Enter Your Password" autocomplete="off">
+                        <i class="ri-eye-line passIcon" id="passIcon"></i>
+                    </div>
+
+                    <p class="errorText">Error Message</p>
+                </div>
+
+                <div class="loginBtn" onclick="formVal()">
+                    <i class="ri-login-box-line"></i>
+                    <span>Login</span>
+                </div>
+
+            </form>
+            
         </div>
     </div>
 
-
 </body>
-
 </html>

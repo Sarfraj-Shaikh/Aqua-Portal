@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- =============== WEBSITE META DATA =============== -->
+    <title>Admin Login | Aqua Portal</title>
+    <link rel="shortcut icon" href="../assets/img/logo.avif" type="image/x-icon">
+
+    <!-- =============== AUTHOR META DATA =============== -->
+    <meta name="author" content="Sarfraj Shaikh">
+    <meta name="publisher" content="Sarfraj Shaikh">
+    <meta name="creator" content="Sarfraj Shaikh">
+
+    <!-- =============== CSS FILE =============== -->
+    <link rel="stylesheet" href="../assets/files/css/common.css">
+    <link rel="stylesheet" href="../assets/files/css/style.css">
+
+    <!-- =============== JS FILE =============== -->
+    <script src="../assets/files/js/common.js" defer></script>
+    <script src="../assets/files/js/main.js" defer></script>
+
+    <!-- =============== ICON CDN =============== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <!-- =============== AOS & ANIMATE CDN =============== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- =============== LOADER =============== -->
+    <div class="page-loader" id="pageLoader">
+        <div class="dot-spinner">
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+        </div>
+    </div>
+
+    <!-- =============== NO NETWORK =============== -->
+    <div class="no-internet" id="noInternet">
+        <div class="no-internet-card">
+
+            <div class="icon-circle">
+                <i class="ri-wifi-off-line"></i>
+            </div>
+
+            <h2>No Internet</h2>
+            <p>
+                You're offline. Please check your Wi-Fi or mobile data connection.
+            </p>
+
+            <div class="btn-group">
+                <button class="retry-btn" onclick="location.reload()">
+                    <i class="ri-refresh-line"></i> Retry
+                </button>
+            </div>
+
+            <span class="hint">
+                Waiting for network...
+            </span>
+
+        </div>
+    </div>
+
+    <!-- =============== DASHBOARD SECTION =============== -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="ri-shield-user-line"></i>
+                <span>Admin Panel</span>
+            </div>
+            <i class="ri-close-line close-btn" onclick="closeSidebar()"></i>
+        </div>
+
+        <div class="sidebar-menu">
+            <p class="menu-title">Dashboard</p>
+            <a href="dashboard.html"><i class="ri-dashboard-line"></i> Dashboard</a>
+
+            <p class="menu-title">Contacts</p>
+            <a href="contacts.html"><i class="ri-contacts-line"></i> All Contacts</a>
+
+            <p class="menu-title">Users</p>
+            <a href="users.html"><i class="ri-user-3-line"></i> All Users</a>
+
+            <p class="menu-title">Company</p>
+            <a href="#"><i class="ri-building-line"></i> Accounts Only</a>
+            <a href="#"><i class="ri-store-2-line"></i> With Inventory</a>
+        </div>
+
+        <div class="sidebar-footer">
+            <button class="logout-btn" onclick="openLogoutModal()">
+                <i class="ri-logout-box-r-line"></i> Logout
+            </button>
+        </div>
+    </div>
+
+    <div class="topbar">
+        <i class="ri-menu-line menu-btn" onclick="openSidebar()"></i>
+
+        <div class="brand" onclick="window.location.href='dashboard.html'">
+            <i class="ri-shield-user-line"></i>
+            <span>Admin Panel</span>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="page-header">
+            <p class="breadcrumb">
+                <a href="dashboard.html">Home</a> > <span>All Users</span>
+            </p>
+
+            <div class="search-bar">
+                <div class="search-box">
+                    <i class="ri-search-line"></i>
+                    <input type="text" id="searchUser" placeholder="Search users..." onkeyup="searchUsers()">
+                </div>
+
+                <button class="btn-add" onclick="openAddUserModal()">
+                    <i class="ri-user-add-line"></i> Add New User
+                </button>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Number</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="usersTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- LOGOUT MODAL -->
+    <div class="modal" id="logoutModal">
+        <div class="modal-box">
+            <h3><i class="ri-logout-box-r-line"></i> Confirm Logout</h3>
+            <p>Are you sure you want to logout?</p>
+
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeLogoutModal()">Cancel</button>
+                <button class="btn-confirm" onclick="confirmLogout()">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DELETE USER MODAL -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-box">
+            <h3><i class="ri-delete-bin-6-line"></i> Delete User</h3>
+            <p>This action cannot be undone. Are you sure?</p>
+
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeDeleteModal()">Cancel</button>
+                <button class="btn-confirm" onclick="confirmDeleteUser()">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD/EDIT USER MODAL -->
+    <div class="modal" id="userModal">
+        <div class="modal-box">
+            <h3 id="userFormTitle">Add New User</h3>
+
+            <div class="modal-form">
+                <input type="text" id="uName" placeholder="Enter name">
+                <input type="email" id="uEmail" placeholder="Enter email">
+                <input type="text" id="uNumber" placeholder="Enter number">
+                <input type="text" id="uPassword" placeholder="Enter password">
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeUserModal()">Cancel</button>
+                <button class="btn-save" id="saveUserBtn">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        checkAuth();
+        renderUsers();
+    </script>
+
+</body>
+
+</html>

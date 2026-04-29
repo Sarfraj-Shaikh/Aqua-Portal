@@ -208,36 +208,71 @@ Aqua Portal/
 │── Task.md
 │
 ├── Pages/
-│   ├── contact.html
-│   ├── dashboard.html
 │   ├── login.html
-│   ├── profile-photo.html
 │   ├── signup.html
+│   ├── dashboard.html
+│   ├── contact.html
+│   ├── profile-photo.html
 │
 ├── Assets/
-│   ├── files/
-│   │   ├── css/
-│   │   │   ├── common.css
-│   │   │   ├── style.css
-│   │   │   ├── pages/
-│   │   │       ├── contact.css
-│   │   │       ├── dashboard.css
-│   │   │       ├── login.css
-│   │   │       ├── profile-photo.css
-│   │   │       ├── signup.css
+│   ├── css/
+│   │   ├── common.css
+│   │   ├── style.css
+│   │   ├── pages/
+│   │   │   ├── login.css
+│   │   │   ├── signup.css
+│   │   │   ├── dashboard.css
+│   │   │   ├── contact.css
+│   │   │   ├── profile-photo.css
 │   │
-│   │   ├── js/
-│   │       ├── common.js
-│   │       ├── main.js
-│   │       ├── pages/
-│   │           ├── contact.js
-│   │           ├── dashboard.js
-│   │           ├── login.js
-│   │           ├── profile-photo.js
-│   │           ├── signup.js
-│
+│   ├── js/
+│   │   ├── common.js
+│   │   ├── main.js
+│   │   ├── pages/
+│   │       ├── login.js
+│   │       ├── signup.js
+│   │       ├── dashboard.js
+│   │       ├── contact.js
+│   │       ├── profile-photo.js
+│   │
 │   ├── img/
 │       ├── logo.avif
+│       ├── default-dp.png
+│       ├── login.png
+│   
+│   
+│
+└── Admin Panel/
+    │
+    ├── dashboard.html
+    ├── users.html
+    ├── contacts.html
+    ├── deleted-contacts.html
+    │
+    ├── Assets/
+    │   │
+    │   ├── css/
+    │   │   ├── admin-common.css
+    │   │   ├── admin-style.css
+    │   │   ├── pages/
+    │   │       ├── dashboard.css
+    │   │       ├── users.css
+    │   │       ├── contacts.css
+    │   │       ├── deleted-contacts.css
+    │   │
+    │   ├── js/
+    │   │   ├── admin-common.js
+    │   │   ├── admin-main.js
+    │   │   ├── pages/
+    │   │       ├── dashboard.js
+    │   │       ├── users.js
+    │   │       ├── contacts.js
+    │   │       ├── deleted-contacts.js
+    │   │
+    │   ├── img/
+    │       ├── 
+    │       ├── 
+
 ```
 
 ## ✅ Final Message
@@ -346,3 +381,50 @@ Dashboard page access ke liye authentication mandatory rakha gaya hai.
 
 ### ❌ Non-Logged-in User Behavior
 - Agar user **login nahi hai**, toh usko automatically **Login page** par redirect kar diya jayega.
+
+# Contact Page Validation and Redirection
+
+## Redirection
+
+### ✅ Logged-in User Behavior
+- Agar user already login hai, toh **Dashboard page normally open hoga** aur koi redirection apply nahi hoga.
+- Lekin system pehle check karega ki user ne **Profile Picture setup ki hai ya nahi**:
+  - Agar Profile Picture setup nahi hai, toh user ko **Profile Setup page** par redirect kiya jayega.
+  - Agar Profile Picture already set hai, toh **Dashboard normally open hoga**.
+
+### ❌ Non-Logged-in User Behavior
+- Agar user login nahi hai, toh user ko automatically **Login page** par redirect kar diya jayega.
+
+---
+
+## Validation
+
+### New Contact
+- Koi bhi input field empty nahi ho sakta. Agar empty hua toh **error message show hoga**.
+- Mobile number ka length **exactly 10 digits** hona chahiye.
+- Sirf **Indian mobile numbers** hi accepted honge.
+- Agar same number pehle se contacts me saved hai, toh **"Number already exists"** ka error message show hoga.
+
+---
+
+## Contacts List
+- Strong security implement ki gayi hai: jo user contact create karega, **sirf wahi user usko access kar sakta hai**.
+- User apne contacts ko **modify (update)** ya **delete** kar sakta hai.
+- Update ya delete karne se pehle system user se **confirmation** leta hai.
+- Jab user contact update karta hai, toh contact ka **updated time bhi change/update ho jata hai**.
+
+---
+
+## Deleted Contacts List
+- Deleted contacts ko ek **separate list** me show kiya jata hai.
+- Deleted contacts bhi **sirf usi account me visible honge** jisne delete kiya hoga.
+- Deleted contacts ke liye **Restore button** diya gaya hai, taki user by mistake delete huye contact ko restore kar sake.
+- Restore karne se pehle bhi system user se **confirmation** leta hai.
+
+---
+
+## Search Filters
+
+- Is feature me user contacts ko **Name**, **Mobile Number**, aur **Location** ke basis par search kar sakta hai.
+- User sirf wahi contacts search kar sakta hai jo **usi account se create ya delete** kiye gaye hain.
+- Kisi dusre user ke contacts ko search ya access karna allowed nahi hai, isse proper security maintain hoti hai.

@@ -72,54 +72,66 @@ navWebName.textContent = webDetail.title;
 /* =============== UPLOAD PHOTO SECTION =============== */
 
 let fileInput = document.getElementById("fileInput");
-fileInput.addEventListener("change", readFile);
+let fileLabel = document.getElementById("fileLabel");
 
-function readFile() {
+fileLabel.addEventListener("change", function (e) {
+
+    if (e.target && e.target.id === "fileInput") {
+        readFile(e.target);
+    }
+
+});
+
+function readFile(input) {
 
     let userPic = document.getElementById("userPic");
-    let fileInput = document.getElementById("fileInput");
     let fileLabel = document.getElementById("fileLabel");
     let nextBtn = document.getElementById("nextBtn");
+
+    let file = input.files[0];
+    if (!file) return;
 
     let fileReader = new FileReader();
 
     fileReader.onload = function () {
 
-        if (fileInput.files[0].size < 5242880) {
+        if (file.size < 1394606) {
 
             userPic.src = fileReader.result;
 
+            nextBtn.style.display = "flex";
+
             nextBtn.onclick = function () {
-
-                updateData(fileReader.result)
-
-            }
+                updateData(fileReader.result);
+            };
 
             fileLabel.innerHTML = `
-                    <i class="ri-arrow-up-line"></i>
-                    Choose Another Photo
+                <i class="ri-arrow-up-line"></i>
+                Choose Another Photo
+                <input type="file" id="fileInput" hidden accept="image/*">
+            `;
 
-                    <input type="file" id="fileInput" hidden>
-        `;
-            nextBtn.style.display = "flex";
+            fileLabel.style.backgroundColor = "";
+            fileLabel.style.color = "";
+            fileLabel.style.border = "";
 
         } else {
 
             fileLabel.innerHTML = `
-                    <i class="ri-arrow-up-line"></i>
-                    Max 5MB Allowed, Upload Another Photo
+                <i class="ri-arrow-up-line"></i>
+                Max 1.33MB Allowed, Upload Other Photo
+                <input type="file" id="fileInput" hidden accept="image/*">
+            `;
 
-                    <input type="file" id="fileInput" hidden>
-        `;
             fileLabel.style.backgroundColor = "#ff9d9d";
             fileLabel.style.color = "#ff0000";
             fileLabel.style.border = "1px solid #ff0000";
+
+            nextBtn.style.display = "none";
         }
+    };
 
-    }
-
-    fileReader.readAsDataURL(fileInput.files[0]);
-
+    fileReader.readAsDataURL(file);
 }
 
 /* =============== UPDATE COOKIES & SESSION STORAGE SECTION =============== */

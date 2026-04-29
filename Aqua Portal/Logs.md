@@ -1,6 +1,113 @@
 
 ---
 
+# Admin Panel - Login
+### Log No: 13
+
+## Time Line
+- **Date: ** 29-4-2026
+- **Start at** 01:43 PM
+- **Complete at** 03:56 PM
+
+## Features
+- 6th Release
+- Created Admin Login Page and Maked It Responsive Design
+- Added Redirection For Logged Admin User
+- Added Security To Check Admin Login Details Is Correct or Not
+
+---
+
+# Admin Panel
+### Log No: 12
+
+## Time Line
+- **Date: ** 29-4-2026
+- **Start at** 12:53 PM
+- **Complete at** 01:42 PM
+
+## Features
+- 6th Release
+- Updated **ReadMe.md** Page *(Line No: 350)*  
+- Created New Folder and Files For **Admin Panel**  
+  - Folder: **Admin Panel/**
+  - Inside Folder: **Assets/**
+    - **css/**
+      - `admin-common.css`
+      - `admin-style.css`
+      - `pages/`
+        - `dashboard.css`
+        - `users.css`
+        - `contacts.css`
+        - `deleted-contacts.css`
+    - **js/**
+      - `admin-common.js`
+      - `admin-main.js`
+      - `pages/`
+        - `dashboard.js`
+        - `users.js`
+        - `contacts.js`
+        - `deleted-contacts.js`
+    - **img/**
+      - `admin-logo.png`
+      - `profile-default.png`
+
+- Updated Folder Structure *(ReadMe.md - Line No: 200)*  
+- Admin Panel Folder Structure
+
+```plaintext
+  Admin Panel/
+    │
+    ├── dashboard.html
+    ├── users.html
+    ├── contacts.html
+    ├── deleted-contacts.html
+    │
+    ├── Assets/
+    │   │
+    │   ├── css/
+    │   │   ├── admin-common.css
+    │   │   ├── admin-style.css
+    │   │   ├── pages/
+    │   │       ├── dashboard.css
+    │   │       ├── users.css
+    │   │       ├── contacts.css
+    │   │       ├── deleted-contacts.css
+    │   │
+    │   ├── js/
+    │   │   ├── admin-common.js
+    │   │   ├── admin-main.js
+    │   │   ├── pages/
+    │   │       ├── dashboard.js
+    │   │       ├── users.js
+    │   │       ├── contacts.js
+    │   │       ├── deleted-contacts.js
+    │   │
+    │   ├── img/
+    │       ├── admin-logo.png
+    │       ├── profile-default.png
+```
+
+---
+
+# BUG Fix
+### Log No: 11
+
+## Time Line
+- **Date: ** 29-4-2026
+- **Start at** 10:42 AM
+- **Complete at** 12:51 PM
+
+## Features
+- 6th Release
+- Contact Saving Without Indian Number Bug Fixed
+- Added Custom PopUp Dialogue Message
+- Added Custom Logout Confirmation (Dashboard Page)
+- Added Custom Confirmation Message For Update, Delete, Restore Contacts (Contacts Page)
+- Profile Photo Upload Size Reduced From 5MB To 1MB (For Smooth Expereince and High Performance)
+- Profile Photo Max Size Upload Error Issue & Re-Select Image Preview and Checking Condition Bug Fixed
+
+---
+
 # Contact Page
 ### Log No: 10
 

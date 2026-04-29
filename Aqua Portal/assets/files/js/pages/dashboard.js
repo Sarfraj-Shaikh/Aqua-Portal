@@ -228,9 +228,59 @@ if (sessionLogin === true) {
 const logoutBtn = document.getElementById("logoutBtn");
 logoutBtn.addEventListener("click", function () {
 
-    let confirmLogout = window.confirm("Are you want to sure to Logout?");
+    /* =============== POPUP DIALOGUE =============== */
+    let popupContainer = document.getElementById("popupContainer");
+    let popupBox = document.getElementById("popupBox");
+    let popTitle = document.getElementById("popTitle");
+    let popupMessage = document.getElementById("popupMessage");
+    let popupCloseIcon = document.getElementById("popupCloseIcon");
+    let popupCancelBtn = document.getElementById("popupCancelBtn");
+    let popupConfirmBtn = document.getElementById("popupConfirmBtn");
 
-    if (confirmLogout) {
+    popupContainer.classList.add("active");
+    popupContainer.classList.add("animate__animated", "animate__fadeIn");
+    popupBox.classList.add("animate__animated", "animate__zoomIn");
+
+    popTitle.textContent = "LOGOUT CONFIRMATION";
+    popupMessage.textContent = "Are You Want To Sure To Logout Your Account?";
+
+    popupCloseIcon.onclick = () => {
+
+        popupContainer.classList.remove("active");
+        popupContainer.classList.remove("animate__fadeIn");
+        popupBox.classList.remove("animate__zoomIn");
+
+        popupContainer.classList.add("animate__fadeOut");
+        popupBox.classList.add("animate__zoomOut");
+
+        setTimeout(() => {
+
+            popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+            popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+        }, 250);
+
+    }
+
+    popupCancelBtn.onclick = () => {
+
+        popupContainer.classList.remove("active");
+        popupContainer.classList.remove("animate__fadeIn");
+        popupBox.classList.remove("animate__zoomIn");
+
+        popupContainer.classList.add("animate__fadeOut");
+        popupBox.classList.add("animate__zoomOut");
+
+        setTimeout(() => {
+
+            popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+            popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+        }, 250);
+
+    }
+
+    popupConfirmBtn.onclick = () => {
 
         if (sessionLogin === true) {
 
@@ -242,6 +292,7 @@ logoutBtn.addEventListener("click", function () {
         }
 
         window.open("./login.html", "_self");
-    };
+
+    }
 
 });
