@@ -116,145 +116,102 @@
     <!-- =============== DASHBOARD =============== -->
     <div class="dashboard">
 
-        <div class="addContact">
+    <!-- CONTACTS PAGE -->
+    <div class="contacts-page">
 
-            <h3>
-                <i class="ri-user-add-line"></i>
-                Add New Contact
-            </h3>
+        <!-- TOP BOX -->
+        <div class="top-box">
 
-            <div class="input-Box" id="nameIBox">
+            <!-- Breadcrumb -->
+            <p class="breadcrumb">Home &gt; Contacts</p>
 
-                <p class="input-title">Name</p>
-                <input type="text" maxlength="15" placeholder="Enter Full Name" id="nameInput">
-                <p class="errorText" id="errorText1">Error Goes Here!</p>
+            <!-- Buttons -->
+            <div class="top-actions">
+                <button class="search-btn">
+                    <i class="ri-search-line"></i> Search
+                </button>
 
+                <button class="add-btn">
+                    <i class="ri-add-line"></i> Add Contact
+                </button>
             </div>
 
-            <div class="input-Box" id="numberIBox">
-
-                <p class="input-title">Mobile Number</p>
-                <input type="number" maxlength="10" placeholder="Enter Mobile Number" id="numberInput"
-                    inputmode="numeric">
-                <p class="errorText" id="errorText2">Error Goes Here!</p>
-
-            </div>
-
-            <div class="input-Box" id="locationIBox">
-
-                <p class="input-title">Location</p>
-                <input type="text" placeholder="Enter City/Location" id="locationInput">
-                <p class="errorText" id="errorText3">Error Goes Here!</p>
-
-            </div>
-
-            <div class="addBtn" onclick="formVal()" id="addContactBtn">
-                <i class="ri-save-line"></i>
-                Save Now
-            </div>
-
-            <div class="updateBtn" onclick="formVal()" id="updateContactBtn">
-                <i class="ri-edit-circle-line"></i>
-                Update Now
-            </div>
         </div>
 
-        <div class="contactList">
+        <!-- CONTACTS TABLE -->
+        <div class="table-container">
 
-            <div class="searchBox">
-                <i class="ri-search-line"></i>
-                <input type="text" placeholder="Search by Name or Number" oninput="searchSavedContact()"
-                    id="saveContactSearch">
-            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Number</th>
+                        <th>Location</th>
+                        <th>Created By</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
-            <div class="notFound" id="savedNotFound">
-                <i class="ri-cloud-off-line"></i>
-                <p>No Contact Found</p>
-            </div>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Aqua Portal</td>
+                        <td>9876543210</td>
+                        <td>Mumbai</td>
+                        <td>Admin</td>
+                        <td>2024-01-01</td>
+                        <td>2024-01-02</td>
 
-            <div class="list-card" id="savedListCard">
+                        <td>
+                            <button class="pdf-btn">
+                                <i class="ri-file-pdf-line"></i>
+                            </button>
 
-                <!-- <div class="left">
-                    <p>
-                        <i class="ri-user-line"></i>
-                        Aqua Portal
-                    </p>
+                            <button class="edit-btn">
+                                <i class="ri-pencil-line"></i>
+                            </button>
 
-                    <p>
-                        <i class="ri-phone-line"></i>
-                        123-456-7890
-                    </p>
+                            <button class="delete-btn">
+                                <i class="ri-delete-bin-line"></i>
+                            </button>
+                        </td>
+                    </tr>
 
-                    <p>
-                        <i class="ri-map-pin-2-line"></i>
-                        Mumbai, India
-                    </p>
+                    <tr>
+                        <td>2</td>
+                        <td>John Doe</td>
+                        <td>9123456780</td>
+                        <td>Delhi</td>
+                        <td>Admin</td>
+                        <td>2024-02-01</td>
+                        <td>2024-02-05</td>
 
-                </div> -->
+                        <td>
+                            <button class="pdf-btn">
+                                <i class="ri-file-pdf-line"></i>
+                            </button>
 
-                <!-- <div class="right">
+                            <button class="edit-btn">
+                                <i class="ri-pencil-line"></i>
+                            </button>
 
-                    <div class="btn">
-                        <i class="ri-pencil-line"></i>
-                        Edit
-                    </div>
+                            <button class="delete-btn">
+                                <i class="ri-delete-bin-line"></i>
+                            </button>
+                        </td>
+                    </tr>
 
-                    <div class="btn">
-                        <i class="ri-delete-bin-line"></i>
-                        Delete
-                    </div>
-
-                </div> -->
-
-            </div>
-        </div>
-
-        <div class="deletedContact">
-
-            <div class="searchBox">
-                <i class="ri-search-line"></i>
-                <input type="text" placeholder="Search by Name or Number" id="deletedContactSearch"
-                    oninput="searchDeletedContact()">
-            </div>
-
-            <div class="notFound" id="deletedNotFound">
-                <i class="ri-cloud-off-line"></i>
-                <p>Deleted Contact Not Found</p>
-            </div>
-
-            <div class="list-card" id="deletedCardList">
-
-                <div class="left">
-                    <p>
-                        <i class="ri-user-line"></i>
-                        Aqua Portal
-                    </p>
-
-                    <p>
-                        <i class="ri-phone-line"></i>
-                        987-654-3210
-                    </p>
-
-                    <p>
-                        <i class="ri-map-pin-2-line"></i>
-                        Mahashtra, India
-                    </p>
-
-                </div>
-
-                <div class="right">
-
-                    <div class="btn">
-                        <i class="ri-refresh-line"></i>
-                        Restore
-                    </div>
-
-                </div>
-            </div>
+                </tbody>
+            </table>
 
         </div>
 
     </div>
+
+</div>
 
     <!-- =============== FOOTER & CREDIT SECTION =============== -->
     <footer class="dashboard-footer">
