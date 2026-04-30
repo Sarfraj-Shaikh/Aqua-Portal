@@ -316,3 +316,623 @@ Is project me aapko ek **fully custom video player** develop karna hai jisme ye 
 - Video ko **Fullscreen Mode** me open karne ka feature
 
 > Kindly ensure karein ki ye saare features properly working condition me ho.
+
+## 📌 Chapter 52 - Part 3
+
+**Task:**  
+Ek professional **Business Page** design karo jisme:
+
+- Page Title me: **"Business Management System"** likha ho  
+- Slogan me:  
+  **"Manage Your All Business Details Like Ledger, Voucher, Tax, Balance Sheet and Many More"**
+- User ka **Profile Section** clearly visible ho
+
+Page ke niche ye buttons hone chahiye:
+
+- **Create Company**
+- **Delete Company**
+- **My Company**
+- **Logout**
+
+---
+
+## 📌 Chapter 52 - Part 4
+
+**Task:**  
+Jab user **Create Company** button par click kare, tab ek form show ho aur usme proper validation apply karo.
+
+Form me ye required fields hone chahiye:
+
+- **Company Logo** *(Preview ke saath, Max 1MB Allowed)*
+- **Company Name**
+- **Mailing Name**
+- **Address**
+- **Mobile Number**
+- **Fax Number**
+- **CIN Number**
+- **Email**
+- **Website**
+- **Financial Year**
+- **Stock Type** *(Account Only, Account With Inventory)*
+
+---
+
+## 📌 Chapter 52 - Part 5
+
+**Task:**  
+Create Company form me strict validation lagao:
+
+- **Har field required** honi chahiye  
+- Mailing Name me **mandatory** hai ke in me se koi ek word include ho:  
+  **ptv**, **ltd**, **govt**
+
+---
+
+## 📌 Chapter 52 - Part 6
+
+**Task:**  
+
+- Ek user **sirf ek hi company account create** kar sakta hai (LocalStorage overflow avoid karne ke liye).
+- Agar company already exist karti hai:
+  - **Create Company button hide** kar do
+  - **Delete Company option show** kar do
+
+### Delete Company Feature:
+Jab user **Delete Company** par click kare:
+
+- Ek **popup / modal** open ho
+- Us popup me company ki **complete details show** ho
+- Niche ek **Confirm Delete** button ho
+
+---
+
+## 📌 Chapter 52 - Part (7 - 8)
+
+**Task:**  
+`Pages` folder ke andar ek folder create karo:
+
+📂 **Business Assets**
+
+Jab user **My Company** par click kare:
+
+- System check kare ke company ka **Stock Type** kya hai:
+  - **Account Only**
+  - **Account With Inventory**
+
+Phir usi ke according user ko relevant page par redirect karo.
+
+---
+
+### ✅ Account Only Page Requirements:
+
+Account Only page me:
+
+- Company ka **Logo**
+- Company ka **Name**
+
+Aur niche ye options hone chahiye:
+
+- **Unit Of Measure**
+- **Sales Voucher**
+- **Shut Company**
+
+---
+
+## 📌 Chapter 52 - Part 9
+
+**Task:**  
+Jab user **Unit Of Measure** par click kare, tab ek **popup/modal** show karo.
+
+Popup ke andar 2 required inputs hone chahiye:
+
+- **Symbol** *(Example: Kg, Pc)*
+- **Formal Name** *(Example: Kilo Gram, Piece)*
+
+📌 **Note:**  
+Symbol me short form enter hoga aur Formal Name me uska full form.
+
+Popup ke niche ek button hona chahiye:
+
+- **Save**
+
+---
+
+## 📌 Chapter 52 - Part 10
+
+**Task:**  
+Jab user **Sales Voucher** par click kare, tab ek **popup/modal** open ho jisme **Invoice Generate** karne ka complete system ho.
+
+---
+
+## ✅ Sales Voucher / Invoice Layout Requirements
+
+Popup ke andar:
+
+### 🔹 Header Section
+- **Sales Voucher Title** show karo  
+- **Voucher Number** dynamically generate ho *(auto increment / unique)*  
+- Right side me **Date** show ho
+
+---
+
+## ✅ Company Details Section
+
+### Left Side:
+- **Company Name**
+- **Company Address**
+- **Fax Number**
+- **CIN Number**
+
+### Right Side:
+- **Company Logo**
+
+---
+
+## ✅ Customer Details Section (Inputs)
+
+Niche customer ke details ke liye required input fields rakho:
+
+- **Customer Name**
+- **Customer Email**
+- **Customer Address**
+- **Customer Mobile Number**
+
+---
+
+## ✅ Items / Product Section
+
+Niche ek item entry section banao jisme ye fields fill karne ka option ho:
+
+- **Item Name**
+- **Price**
+- **Quantity**
+- **Amount**
+- **Remarks**
+- **Delete**
+
+### ➕ Add Item Feature
+- Niche **Add** button rakho  
+- Add button par click karne se **same fields ka ek aur row** dynamically add ho jaye  
+- User multiple items add kar sake
+
+---
+
+## ✅ Invoice Calculation Section
+
+Popup ke bottom me ye values dynamically show honi chahiye:
+
+- **Subtotal**
+- **Tax**
+- **Total**
+- **Balance Due**
+
+📌 **Note:**  
+Subtotal, tax, total aur balance due values items ke price, quantity aur tax ke basis par automatically calculate hon.
+
+## Chapter 52 – Part 11
+
+### Task:
+- Item name fill karne ke baad hi **Price** aur **Quantity** input enabled hone chahiye.  
+- By default **Price**, **Quantity**, aur **Amount** inputs disabled hone chahiye.  
+
+---
+
+## Chapter 52 – Part 12
+
+### Task:
+- Item table ka row delete karne par selected row delete ho jayega.  
+- Lekin table me **minimum 1 row mandatory** rehni chahiye (last row delete nahi hona chahiye).  
+
+---
+
+### Calculation Requirement:
+- Quantity enter karte hi **Price × Quantity** karke **Amount** calculate hona chahiye.  
+- Amount update hote hi **Subtotal** automatically calculate ho kar display hona chahiye.  
+
+---
+
+### Validation Requirement (Save Button):
+- Save button click par system ko verify karna chahiye ki saare required fields me data present hai.  
+- Agar koi required field empty hai, toh **invoice save nahi hona chahiye**.
+
+## Chapter 52 – Part 13
+
+### Task:
+- Agar **Unit of Measure** me data available ho, toh **“View Saved Unit of Measure”** ka option available hona chahiye.  
+
+- Iske alawa **Tax Setup** ka option hona chahiye.  
+  - Is par click karne par ek **popup modal** open hona chahiye.  
+  - Modal me 2 input fields hone chahiye:  
+    1. Tax Name  
+    2. Tax %  
+  - Saath me ek **Save** button hona chahiye.  
+
+- Agar tax details already available hain, toh **“View All Tax”** ka option show hona chahiye.  
+
+---
+
+## Chapter 52 – Part 16
+
+### Task:
+- Ek aisa project develop karna hai jisme user apne **notes likh sake**.  
+- User apne notes ko **custom name dekar save** kar sake.  
+- System me pehle se saved `.txt` files ko select karke user **view kar sake**.
+
+## Chapter 52 – Part 19
+
+### Task:
+- Ek aisa project develop karna hai jisme **PDF Converter** functionality ho.  
+- Is functionality ke through kisi specific page ya web page ko **PDF format me convert** kiya ja sake.  
+
+---
+
+### Requirements:
+- PDF generation ke liye following libraries ka use karna hoga:
+  - jQuery  
+  - html2canvas  
+  - jsPDF (CDN)  
+
+---
+
+### Implementation Logic:
+- PDF create karne ke liye `jsPDF` ka object initialize karna hoga:
+
+```javascript
+let pdf = new jsPDF('p', 'pt', 'a4');
+
+Kisi specific section ka PDF generate karne ke liye:
+
+```
+pdf.addHTML(document.body, function () {
+
+    pdf.save("file.pdf");
+
+});
+
+```
+
+---
+
+### Note:
+
+`save()` function ke andar jo string pass ki jayegi wahi download hone wale PDF ka file name hoga.
+
+Function ke andar target section define karna hoga jiska PDF generate karna hai.
+
+## Chapter 52 – Part (31–33)
+
+### Task:
+- Ek aisa project develop karna hai jisme **User Profile Dashboard** ho.  
+
+---
+
+### Features:
+
+- User ka **Profile Photo** display hona chahiye.  
+- Saath me **Title** aur **Description** show hona chahiye.  
+- **Business Mode** clearly visible hona chahiye.  
+- Current **Date aur Time** display hona chahiye.  
+
+---
+
+### Company Section:
+
+- Page ke niche **Company ka Name aur Logo** show hona chahiye.  
+
+---
+
+### Navigation Options:
+
+Company section ke neeche following options available hone chahiye:
+
+- Ledger  
+- Unit of Measure  
+- Voucher  
+- Stocks  
+- Profit and Loss  
+- Balance Sheet  
+- Transaction  
+- Exit  
+
+---
+
+### Note:
+- UI clean aur structured hona chahiye.  
+- Navigation options properly clickable aur functional hone chahiye.  
+- Layout dashboard style me design hona chahiye.
+
+## Chapter 52 – Part (34–40)
+
+### Task:
+Ek aisa project develop karna hai jisme **Ledger Management System** ho jisme CRUD operations (Add, Manage, Edit, Delete, Search) available hon.
+
+---
+
+## 1. Add Ledger Page
+
+### Fields:
+- Ledger Name  
+- Ledger Number  
+- Ledger Type:
+  - Capital Accounts  
+  - Purchase Accounts  
+  - Sales Accounts  
+  - Sundry Creditors  
+  - Sundry Debtors  
+  - Cash In Hand  
+- Opening Balance  
+- Mode:
+  - Credit  
+  - Debit  
+- Customer Name  
+- Email  
+- Address  
+
+---
+
+## 2. Manage Ledger Page
+
+### Display Details:
+- Ledger ID  
+- Ledger Name  
+- Ledger Number  
+- Ledger Type  
+- Opening Balance  
+- Mode  
+- Customer Name  
+- Email  
+- Address  
+- Created At (Date & Time)  
+- Updated At (Date & Time)  
+
+---
+
+### Additional Calculations:
+- **Debit Balance** show hona chahiye  
+- **Credit Balance** show hona chahiye  
+- Dono ka **total calculated value** bhi display hona chahiye  
+
+---
+
+### Actions:
+- Edit Button  
+- Delete Button  
+
+---
+
+## 3. Search Functionality:
+- Ledger ko **name, number, email ya type** ke basis par search kiya ja sake  
+
+---
+
+## 4. Filter Functionality:
+Ledger ko uske **type ke according filter** kiya ja sake:
+
+- Purchase Accounts  
+- Sales Accounts  
+- Capital Accounts  
+- Sundry Creditors  
+- Sundry Debtors  
+- Cash In Hand  
+
+---
+
+### Note:
+- System fully dynamic hona chahiye  
+- CRUD operations real-time reflect hone chahiye  
+- Filtering aur search fast aur accurate hona chahiye
+
+## Chapter 52 – Part (41–43)
+
+### Task:
+Ek aisa project develop karna hai jisme **Unit of Measure Management System** ho jisme CRUD operations aur search functionality available ho.
+
+---
+
+## Features:
+
+### 1. Add Unit of Measure:
+- User ko new unit add karne ka option hona chahiye  
+- Fields:
+  - Unit Name  
+  - Unit Code  
+  - Description (optional)  
+
+---
+
+### 2. Manage Unit of Measure:
+- Sabhi added units list form me show hone chahiye  
+- Har record ke sath following details show honi chahiye:
+  - Unit ID  
+  - Unit Name  
+  - Unit Code  
+  - Description  
+  - Created At (Date & Time)  
+  - Updated At (Date & Time)  
+
+---
+
+### 3. Actions:
+- Edit Unit  
+- Delete Unit  
+
+---
+
+### 4. Search Functionality:
+- Units ko **name ya code ke basis par search** kiya ja sake  
+- Search real-time aur accurate hona chahiye  
+
+---
+
+## Note:
+- CRUD operations properly working hone chahiye  
+- Data update hote hi UI me reflect hona chahiye  
+- Delete operation confirmation ke sath hona chahiye  
+- System clean aur structured hona chahiye
+
+## Chapter 52 – Part (44–58)
+
+### Task:
+Ek **Voucher Management System** develop karna hai jisme complete CRUD functionality ho aur 2 tabs available hon:
+- Sales Voucher  
+- Purchase Voucher  
+
+---
+
+## 1. Common Header Section:
+Har voucher page ke top par company details show honi chahiye:
+
+- Company Name  
+- Logo  
+- Address  
+- Mobile Number  
+- Fax Number  
+- CIN Number  
+
+---
+
+## 2. Tabs Structure:
+
+### Tabs:
+- Sales Voucher  
+- Purchase Voucher  
+
+---
+
+## 3. Purchase Voucher Module:
+
+### Voucher Header Fields:
+- Voucher Number  
+- Party Name  
+- Supplier Name  
+- Mobile Number  
+- Address  
+- Date  
+- Current Balance  
+
+---
+
+## 4. Items Section (Dynamic Table):
+
+Har voucher me multiple items add kiye ja sake:
+
+### Item Fields:
+- Item Name  
+- Price  
+- Quantity  
+- Unit (Unit of Measure module se data fetch hoga)  
+- Amount (auto calculated: Price × Quantity)  
+- Sale Price  
+- Action (Delete Button)  
+
+---
+
+### Item Actions:
+- Row delete karne ka option  
+- “Add Item” button  
+  - Click karne par new item row dynamically add ho jaye  
+
+---
+
+## 5. Calculations Section:
+
+Automatically calculated values:
+
+- Subtotal (all item amounts ka sum)  
+- Tax (configured tax setup ke basis par)  
+- Total (Subtotal + Tax)  
+- Paid Amount  
+- Balance Due (Total - Paid)  
+
+---
+
+## 6. CRUD Operations:
+- Create Voucher  
+- View Voucher List  
+- Edit Voucher  
+- Delete Voucher  
+
+---
+
+## 7. Sales Voucher Tab:
+- Same structure as Purchase Voucher  
+- Difference sirf transaction type (Sales side calculations and parties accordingly)  
+
+---
+
+## Note:
+- Item table fully dynamic hona chahiye  
+- Unit dropdown Unit of Measure module se connected hona chahiye  
+- All calculations real-time update hone chahiye  
+- Delete operations confirmation ke sath honi chahiye  
+- Data consistency maintain karni mandatory hai
+
+## Chapter 52 – Part (59–62)
+
+### Task:
+Same **Purchase Voucher** ki tarah ek **Sales Voucher Module** develop karna hai jisme complete CRUD functionality available ho.
+
+---
+
+## Sales Voucher Requirements:
+
+### 1. Structure:
+- Sales Voucher ka structure **Purchase Voucher jaisa hi hoga**  
+- Sirf ek difference: **Selling Price field remove karna hai**
+
+---
+
+### 2. Voucher Header Fields:
+- Voucher Number  
+- Party Name  
+- Customer Name  
+- Mobile Number  
+- Address  
+- Date  
+- Current Balance  
+
+---
+
+### 3. Items Section (Dynamic Table):
+
+### Item Fields:
+- Item Name  
+- Price  
+- Quantity  
+- Unit (Unit of Measure module se fetch hoga)  
+- Amount (auto calculated: Price × Quantity)  
+- Action (Delete Button)  
+
+---
+
+### 4. Item Management:
+- Add Item button available hoga  
+- Click karne par new item row add ho jaye  
+- Row delete ka option bhi available hoga  
+
+---
+
+### 5. Calculations Section:
+Automatically calculate hona chahiye:
+
+- Subtotal (total item amount)  
+- Tax (configured tax setup ke basis par)  
+- Total (Subtotal + Tax)  
+- Paid Amount  
+- Balance Due (Total - Paid)  
+
+---
+
+### 6. CRUD Operations:
+- Create Sales Voucher  
+- View Sales Voucher List  
+- Edit Sales Voucher  
+- Delete Sales Voucher  
+
+---
+
+## Note:
+- Design and functionality **Purchase Voucher ke same standards follow karegi**  
+- Only difference: **Selling Price field removed**  
+- All calculations real-time update hone chahiye  
+- Data consistency aur validation strictly implement karni hogi

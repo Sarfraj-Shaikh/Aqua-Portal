@@ -1,6 +1,42 @@
 
 ---
 
+# Admin Panel - All Contacts
+### Log No: 15
+
+## Time Line
+- **Date: ** 30-4-2026
+- **Start at** 12:22 PM
+- **Complete at** 2:58 PM
+
+## Features
+- 7th Release
+- Updated ReadMe.md File - Line No: 469
+- Removed Logout Button From Navbar (Admin Panel - All Contacts Page)
+- Created Navbar and Sidebar Of Dashboard Page
+- Maked Dashboard Page Responsive
+- Added Logout Features (Admin Panel - Dashboard Page)
+
+---
+
+# Admin Panel - Dashboard
+### Log No: 14
+
+## Time Line
+- **Date: ** 30-4-2026
+- **Start at** 08:46 AM
+- **Complete at** 11:30 AM
+
+## Features
+- 7th Release
+- Updated ReadMe.md File - Line No: 432
+- Fixed FavIcon Issue (Admin Panel - Dashboard Page)
+- Created Navbar and Sidebar Of Dashboard Page
+- Maked Dashboard Page Responsive
+- Added Logout Features (Admin Panel - Dashboard Page)
+
+---
+
 # Admin Panel - Login
 ### Log No: 13
 
