@@ -396,24 +396,28 @@ th i {
     line-height: 1.6;
 }
 
-/* ================= MODAL DESIGN ================= */
-
-.modal-overlay {
+/* =============== EDIT FORM DIALOGUE =============== */
+.edit-con {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(17, 24, 39, 0.6);
+    background: #11182799;
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 400;
     padding: 15px;
     backdrop-filter: blur(8px);
 }
 
-.modal-box {
+
+.edit-con.active {
+    display: flex;
+}
+
+.edit-box {
     width: 100%;
     max-width: 500px;
     background: #ffffff;
@@ -444,6 +448,11 @@ th i {
     background: #eef2ff;
 }
 
+.modal-header .modal-head {
+    display: flex;
+    gap: 15px;
+}
+
 .modal-header h3 {
     font-size: 16px;
     font-weight: 700;
@@ -459,6 +468,12 @@ th i {
     cursor: pointer;
     font-size: 20px;
     color: #111827;
+    transition: 0.3s;
+}
+
+.modal-close:hover {
+    transform: scale(1.1);
+    color: #111827;
 }
 
 .modal-body {
@@ -467,188 +482,255 @@ th i {
     overflow-y: auto;
 }
 
-.modal-text {
-    font-size: 14px;
-    background: #f9fafb;
-    padding: 14px;
-    border-radius: 12px;
+.modal-body .inputTitle {
+    font-size: 15px;
+    font-weight: 500;
+    color: #111827;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    margin-top: 13px;
+}
+
+.modal-body .inputBox {
+    width: 100%;
+    background-color: #f9fafb;
     border: 1px solid #e5e7eb;
-    white-space: pre-wrap;
-    line-height: 1.6;
+    border-radius: 10px;
+    padding: 0px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.modal-body .inputBox input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: transparent;
+}
+
+.error-text {
+    font-size: 12px;
+    margin-top: 8px;
+    color: #dc2626;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    display: none;
+}
+
+.btn-update {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #16a34a;
+    color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin: 10px 0px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.btn-update:hover {
+    background-color: #008230;
+}
+
+/* ================= VIEW DETAILS DIALOGUE ================= */
+
+.viewDetail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #11182799;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 400;
+    padding: 15px;
+    backdrop-filter: blur(8px);
+}
+
+.viewDetail.active {
+    display: flex;
+}
+
+.viewDetail.active .profile-box {
+    animation: popupFade 0.25s ease-in-out;
+}
+
+.profile-box {
+    width: 100%;
+    max-width: 950px;
+    height: 90vh;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 12px 35px rgba(17, 24, 39, 0.15);
+}
+
+.profile-header {
+    padding: 18px 20px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    background: #ffffff;
+}
+
+.profile-header h1 {
+    font-size: 20px;
+    font-weight: 700;
     color: #111827;
 }
 
-.modal-footer {
-    padding: 14px;
-    border-top: 1px solid #e5e7eb;
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-    flex-wrap: wrap;
+.profile-header p {
+    margin-top: 6px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #6b7280;
 }
 
-.btn-modal {
-    padding: 10px 14px;
-    border-radius: 12px;
-    border: none;
+.close-btn {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 14px;
+    color: #dc2626;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.25s;
+}
+
+.close-btn i {
+    font-size: 20px;
+}
+
+.close-btn:hover {
+    background: rgba(220, 38, 38, 0.08);
+    border-color: rgba(220, 38, 38, 0.3);
+}
+
+.profile-content {
+    padding: 18px;
+    overflow-y: auto;
+    flex: 1;
+    background: #f9fafb;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    padding: 14px;
+    border-radius: 14px;
+    transition: 0.25s;
+}
+
+.card:hover {
+    border-color: rgba(79, 70, 229, 0.35);
+    box-shadow: 0px 10px 22px rgba(17, 24, 39, 0.08);
+    transform: translateY(-3px);
+}
+
+.card span {
+    font-size: 12px;
     font-weight: 600;
+    color: #6b7280;
+}
+
+.card h3 {
+    margin-top: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.full {
+    grid-column: span 3;
+}
+
+.profile-footer {
+    padding: 16px 18px;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: flex-end;
+    background: #ffffff;
+}
+
+.btn {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 12px;
+    background: #4f46e5;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
     transition: 0.25s;
 }
 
-.btn-modal:hover {
-    transform: scale(1.05);
-}
-
-.btn-pdf {
-    background: #4f46e5;
-    color: white;
-}
-
-.btn-update {
-    background: #16a34a;
-    color: white;
-}
-
-.btn-close {
-    background: #f3f4f6;
-    color: #111827;
-}
-
-/* ================= FORM STYLE ================= */
-
-.form-group {
-    margin-bottom: 14px;
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group label {
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: #111827;
-}
-
-.form-group input {
-    padding: 12px;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
-    outline: none;
-    font-size: 14px;
-    background: #f9fafb;
-}
-
-.form-group input:focus {
-    border-color: #4f46e5;
-    background: #ffffff;
-}
-
-.error-text {
-    font-size: 12px;
-    margin-top: 5px;
-    color: #dc2626;
-    font-weight: 600;
-}
-
-.pdf-preview {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
-    padding: 18px;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #111827;
-}
-
-.pdf-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding-bottom: 14px;
-    border-bottom: 2px solid #4f46e5;
-}
-
-.pdf-header img {
-    width: 55px;
-    height: 55px;
-    object-fit: contain;
-}
-
-.pdf-header h2 {
+.btn i {
     font-size: 18px;
-    font-weight: 800;
-    margin: 0;
-    color: #111827;
 }
 
-.pdf-header p {
-    margin: 0;
-    font-size: 13px;
-    color: #6b7280;
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
 }
 
-.pdf-title {
-    margin-top: 14px;
-    font-size: 14px;
-    font-weight: 800;
-    color: #4f46e5;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+@media (max-width: 900px) {
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .full {
+        grid-column: span 2;
+    }
 }
 
-.pdf-details {
-    margin-top: 14px;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    overflow: hidden;
-}
+@media (max-width: 550px) {
 
-.pdf-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 14px;
-    border-bottom: 1px solid #e5e7eb;
-    background: #f9fafb;
-}
+    .grid {
+        grid-template-columns: 1fr;
+    }
 
-.pdf-row:nth-child(even) {
-    background: #ffffff;
-}
+    .full {
+        grid-column: span 1;
+    }
 
-.pdf-row:last-child {
-    border-bottom: none;
-}
+    .profile-footer {
+        justify-content: center;
+    }
 
-.pdf-label {
-    font-weight: 700;
-    font-size: 13px;
-    color: #374151;
-    width: 40%;
-}
-
-.pdf-value {
-    font-size: 13px;
-    font-weight: 600;
-    color: #111827;
-    width: 60%;
-    text-align: right;
-}
-
-.pdf-footer {
-    margin-top: 18px;
-    padding-top: 12px;
-    border-top: 2px solid #4f46e5;
-    font-size: 12px;
-    color: #6b7280;
-}
-
-.pdf-footer a {
-    color: #4f46e5;
-    font-weight: 700;
-    text-decoration: none;
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
 }

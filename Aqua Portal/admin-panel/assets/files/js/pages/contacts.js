@@ -70,16 +70,23 @@ function loadContact() {
 
     } else {
 
-        table.style.display = "flex";
-        notFoundBox.style.display = "none";
+        if (contacts.length === 0) {
 
-        /* =============== SHOW ALL CONTACTS =============== */
+            table.style.display = "none";
+            notFoundBox.style.display = "flex";
 
-        usersTableBody.innerHTML = "";
+        } else {
 
-        for (let i = 0; i < contacts.length; i++) {
+            table.style.display = "flex";
+            notFoundBox.style.display = "none";
 
-            usersTableBody.innerHTML += `
+            /* =============== SHOW ALL CONTACTS =============== */
+
+            usersTableBody.innerHTML = "";
+
+            for (let i = 0; i < contacts.length; i++) {
+
+                usersTableBody.innerHTML += `
                 <tr>
                     <td>${contacts[i].id}</td>
                     <td>${contacts[i].name}</td>
@@ -90,8 +97,8 @@ function loadContact() {
                     <td>${contacts[i].updatedAt}</td>
                     <td>
                         <div class="action-btns">
-                            <i class="ri-survey-line btn-view" onclick="openViewModal(${i})"></i>
-                            <i class="ri-pencil-line btn-edit" onclick="openUpdateModal(${i})"></i>
+                            <i class="ri-eye-line btn-view" onclick="viewBox(${i})"></i>
+                            <i class="ri-pencil-line btn-edit" onclick="updateContact(${i})"></i>
                             <i class="ri-delete-bin-line btn-delete" 
                                 onclick="deleteContact(${i}, '${contacts[i].name}')">
                             </i>
@@ -99,6 +106,8 @@ function loadContact() {
                     </td>
                 </tr>
                 `;
+            }
+
         }
 
     }
@@ -256,8 +265,8 @@ function searchUsers() {
                     <td>${contacts[i].updatedAt}</td>
                     <td>
                         <div class="action-btns">
-                            <i class="ri-survey-line btn-view" onclick="openViewModal(${i})"></i>
-                            <i class="ri-pencil-line btn-edit" onclick="openUpdateModal(${i})"></i>
+                            <i class="ri-survey-line btn-view" onclick="viewBox(${i})"></i>
+                            <i class="ri-pencil-line btn-edit" onclick="updateContact(${i})"></i>
                             <i class="ri-delete-bin-line btn-delete"
                                 onclick="deleteContact(${i}, ${JSON.stringify(contacts[i].name)})">
                             </i>
@@ -282,286 +291,341 @@ function searchUsers() {
 
 }
 
-/* ================= VIEW MODAL ================= */
-
-let selectedContactIndex = null;
-let selectedContactData = null;
-
-function openViewModal(index) {
-
-    const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
-    const contact = contacts[index];
-
-    if (!contact) return;
-
-    selectedContactData = contact;
-
-    const companyName = "Aqua Portal";
-    const tagline = "Water Management & Customer System";
-
-    const devName = "Developed By Sarfraj Shaikh";
-
-    // logo image (normal image file allowed in modal)
-    const logoPath = "../../assets/img/logo.avif";
-
-    const html = `
-        <div class="pdf-header">
-            <img src="${logoPath}" alt="Company Logo">
-            <div>
-                <h2>${companyName}</h2>
-                <p>${tagline}</p>
-            </div>
-        </div>
-
-        <div class="pdf-title">Contact Details Report</div>
-
-        <div class="pdf-details">
-            <div class="pdf-row">
-                <div class="pdf-label">ID</div>
-                <div class="pdf-value">${contact.id}</div>
-            </div>
-
-            <div class="pdf-row">
-                <div class="pdf-label">Name</div>
-                <div class="pdf-value">${contact.name}</div>
-            </div>
-
-            <div class="pdf-row">
-                <div class="pdf-label">Number</div>
-                <div class="pdf-value">${contact.number}</div>
-            </div>
-
-            <div class="pdf-row">
-                <div class="pdf-label">Location</div>
-                <div class="pdf-value">${contact.location}</div>
-            </div>
-
-            <div class="pdf-row">
-                <div class="pdf-label">Created By</div>
-                <div class="pdf-value">${contact.createdBy}</div>
-            </div>
-
-            <div class="pdf-row">
-                <div class="pdf-label">Created At</div>
-                <div class="pdf-value">${contact.createdAt}</div>
-            </div>
-
-            <div class="pdf-row">
-                <div class="pdf-label">Updated At</div>
-                <div class="pdf-value">${contact.updatedAt}</div>
-            </div>
-        </div>
-
-        <div class="pdf-footer">
-            <p><b>${devName}</b></p>
-            <p>
-                Social Links:
-                <a href="https://instagram.com/" target="_blank">Instagram</a> |
-                <a href="https://linkedin.com/" target="_blank">LinkedIn</a> |
-                <a href="https://github.com/" target="_blank">GitHub</a>
-            </p>
-        </div>
-    `;
-
-    document.getElementById("pdfPreview").innerHTML = html;
-    document.getElementById("viewModal").style.display = "flex";
-}
-
-function closeViewModal() {
-    document.getElementById("viewModal").style.display = "none";
-}
-
-function closeViewModal() {
-    document.getElementById("viewModal").style.display = "none";
-}
-
-
-/* ================= SAVE AS PDF ================= */
-
-function saveAsPDF() {
-
-    if (!selectedContactData) {
-        alert("No contact selected!");
-        return;
-    }
-
-    let confirmDownload = confirm("Do you want to download this contact report as PDF?");
-
-    if (!confirmDownload) {
-        return;
-    }
-
-    if (!window.jspdf) {
-        alert("jsPDF library not loaded!");
-        return;
-    }
-
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF("p", "mm", "a4");
-
-    const contact = selectedContactData;
-
-    doc.setDrawColor(79, 70, 229);
-    doc.setLineWidth(1);
-    doc.rect(8, 8, 194, 281);
-
-    doc.setFillColor(238, 242, 255);
-    doc.rect(8, 8, 194, 40, "F");
-
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(18);
-    doc.setTextColor(17, 24, 39);
-    doc.text("Aqua Portal", 20, 20);
-
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(11);
-    doc.setTextColor(107, 114, 128);
-    doc.text("Water Management & Customer System", 20, 28);
-
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(14);
-    doc.setTextColor(79, 70, 229);
-    doc.text("CONTACT DETAILS REPORT", 20, 40);
-
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    doc.setTextColor(55, 65, 81);
-    doc.text("Generated: " + new Date().toLocaleString(), 20, 50);
-
-    let y = 70;
-
-    function addRow(label, value) {
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(11);
-        doc.setTextColor(17, 24, 39);
-        doc.text(label + ":", 20, y);
-
-        doc.setFont("helvetica", "normal");
-        doc.setTextColor(55, 65, 81);
-        doc.text(String(value || "-"), 70, y);
-
-        y += 10;
-        doc.setDrawColor(229, 231, 235);
-        doc.line(20, y - 5, 190, y - 5);
-    }
-
-    addRow("ID", contact.id);
-    addRow("Name", contact.name);
-    addRow("Number", contact.number);
-    addRow("Location", contact.location);
-    addRow("Created By", contact.createdBy);
-    addRow("Created At", contact.createdAt);
-    addRow("Updated At", contact.updatedAt);
-
-    doc.setFillColor(238, 242, 255);
-    doc.rect(8, 265, 194, 24, "F");
-
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(11);
-    doc.setTextColor(17, 24, 39);
-    doc.text("Developed By Sarfraj Shaikh", 12, 275);
-
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    doc.setTextColor(79, 70, 229);
-    doc.text("Instagram: https://instagram.com/", 12, 283);
-
-    doc.save(contact.name + "-report.pdf");
-}
-
-/* ================= UPDATE MODAL ================= */
-
-function openUpdateModal(index) {
-
-    const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
-    const contact = contacts[index];
-
-    if (!contact) return;
-
-    selectedContactIndex = index;
-
-    document.getElementById("upName").value = contact.name;
-    document.getElementById("upNumber").value = contact.number;
-    document.getElementById("upLocation").value = contact.location;
-    document.getElementById("upCreatedBy").value = contact.createdBy;
-
-    clearErrors();
-
-    document.getElementById("updateModal").style.display = "flex";
-}
-
-function closeUpdateModal() {
-    document.getElementById("updateModal").style.display = "none";
-    selectedContactIndex = null;
-}
-
-
-/* ================= FORM VALIDATION ================= */
-
-function clearErrors() {
-    document.getElementById("errName").textContent = "";
-    document.getElementById("errNumber").textContent = "";
-    document.getElementById("errLocation").textContent = "";
-    document.getElementById("errCreatedBy").textContent = "";
-}
-
-function validateForm(name, number, location, createdBy) {
-
-    clearErrors();
-    let isValid = true;
-
-    if (name.trim() === "") {
-        document.getElementById("errName").textContent = "Name is required";
-        isValid = false;
-    }
-
-    if (number.trim() === "") {
-        document.getElementById("errNumber").textContent = "Number is required";
-        isValid = false;
-    } else if (!/^[0-9]{10}$/.test(number)) {
-        document.getElementById("errNumber").textContent = "Enter valid 10 digit number";
-        isValid = false;
-    }
-
-    if (location.trim() === "") {
-        document.getElementById("errLocation").textContent = "Location is required";
-        isValid = false;
-    }
-
-    if (createdBy.trim() === "") {
-        document.getElementById("errCreatedBy").textContent = "Created By is required";
-        isValid = false;
-    }
-
-    return isValid;
-}
-
-
 /* ================= UPDATE CONTACT ================= */
 
-function updateContact() {
+function updateContact(index) {
 
-    if (selectedContactIndex === null) return;
+    let table = document.getElementById("tableContainer");
+    let notFoundBox = document.getElementById("noDataBox");
+    let usersTableBody = document.getElementById("usersTableBody");
+    let updateBtn = document.getElementById("updateBtn");
 
+    document.getElementById("editContainer").classList.add("active");
+
+    /* =============== ALL INPUT =============== */
+    let nameInput = document.getElementById("nameInput");
+    let numberInput = document.getElementById("numberInput");
+    let locationInput = document.getElementById("locationInput");
+    let inputBox = document.getElementsByClassName("inputBox");
+    let errorText = document.getElementsByClassName("error-text");
+
+    /* =============== LOAD CONTACTS =============== */
     const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
 
-    let name = document.getElementById("upName").value;
-    let number = document.getElementById("upNumber").value;
-    let location = document.getElementById("upLocation").value;
-    let createdBy = document.getElementById("upCreatedBy").value;
+    if (contacts !== null) {
 
-    if (!validateForm(name, number, location, createdBy)) {
-        return;
+        nameInput.value = contacts[index].name;
+        numberInput.value = contacts[index].number;
+        locationInput.value = contacts[index].location;
+        updateBtn.style.display = "flex";
+
+    } else {
+
+        updateBtn.style.display = "none";
+
     }
 
-    contacts[selectedContactIndex].name = name;
-    contacts[selectedContactIndex].number = number;
-    contacts[selectedContactIndex].location = location;
-    contacts[selectedContactIndex].createdBy = createdBy;
-    contacts[selectedContactIndex].updatedAt = new Date().toLocaleString();
+    updateBtn.onclick = function () {
 
-    localStorage.setItem("contacts", JSON.stringify(contacts));
+        if (nameInput.value.trim() === "") {
 
-    closeUpdateModal();
-    loadContact();
+            inputBox[0].style.borderColor = "#FF0000";
+            errorText[0].style.display = "block";
+            errorText[0].innerHTML = "Full Name Is Required";
+
+        }
+        else if (numberInput.value === "") {
+
+            inputBox[0].style.borderColor = "#e5e7eb";
+            errorText[0].style.display = "none";
+            errorText[0].innerHTML = "";
+
+            inputBox[1].style.borderColor = "#FF0000";
+            errorText[1].style.display = "block";
+            errorText[1].innerHTML = "Mobile Number Is Required";
+
+        }
+        else if (numberInput.value.length !== 10) {
+
+            inputBox[1].style.borderColor = "#FF0000";
+            errorText[1].style.display = "block";
+            errorText[1].innerHTML = "Invalid Mobile Number";
+
+        }
+        else if (numberInput.value[0].match(/[7-9]/g)) {
+
+            inputBox[1].style.borderColor = "#e5e7eb";
+            errorText[1].style.display = "none";
+            errorText[1].innerHTML = "";
+
+            if (locationInput.value.trim() === "") {
+
+                inputBox[2].style.borderColor = "#FF0000";
+                errorText[2].style.display = "block";
+                errorText[2].innerHTML = "Location Is Required";
+
+            } else {
+
+                inputBox[2].style.borderColor = "#e5e7eb";
+                errorText[2].style.display = "none";
+                errorText[2].innerHTML = "";
+
+                /* =============== POPUP DIALOGUE =============== */
+
+                let popupContainer = document.getElementById("popupContainer");
+                let popupBox = document.getElementById("popupBox");
+                let popTitle = document.getElementById("popTitle");
+                let popupMessage = document.getElementById("popupMessage");
+                let popupCloseIcon = document.getElementById("popupCloseIcon");
+                let popupCancelBtn = document.getElementById("popupCancelBtn");
+                let popupConfirmBtn = document.getElementById("popupConfirmBtn");
+
+                popupContainer.classList.add("active");
+                popupContainer.classList.add("animate__animated", "animate__fadeIn");
+                popupBox.classList.add("animate__animated", "animate__zoomIn");
+
+                popTitle.textContent = "CONFIRMATION";
+                popupMessage.innerHTML = `Are You Want To Sure To Update <b>${contacts[index].name}</b> Contact?`;
+
+                popupCloseIcon.onclick = () => {
+
+                    popupContainer.classList.remove("active");
+                    popupContainer.classList.remove("animate__fadeIn");
+                    popupBox.classList.remove("animate__zoomIn");
+
+                    popupContainer.classList.add("animate__fadeOut");
+                    popupBox.classList.add("animate__zoomOut");
+
+                    setTimeout(() => {
+
+                        popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+                        popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+                    }, 250);
+
+                }
+
+                popupCancelBtn.onclick = () => {
+
+                    popupContainer.classList.remove("active");
+                    popupContainer.classList.remove("animate__fadeIn");
+                    popupBox.classList.remove("animate__zoomIn");
+
+                    popupContainer.classList.add("animate__fadeOut");
+                    popupBox.classList.add("animate__zoomOut");
+
+                    setTimeout(() => {
+
+                        popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+                        popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+                    }, 250);
+
+                }
+
+                popupConfirmBtn.onclick = () => {
+
+                    let currentDate = new Date();
+
+                    contacts[index].name = nameInput.value;
+                    contacts[index].number = numberInput.value;
+                    contacts[index].location = locationInput.value;
+                    contacts[index].id = "contact_" + numberInput.value;
+                    updatedAt: currentDate.toLocaleDateString() + " at " + currentDate.toLocaleTimeString();
+
+                    // /* =============== UPDATE CONTACTS =============== */
+                    localStorage.setItem("contacts", JSON.stringify(contacts));
+                    document.getElementById("editContainer").classList.remove("active");
+                    loadContact();
+
+                    popupContainer.classList.remove("active");
+                    popupContainer.classList.remove("animate__fadeIn");
+                    popupBox.classList.remove("animate__zoomIn");
+
+                    popupContainer.classList.add("animate__fadeOut");
+                    popupBox.classList.add("animate__zoomOut");
+
+                    setTimeout(() => {
+
+                        popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+                        popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+                    }, 250);
+
+
+                }
+
+            }
+
+        }
+        else {
+
+            inputBox[1].style.borderColor = "#FF0000";
+            errorText[1].style.display = "block";
+            errorText[1].innerHTML = "Only Indian Number Allowed";
+        }
+
+    }
+}
+
+let editBoxClose = document.getElementById("editBoxClose");
+editBoxClose.onclick = () => {
+
+    document.getElementById("editContainer").classList.remove("active");
+
+}
+
+/* ================= VIEW & PRINT CONTACT DETAILS ================= */
+
+function viewBox(index) {
+
+    document.getElementById("viewDetail").classList.add("active");
+
+    /* =============== LOAD CONTACTS =============== */
+    const contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+
+    let userId = document.getElementById("userId");
+    let userName = document.getElementById("userName");
+    let userNumber = document.getElementById("userNumber");
+    let userLocation = document.getElementById("userLocation");
+    let userCreatedBy = document.getElementById("userCreatedBy");
+    let userCreatedAt = document.getElementById("userCreatedAt");
+    let userUpdatedAt = document.getElementById("userUpdatedAt");
+
+    let pdfBox = document.getElementById("viewDetail");
+    let pdfBtn = document.getElementById("pdfBtn");
+
+    if (contacts !== null) {
+
+        userId.innerHTML = contacts[index].id;
+        userName.innerHTML = contacts[index].name;
+        userNumber.innerHTML = contacts[index].number;
+        userLocation.innerHTML = contacts[index].location;
+        userCreatedBy.innerHTML = contacts[index].createdBy;
+        userCreatedAt.innerHTML = contacts[index].createdAt;
+        userUpdatedAt.innerHTML = contacts[index].updatedAt;
+    }
+
+    pdfBtn.onclick = function () {
+
+        /* =============== POPUP DIALOGUE =============== */
+
+        let popupContainer = document.getElementById("popupContainer");
+        let popupBox = document.getElementById("popupBox");
+        let popTitle = document.getElementById("popTitle");
+        let popupMessage = document.getElementById("popupMessage");
+        let popupCloseIcon = document.getElementById("popupCloseIcon");
+        let popupCancelBtn = document.getElementById("popupCancelBtn");
+        let popupConfirmBtn = document.getElementById("popupConfirmBtn");
+
+        popupContainer.classList.add("active");
+        popupContainer.classList.add("animate__animated", "animate__fadeIn");
+        popupBox.classList.add("animate__animated", "animate__zoomIn");
+
+        popTitle.textContent = "CONFIRMATION";
+        popupMessage.innerHTML = `Are You Want To Sure To Save This PDF?`;
+
+        popupCloseIcon.onclick = () => {
+
+            popupContainer.classList.remove("active");
+            popupContainer.classList.remove("animate__fadeIn");
+            popupBox.classList.remove("animate__zoomIn");
+
+            popupContainer.classList.add("animate__fadeOut");
+            popupBox.classList.add("animate__zoomOut");
+
+            setTimeout(() => {
+
+                popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+                popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+            }, 250);
+
+        }
+
+        popupCancelBtn.onclick = () => {
+
+            popupContainer.classList.remove("active");
+            popupContainer.classList.remove("animate__fadeIn");
+            popupBox.classList.remove("animate__zoomIn");
+
+            popupContainer.classList.add("animate__fadeOut");
+            popupBox.classList.add("animate__zoomOut");
+
+            setTimeout(() => {
+
+                popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+                popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+            }, 250);
+
+        }
+
+        popupConfirmBtn.onclick = () => {
+
+            const { jsPDF } = window.jspdf;
+
+            let pdf = new jsPDF("p", "pt", "a4");
+
+            let pdfWidth = pdf.internal.pageSize.getWidth();
+            let margin = 20;
+
+            let contentWidth = pdfBox.offsetWidth;
+
+            let scale = (pdfWidth - margin * 2) / contentWidth;
+
+            viewBoxClose.style.display = "none";
+            pdfBtn.style.display = "none";
+
+            pdf.html(pdfBox, {
+
+                html2canvas: {
+
+                    scale: scale,
+                    useCORS: true,
+
+                },
+
+                callback: function (pdf) {
+
+                    pdf.save("Contact-" + contacts[index].number + "-Details.pdf");
+                    document.getElementById("viewDetail").classList.remove("active");
+
+                },
+                x: margin,
+                y: margin
+            });
+
+            setTimeout(() => {
+
+                viewBoxClose.style.display = "block";
+                pdfBtn.style.display = "flex";
+
+            }, 250);
+
+            popupContainer.classList.remove("active");
+            popupContainer.classList.remove("animate__fadeIn");
+            popupBox.classList.remove("animate__zoomIn");
+
+            popupContainer.classList.add("animate__fadeOut");
+            popupBox.classList.add("animate__zoomOut");
+
+            setTimeout(() => {
+
+                popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+                popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+            }, 250);
+
+
+        }
+
+    }
+}
+
+let viewBoxClose = document.getElementById("viewBoxClose");
+viewBoxClose.onclick = () => {
+
+    document.getElementById("viewDetail").classList.remove("active");
+
 }

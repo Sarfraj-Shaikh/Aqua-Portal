@@ -1,6 +1,40 @@
 
 ---
 
+# Admin Panel - Deleted Contacts
+### Log No: 16
+
+## Time Line
+- **Date: ** 01-5-2026
+- **Start at** 5:55 PM
+- **Complete at** 6:21 PM
+
+## Features
+- 8th Release
+- Added Contact Restore Functionalities (Admin Panel - Deleted Contacts)
+- Added View Contact Details (Admin Panel - Deleted Contacts)
+- Added Save as PDF Functionality (Admin Panel - Deleted Contacts)
+- Added Delete Contact Permanently Functionality (Admin Panel - Deleted Contacts)
+
+---
+
+# Admin Panel - All Contacts
+### Log No: 16
+
+## Time Line
+- **Date: ** 01-5-2026
+- **Start at** 2:52 PM
+- **Complete at** 5:52 PM
+
+## Features
+- 8th Release
+- Sidebar Design Fix (Admin Panel - Dashboard)
+- Added Contact Edit Functionalities (Admin Panel - All Contacts)
+- Added View Contact Details (Admin Panel - All Contacts)
+- Added Save as PDF Functionality (Admin Panel - All Contacts)
+
+---
+
 # Admin Panel - All Contacts
 ### Log No: 15
 

@@ -32,7 +32,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
 
-    <!-- =============== JSPDF CDN =============== -->
+    <!-- =============== EXTERNAL CDN =============== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 
 </head>
@@ -183,90 +185,6 @@
             </p>
         </div>
 
-        <!-- ================= VIEW CONTACT MODAL ================= -->
-        <div class="modal-overlay" id="viewModal">
-            <div class="modal-box">
-
-                <div class="modal-header">
-                    <h3><i class="ri-survey-line"></i> Contact Details</h3>
-                    <button class="modal-close" onclick="closeViewModal()">
-                        <i class="ri-close-large-line"></i>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="pdf-preview" id="pdfPreview"></div>
-                </div>
-
-                <div class="modal-footer">
-                    <button class="btn-modal btn-pdf" onclick="saveAsPDF()">
-                        <i class="ri-file-download-line"></i> Save PDF
-                    </button>
-
-                    <button class="btn-modal btn-close" onclick="closeViewModal()">
-                        Close
-                    </button>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- ================= UPDATE CONTACT MODAL ================= -->
-        <div class="modal-overlay" id="updateModal">
-            <div class="modal-box">
-
-                <div class="modal-header">
-                    <h3><i class="ri-pencil-line"></i> Update Contact</h3>
-                    <button class="modal-close" onclick="closeUpdateModal()">
-                        <i class="ri-close-large-line"></i>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-
-                    <form id="updateForm">
-
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" id="upName" placeholder="Enter name">
-                            <small class="error-text" id="errName"></small>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Number</label>
-                            <input type="text" id="upNumber" placeholder="Enter number">
-                            <small class="error-text" id="errNumber"></small>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Location</label>
-                            <input type="text" id="upLocation" placeholder="Enter location">
-                            <small class="error-text" id="errLocation"></small>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Created By</label>
-                            <input type="text" id="upCreatedBy" placeholder="Enter created by">
-                            <small class="error-text" id="errCreatedBy"></small>
-                        </div>
-
-                    </form>
-
-                </div>
-
-                <div class="modal-footer">
-                    <button class="btn-modal btn-update" onclick="updateContact()">
-                        <i class="ri-refresh-line"></i> Update
-                    </button>
-
-                    <button class="btn-modal btn-close" onclick="closeUpdateModal()">
-                        Close
-                    </button>
-                </div>
-
-            </div>
-        </div>
-
     </div>
 
     <!-- =============== POPUP DIALOGUE =============== -->
@@ -286,6 +204,118 @@
 
                 <div class="confirm-btn" id="popupConfirmBtn">Confirm</div>
 
+            </div>
+        </div>
+    </div>
+
+    <!-- =============== EDIT FORM DIALOGUE =============== -->
+    <div class="edit-con" id="editContainer">
+        <div class="edit-box" id="editBox">
+
+            <div class="modal-header">
+
+                <div class="modal-head">
+                    <i class="ri-pencil-line"></i>
+                    <h3>Update Contact</h3>
+                </div>
+
+                <i class="ri-close-large-line modal-close" id="editBoxClose"></i>
+            </div>
+
+            <div class="modal-body">
+
+                <p class="inputTitle">Name</p>
+                <div class="inputBox">
+                    <i class="ri-user-line"></i>
+                    <input type="text" placeholder="Enter Contact Name" id="nameInput">
+                </div>
+                <p class="error-text">Error Message</p>
+
+                <p class="inputTitle">Mobile Number</p>
+                <div class="inputBox">
+                    <i class="ri-phone-line"></i>
+                    <input type="number" inputmode="numeric" placeholder="Enter Contact Number" id="numberInput">
+                </div>
+                <p class="error-text">Error Message</p>
+
+                <p class="inputTitle">Location</p>
+                <div class="inputBox">
+                    <i class="ri-map-pin-2-line"></i>
+                    <input type="text" placeholder="Enter Contact Location" id="locationInput">
+                </div>
+                <p class="error-text">Error Message</p>
+
+                <div class="btn-update" id="updateBtn">
+                    <i class="ri-edit-circle-line"></i>
+                    <span>Update</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- =============== VIEW DETAILS DIALOGUE =============== -->
+    <div class="viewDetail" id="viewDetail">
+        <div class="profile-box">
+
+
+            <div class="profile-header">
+                <div>
+                    <h1>Contact Details</h1>
+                    <p>Developed by <b>Mo. Sarfraj Shaikh</b></p>
+                </div>
+
+                <button class="close-btn" id="viewBoxClose">
+                    <i class="ri-close-line"></i>
+                </button>
+            </div>
+
+            <div class="profile-content">
+
+                <div class="grid">
+                    <div class="card">
+                        <span>User ID</span>
+                        <h3 id="userId">#U-102938</h3>
+                    </div>
+
+                    <div class="card">
+                        <span>Name</span>
+                        <h3 id="userName">Sarfraj Shaikh</h3>
+                    </div>
+
+                    <div class="card">
+                        <span>Number</span>
+                        <h3 id="userNumber">+91 98765 43210</h3>
+                    </div>
+
+                    <div class="card">
+                        <span>Location</span>
+                        <h3 id="userLocation">Mumbai, India</h3>
+                    </div>
+
+                    <div class="card">
+                        <span>Created By</span>
+                        <h3 id="userCreatedBy">Admin</h3>
+                    </div>
+
+                    <div class="card">
+                        <span>Created At</span>
+                        <h3 id="userCreatedAt">22 May 2026</h3>
+                    </div>
+
+                    <div class="card">
+                        <span>Updated At</span>
+                        <h3 id="userUpdatedAt">01 June 2026</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="profile-footer">
+                <button class="btn" id="pdfBtn">
+                    <i class="ri-file-download-line"></i>
+                    Save as PDF
+                </button>
             </div>
         </div>
     </div>
