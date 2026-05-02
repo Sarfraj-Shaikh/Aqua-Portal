@@ -501,3 +501,45 @@ Jo results milte hain, unhe stats section me **update karke show** kiya jata hai
 Har detail ko **separately fetch** kiya jata hai.  
 
 Agar kisi specific detail ka data available nahi hota, toh us particular field ko **update nahi kiya jata**.
+
+## Admin Panel - All Contacts Page Validation
+
+### Access:
+Dashboard page par login aur non-login users ke liye jo validation lagaya gaya hai, same validation is page par bhi apply kiya gaya hai.
+
+### Data:
+Agar data available hoga toh contacts show honge, warna **"Not Found"** ka message display hoga.
+
+### Search:
+Admin contacts ko **name, number, aur location** ke basis par search kar sakta hai.  
+Agar matching data milta hai toh show hoga, warna **"Not Found"** ka message display hoga.
+
+### Action:
+Admin contacts ke liye following actions perform kar sakta hai:
+- Contact ki details separately view kar sakta hai
+- Contact details ko **PDF** format me save kar sakta hai
+- Contact details jaise **name, number, aur location** update kar sakta hai
+- Agar admin chahe toh contact ko delete bhi kar sakta hai
+
+
+---
+
+## Admin Panel - All Deleted Contacts Page Validation
+
+### Access:
+Same validation jo **All Contacts Page** par apply hai, wahi is page par bhi apply kiya gaya hai.
+
+### Data:
+Agar deleted contacts ka data available hoga toh show hoga, warna **"Not Found"** ka message display hoga.
+
+### Search:
+Admin deleted contacts ko **name, number, aur location** ke basis par search kar sakta hai.  
+Agar matching data milta hai toh show hoga, warna **"Not Found"** ka message display hoga.
+
+### Action:
+Admin deleted contacts ke liye following actions perform kar sakta hai:
+- Deleted contact ki details separately view kar sakta hai
+- Deleted contact details ko **PDF** format me save kar sakta hai
+- Deleted contact ko restore kar sakta hai
+- Agar admin chahe toh contact ko permanently delete bhi kar sakta hai
+

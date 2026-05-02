@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- =============== WEBSITE META DATA =============== -->
-    <title>Admin Login | Aqua Portal</title>
-    <link rel="shortcut icon" href="../assets/img/logo.avif" type="image/x-icon">
+    <title>All Users | Aqua Portal</title>
+    <link rel="shortcut icon" href="../../assets/img/logo.avif" type="image/x-icon">
 
     <!-- =============== AUTHOR META DATA =============== -->
     <meta name="author" content="Sarfraj Shaikh">
@@ -16,11 +16,11 @@
 
     <!-- =============== CSS FILE =============== -->
     <link rel="stylesheet" href="../assets/files/css/common.css">
-    <link rel="stylesheet" href="../assets/files/css/style.css">
+    <link rel="stylesheet" href="../assets/files/css/pages/users.css">
 
     <!-- =============== JS FILE =============== -->
     <script src="../assets/files/js/common.js" defer></script>
-    <script src="../assets/files/js/main.js" defer></script>
+    <script src="../assets/files/js/pages/users.js" defer></script>
 
     <!-- =============== ICON CDN =============== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
@@ -31,6 +31,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- =============== EXTERNAL CDN =============== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 
 </head>
 
@@ -76,134 +81,326 @@
         </div>
     </div>
 
-    <!-- =============== DASHBOARD SECTION =============== -->
+    <!-- =============== SIDEBAR SECTION =============== -->
     <div class="sidebar" id="sidebar">
+
         <div class="sidebar-header">
-            <div class="logo">
-                <i class="ri-shield-user-line"></i>
-                <span>Admin Panel</span>
+            <div class="left" id="adminProfile" onclick="profileRefresh()">
+                <img src="../assets/img/admin.png" alt="Admin" loading="lazy">
+                <div class="info">
+                    <h4 id="adminName">Admin</h4>
+                    <p>Verified <i class="ri-checkbox-circle-line"></i></p>
+                </div>
             </div>
-            <i class="ri-close-line close-btn" onclick="closeSidebar()"></i>
+            <i class="ri-close-large-line closeBtn" onclick="closeSidebar()"></i>
         </div>
 
         <div class="sidebar-menu">
+
             <p class="menu-title">Dashboard</p>
-            <a href="dashboard.html"><i class="ri-dashboard-line"></i> Dashboard</a>
+            <a href="./dashboard.html"><i class="ri-dashboard-line"></i>Dashboard</a>
 
             <p class="menu-title">Contacts</p>
-            <a href="contacts.html"><i class="ri-contacts-line"></i> All Contacts</a>
+            <a href="./contacts.html"><i class="ri-contacts-line"></i> All Contacts</a>
+            <a href="./deleted-contacts.html"><i class="ri-delete-bin-7-line"></i> Deleted Contacts</a>
 
             <p class="menu-title">Users</p>
-            <a href="users.html"><i class="ri-user-3-line"></i> All Users</a>
+            <a href="./users.html" class="active"><i class="ri-user-3-line"></i> All Users</a>
 
-            <p class="menu-title">Company</p>
+            <!-- <p class="menu-title">Company</p>
             <a href="#"><i class="ri-building-line"></i> Accounts Only</a>
-            <a href="#"><i class="ri-store-2-line"></i> With Inventory</a>
+            <a href="#"><i class="ri-store-2-line"></i> With Inventory</a> -->
         </div>
 
-        <div class="sidebar-footer">
-            <button class="logout-btn" onclick="openLogoutModal()">
-                <i class="ri-logout-box-r-line"></i> Logout
-            </button>
-        </div>
     </div>
 
-    <div class="topbar">
-        <i class="ri-menu-line menu-btn" onclick="openSidebar()"></i>
+    <!-- =============== NAVBAR SECTION =============== -->
+    <div class="navbar">
 
-        <div class="brand" onclick="window.location.href='dashboard.html'">
-            <i class="ri-shield-user-line"></i>
-            <span>Admin Panel</span>
+        <div class="menu-btn">
+            <i class="ri-menu-line" onclick="openSidebar()"></i>
+            <p>All Users</p>
         </div>
+
+        <img src="../assets/img/admin.png" alt="Profile" loading="lazy">
+
     </div>
 
-    <div class="container">
+    <!-- =============== DASHBOARD SECTION =============== -->
+    <div class="dashboard">
 
         <div class="page-header">
+
             <p class="breadcrumb">
-                <a href="dashboard.html">Home</a> > <span>All Users</span>
+                <a href="./dashboard.html"><i class="ri-home-4-line"></i>Dashboard</a>
+                <i class="ri-arrow-right-s-line"></i>
+                <span>All Users</span>
             </p>
 
             <div class="search-bar">
+
                 <div class="search-box">
                     <i class="ri-search-line"></i>
-                    <input type="text" id="searchUser" placeholder="Search users..." onkeyup="searchUsers()">
+                    <input type="text" id="searchUser" placeholder="Search Users..." onkeyup="searchUsers()">
                 </div>
 
-                <button class="btn-add" onclick="openAddUserModal()">
+                <button class="btn-add" id="addUser">
                     <i class="ri-user-add-line"></i> Add New User
+                </button>
+
+            </div>
+        </div>
+
+        <!-- ================= USER DATA ================= -->
+        <div class="user-con" id="userContainer">
+            <div class="user-card" id="userCard">
+
+                <div class="user-header">
+
+                    <img class="user-profile-img" src="https://i.pravatar.cc/150?img=12" alt="profile">
+
+                    <div class="user-info">
+                        <h2>Rahul Sharma</h2>
+                        <p>UI Developer | Active Member</p>
+                    </div>
+
+                </div>
+
+                <div class="user-details">
+
+                    <div class="detail-row">
+                        <div class="left">
+                            <i class="ri-id-card-line"></i>
+                            <span>User ID</span>
+                        </div>
+                        <div class="right">USR10234</div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="left">
+                            <i class="ri-mail-line"></i>
+                            <span>Email</span>
+                        </div>
+                        <div class="right">rahul@gmail.com</div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="left">
+                            <i class="ri-phone-line"></i>
+                            <span>Mobile</span>
+                        </div>
+                        <div class="right">+91 98765 43210</div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="left">
+                            <i class="ri-lock-line"></i>
+                            <span>Password</span>
+                        </div>
+                        <div class="right">Rahul@1234</div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="left">
+                            <i class="ri-time-line"></i>
+                            <span>Created At</span>
+                        </div>
+                        <div class="right">2025-06-01 10:30 AM</div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="left">
+                            <i class="ri-refresh-line"></i>
+                            <span>Updated At</span>
+                        </div>
+                        <div class="right">2026-05-02 01:45 PM</div>
+                    </div>
+
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-view">
+                        <i class="ri-eye-line"></i> View
+                    </button>
+
+                    <button class="btn btn-edit">
+                        <i class="ri-edit-line"></i> Edit
+                    </button>
+
+                    <button class="btn btn-delete">
+                        <i class="ri-delete-bin-line"></i> Delete
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= NO DATA FOUND ================= -->
+        <div class="no-data-box" id="noDataBox">
+            <div class="no-data-icon">
+                <i class="ri-file-search-line"></i>
+            </div>
+
+            <h3>No Data Found</h3>
+
+            <p>
+                No users details available right now.
+            </p>
+        </div>
+
+    </div>
+
+    <!-- =============== POPUP DIALOGUE =============== -->
+    <div class="popup-con" id="popupContainer">
+        <div class="popup" id="popupBox">
+
+            <div class="top">
+                <p class="title" id="popTitle">POPUP MESSAGE</p>
+                <i class="ri-close-large-line" id="popupCloseIcon"></i>
+            </div>
+
+            <p class="message" id="popupMessage">Your custom popup message box is now ready</p>
+
+            <div class="btns">
+
+                <div class="cancel-btn" id="popupCancelBtn">Cancel</div>
+
+                <div class="confirm-btn" id="popupConfirmBtn">Confirm</div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- =============== EDIT FORM DIALOGUE =============== -->
+    <div class="edit-con" id="editContainer">
+        <div class="edit-box" id="editBox">
+
+            <div class="modal-header">
+
+                <div class="modal-head">
+                    <i class="ri-pencil-line"></i>
+                    <h3 id="editboxTitle"></h3>
+                </div>
+
+                <i class="ri-close-large-line modal-close" id="editBoxClose"></i>
+            </div>
+
+            <div class="modal-body">
+
+                <p class="inputTitle">Name</p>
+                <div class="inputBox">
+                    <i class="ri-user-line"></i>
+                    <input type="text" placeholder="Enter Full Name" id="nameInput">
+                </div>
+                <p class="error-text">Error Message</p>
+
+                <p class="inputTitle">Mobile Number</p>
+                <div class="inputBox">
+                    <i class="ri-phone-line"></i>
+                    <input type="number" inputmode="numeric" placeholder="Enter Mobile Number" id="numberInput">
+                </div>
+                <p class="error-text">Error Message</p>
+
+                <p class="inputTitle">Email</p>
+                <div class="inputBox">
+                    <i class="ri-mail-line"></i>
+                    <input type="email" placeholder="Enter Email ID" id="emailInput">
+                </div>
+                <p class="error-text">Error Message</p>
+
+                <p class="inputTitle">Profile Picture</p>
+                <div class="inputBox">
+                    <i class="ri-image-circle-line"></i>
+                    <input type="text" placeholder="Enter Profile Picture URL" id="pfpInput">
+                </div>
+                <p class="error-text">Error Message</p>
+
+                <p class="inputTitle">Password</p>
+                <div class="inputBox">
+                    <i class="ri-lock-line"></i>
+                    <input type="text" placeholder="Enter Profile Picture URL" id="passInput">
+                </div>
+                <p class="error-text">Error Message</p>
+
+                <div class="btn-update" id="updateBtn">
+                    <i class="ri-edit-circle-line"></i>
+                    <span>Update</span>
+                </div>
+
+                <div class="btn-addUser" id="addUser-Btn">
+                    <i class="ri-add-large-line"></i>
+                    <span>Create</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- =============== VIEW DETAILS DIALOGUE =============== -->
+    <div class="viewDetail" id="viewDetail">
+        <div class="profile-box">
+
+
+            <div class="profile-header">
+                <div>
+                    <h1>User Details</h1>
+                    <p>Developed by <b>Mo. Sarfraj Shaikh</b></p>
+                </div>
+
+                <button class="close-btn" id="viewBoxClose">
+                    <i class="ri-close-line"></i>
+                </button>
+            </div>
+
+            <div class="profile-content">
+
+                <div class="grid">
+                    <div class="card">
+                        <span>User ID</span>
+                        <h3 id="userId">#U-102938</h3>
+                    </div>
+
+                    <div class="card">
+                        <span>Name</span>
+                        <h3 id="userName">Sarfraj Shaikh</h3>
+                    </div>
+
+                    <div class="card">
+                        <span>Number</span>
+                        <h3 id="userNumber">+91 98765 43210</h3>
+                    </div>
+
+                    <div class="card">
+                        <span>Email</span>
+                        <h3 id="userLocation">Mumbai, India</h3>
+                    </div>
+
+                    <div class="card">
+                        <span>Password</span>
+                        <h3 id="userCreatedBy">Admin</h3>
+                    </div>
+
+                    <div class="card">
+                        <span>Created At</span>
+                        <h3 id="userCreatedAt">22 May 2026</h3>
+                    </div>
+
+                    <div class="card">
+                        <span>Updated At</span>
+                        <h3 id="userUpdatedAt">01 June 2026</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="profile-footer">
+                <button class="btn" id="pdfBtn">
+                    <i class="ri-file-download-line"></i>
+                    Save as PDF
                 </button>
             </div>
         </div>
-
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Number</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-
-                <tbody id="usersTableBody"></tbody>
-            </table>
-        </div>
     </div>
-
-    <!-- LOGOUT MODAL -->
-    <div class="modal" id="logoutModal">
-        <div class="modal-box">
-            <h3><i class="ri-logout-box-r-line"></i> Confirm Logout</h3>
-            <p>Are you sure you want to logout?</p>
-
-            <div class="modal-actions">
-                <button class="btn-cancel" onclick="closeLogoutModal()">Cancel</button>
-                <button class="btn-confirm" onclick="confirmLogout()">Confirm</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- DELETE USER MODAL -->
-    <div class="modal" id="deleteModal">
-        <div class="modal-box">
-            <h3><i class="ri-delete-bin-6-line"></i> Delete User</h3>
-            <p>This action cannot be undone. Are you sure?</p>
-
-            <div class="modal-actions">
-                <button class="btn-cancel" onclick="closeDeleteModal()">Cancel</button>
-                <button class="btn-confirm" onclick="confirmDeleteUser()">Confirm</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ADD/EDIT USER MODAL -->
-    <div class="modal" id="userModal">
-        <div class="modal-box">
-            <h3 id="userFormTitle">Add New User</h3>
-
-            <div class="modal-form">
-                <input type="text" id="uName" placeholder="Enter name">
-                <input type="email" id="uEmail" placeholder="Enter email">
-                <input type="text" id="uNumber" placeholder="Enter number">
-                <input type="text" id="uPassword" placeholder="Enter password">
-            </div>
-
-            <div class="modal-actions">
-                <button class="btn-cancel" onclick="closeUserModal()">Cancel</button>
-                <button class="btn-save" id="saveUserBtn">Save</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        checkAuth();
-        renderUsers();
-    </script>
 
 </body>
 

@@ -1,6 +1,36 @@
 
 ---
 
+# Admin Panel - All Users
+### Log No: 18
+
+## Time Line
+- **Date: ** 02-5-2026
+- **Start at** 09:09 AM
+- **Complete at** 10:52 AM
+
+## Features
+- 10th Release
+- Updated ReadMe.md Page - Line No: 505
+- Added Add New User, Edit/Update User Details (Admin Panel - All Users Page)
+- Removed Company Section From Sidebar - Temporary (From: Admin Panel - Dashboard, All Contacts, Deleted Contact, All Users Page)
+
+---
+
+# Admin Panel - All Users
+### Log No: 17
+
+## Time Line
+- **Date: ** 02-5-2026
+- **Start at** 7:40 AM
+- **Complete at** 8:53 AM
+
+## Features
+- 9th Release
+- Added Search, Delete, View Features (Admin Panel - All Users Page)
+
+---
+
 # Admin Panel - Deleted Contacts
 ### Log No: 16
 

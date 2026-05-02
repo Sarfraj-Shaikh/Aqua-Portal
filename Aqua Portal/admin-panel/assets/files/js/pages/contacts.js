@@ -299,7 +299,9 @@ function updateContact(index) {
     let notFoundBox = document.getElementById("noDataBox");
     let usersTableBody = document.getElementById("usersTableBody");
     let updateBtn = document.getElementById("updateBtn");
+    let editboxTitle = document.getElementById("editboxTitle");
 
+    editboxTitle.innerHTML = "Update User";
     document.getElementById("editContainer").classList.add("active");
 
     /* =============== ALL INPUT =============== */
