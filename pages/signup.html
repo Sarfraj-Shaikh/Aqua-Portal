@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- =============== WEBSITE META DATA =============== -->
+    <title>Register | Aqua Portal</title>
+    <link rel="shortcut icon" href="../assets/img/logo.avif" type="image/x-icon">
+
+    <!-- =============== AUTHOR META DATA =============== -->
+    <meta name="author" content="Sarfraj Shaikh">
+    <meta name="publisher" content="Sarfraj Shaikh">
+    <meta name="creator" content="Sarfraj Shaikh">
+
+    <!-- =============== CSS FILE =============== -->
+    <link rel="stylesheet" href="../assets/files/css/pages/signup.css">
+
+    <!-- =============== JS FILE =============== -->
+    <script src="../assets/files/js/pages/signup.js" defer></script>
+
+    <!-- =============== ICON CDN =============== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <!-- =============== AOS & ANIMATE CDN =============== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- =============== LOADER =============== -->
+    <div class="page-loader" id="pageLoader">
+        <div class="dot-spinner">
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+        </div>
+    </div>
+
+    <!-- =============== NO NETWORK =============== -->
+    <div class="no-internet" id="noInternet">
+        <div class="no-internet-card">
+
+            <div class="icon-circle">
+                <i class="ri-wifi-off-line"></i>
+            </div>
+
+            <h2>No Internet</h2>
+            <p>
+                You're offline. Please check your Wi-Fi or mobile data connection.
+            </p>
+
+            <div class="btn-group">
+                <button class="retry-btn" onclick="location.reload()">
+                    <i class="ri-refresh-line"></i> Retry
+                </button>
+            </div>
+
+            <span class="hint">
+                Waiting for network...
+            </span>
+
+        </div>
+    </div>
+
+    <!-- =============== NAVBAR =============== -->
+    <nav class="navbar" id="navBar">
+
+        <div class="nav-left" id="navLeft">
+            <img src="../assets/img/logo.avif" alt="Aqua Portal" loading="lazy">
+            <p id="navWebName"></p>
+        </div>
+
+        <div class="nav-right">
+
+            <div class="cta-btn" id="navPrimaryCtaBtn">
+                <i class="ri-home-line"></i>
+                <span>Home</span>
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- =============== SIGNUP SECTION =============== -->
+    <div class="signup-con">
+
+        <div class="left-side">
+
+        </div>
+
+        <div class="right-side">
+
+            <form class="signupForm" autocomplete="off">
+
+                <div class="signupMessage">
+                    <h3>Welcome Dear! 🫀</h3>
+                    <p>Create your account and start managing your business</p>
+                </div>
+
+                <div class="input-container">
+
+                    <p class="title">Full Name</p>
+
+                    <div class="input-box" id="nameIBox">
+                        <i class="ri-user-6-line"></i>
+                        <input type="text" id="nameInput" placeholder="Enter Your Full Name" autocomplete="off">
+                    </div>
+
+                    <p class="errorText" id="errorText1">Error Message</p>
+
+                </div>
+
+                <div class="input-container">
+
+                    <p class="title">Email ID</p>
+
+                    <div class="input-box" id="emailIBox">
+                        <i class="ri-mail-line"></i>
+                        <input type="email" inputmode="email" id="emailInput" placeholder="Enter Your Email ID" autocomplete="off">
+                    </div>
+
+                    <p class="errorText" id="errorText2">Error Message</p>
+
+                </div>
+
+                <div class="input-container">
+
+                    <p class="title">Mobile Number</p>
+
+                    <div class="input-box" id="numberIBox">
+
+                        <i class="ri-phone-line"></i>
+                        <input type="number" inputmode="numeric" id="numberInput" placeholder="Enter Your Mobile Number" autocomplete="off">
+                        
+                    </div>
+
+                    <p class="errorText" id="errorText3">Error Message</p>
+
+                </div>
+
+                <div class="input-container">
+
+                    <p class="title">Password</p>
+
+                    <div class="input-box" id="passIBox">
+
+                        <i class="ri-lock-line"></i>
+                        <input type="password" id="passwordInput" placeholder="Enter Your Password" autocomplete="off">
+                        <i class="ri-eye-line passIcon" id="passToggleIcon" onclick="passToggle()"></i>
+
+                    </div>
+
+                    <p class="errorText" id="errorText4">Error Message</p>
+
+                </div>
+
+                <div class="signupBtn" onclick="formVal()">
+                    Register Now
+                </div>
+
+                <div class="olduser">
+                    Already have account? <span id="signIn">Login Now</span>
+                </div>
+        </div>
+
+
+        </form>
+
+    </div>
+
+    </div>
+
+
+</body>
+
+</html>

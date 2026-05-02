@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Video Player | Aqua Portal</title>
+    <link rel="shortcut icon" href="../assets/img/logo.avif" type="image/x-icon" />
+
+    <meta name="author" content="Sarfraj Shaikh" />
+    <meta name="publisher" content="Sarfraj Shaikh" />
+    <meta name="creator" content="Sarfraj Shaikh" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/files/css/pages/video-player.css" />
+
+    <!-- ICON CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" />
+
+    <!-- JS -->
+    <script src="../assets/files/js/pages/video_player.js" defer></script>
+</head>
+
+<body>
+
+    <!-- LOADER -->
+    <div class="page-loader" id="pageLoader">
+        <div class="dot-spinner">
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+        </div>
+    </div>
+
+    <!-- NO INTERNET -->
+    <div class="no-internet" id="noInternet">
+        <div class="no-internet-card">
+            <div class="icon-circle">
+                <i class="ri-wifi-off-line"></i>
+            </div>
+
+            <h2>No Internet Connection</h2>
+            <p>You are offline. Please check your Wi-Fi or mobile data.</p>
+
+            <button class="btn btn-primary" onclick="location.reload()">
+                <i class="ri-refresh-line"></i> Retry
+            </button>
+
+            <span class="hint">Waiting for network...</span>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navBar">
+        <div class="nav-left" id="navLeft">
+            <img src="../assets/img/logo.avif" alt="Aqua Portal" loading="lazy" />
+            <p id="navWebName">Aqua Portal</p>
+        </div>
+
+        <div class="nav-right">
+            <a href="#" class="btn btn-primary btn-nav" id="navPrimaryCtaBtn">
+                <i class="ri-home-line"></i>
+                <span>Home</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- DASHBOARD -->
+    <main class="dashboard">
+
+        <!-- UPLOAD -->
+        <section id="uploadSection" class="card upload-box">
+            <div class="card-header">
+                <h2><i class="ri-upload-cloud-2-line"></i> Upload / URL Video</h2>
+                <p>Upload a video file or paste direct MP4/WebM/Ogg link.</p>
+            </div>
+
+            <label class="file-label">
+                <i class="ri-folder-video-line"></i>
+                <span>Select Video File</span>
+                <input type="file" id="fileInput" accept="video/*" />
+            </label>
+
+            <div class="url-box">
+                <i class="ri-link"></i>
+                <input type="text" id="urlInput" placeholder="Paste direct video URL (mp4/webm/ogg)" />
+            </div>
+
+            <button class="btn btn-primary btn-full" onclick="loadVideo()">
+                <i class="ri-play-circle-line"></i> Load Video
+            </button>
+
+            <div id="error" class="error"></div>
+        </section>
+
+        <!-- PLAYER -->
+        <section id="playerSection" class="player-section">
+            <div class="player-top">
+                <h3 id="videoTitle"><i class="ri-video-line"></i> Video Player</h3>
+
+                <button class="btn btn-ghost" onclick="goBackUpload()">
+                    <i class="ri-arrow-left-line"></i> Upload Another
+                </button>
+            </div>
+
+            <div class="video-wrapper">
+                <div class="video-loader" id="videoLoader">
+                    <div class="spinner"></div>
+                    <p>Loading video...</p>
+                </div>
+
+                <video id="video"></video>
+            </div>
+
+            <div class="timeline-bar" id="timelineBar">
+                <div class="buffered-bar" id="bufferedBar"></div>
+                <div class="played-bar" id="playedBar"></div>
+                <div class="thumb" id="thumb"></div>
+            </div>
+
+            <div class="time-info">
+                <span id="currentTime">00:00</span>
+                <span id="durationTime">00:00</span>
+            </div>
+
+            <!-- CONTROLS -->
+            <div class="controls">
+                <div class="left-controls">
+                    <button onclick="backward()" class="icon-btn">
+                        <i class="ri-rewind-fill"></i>
+                    </button>
+
+                    <button onclick="togglePlay()" id="playBtn" class="icon-btn icon-btn-primary">
+                        <i class="ri-play-fill"></i>
+                    </button>
+
+                    <button onclick="forward()" class="icon-btn">
+                        <i class="ri-speed-fill"></i>
+                    </button>
+
+                    <div class="volume-box">
+                        <i class="ri-volume-up-line" id="volIcon"></i>
+                        <input type="range" id="volume" min="0" max="1" step="0.01" />
+                    </div>
+                </div>
+
+                <div class="right-controls">
+                    <select id="speedSelect" class="speed-select">
+                        <option value="0.5">0.5x</option>
+                        <option value="1" selected>1x</option>
+                        <option value="1.25">1.25x</option>
+                        <option value="1.5">1.5x</option>
+                        <option value="2">2x</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- LIKE DISLIKE -->
+            <div class="reaction-panel">
+                <button class="reaction-btn" id="likeBtn" onclick="likeVideo()">
+                    <i class="ri-thumb-up-line"></i>
+                    <span id="likeCount">0</span>
+                </button>
+
+                <button class="reaction-btn" id="dislikeBtn" onclick="dislikeVideo()">
+                    <i class="ri-thumb-down-line"></i>
+                    <span id="dislikeCount">0</span>
+                </button>
+            </div>
+
+            <!-- THEME PANEL -->
+            <div class="theme-panel">
+                <p><i class="ri-palette-line"></i> Theme</p>
+
+                <div class="theme-box">
+                    <button class="theme-btn" style="background:#2563eb" onclick="applyTheme('#2563eb')"></button>
+                    <button class="theme-btn" style="background:#ff0033" onclick="applyTheme('#ff0033')"></button>
+                    <button class="theme-btn" style="background:#16a34a" onclick="applyTheme('#16a34a')"></button>
+                    <button class="theme-btn" style="background:#f59e0b" onclick="applyTheme('#f59e0b')"></button>
+                    <button class="theme-btn" style="background:#a855f7" onclick="applyTheme('#a855f7')"></button>
+                </div>
+            </div>
+
+            <!-- LOGS -->
+            <div class="logs">
+                <div class="logs-header">
+                    <h4><i class="ri-history-line"></i> Last Played</h4>
+                    <button class="btn btn-ghost btn-small" onclick="clearLogs()">
+                        <i class="ri-delete-bin-line"></i> Clear
+                    </button>
+                </div>
+
+                <div id="logs" class="logs-list"></div>
+            </div>
+        </section>
+
+        <footer class="dashboard-footer">
+            <p>© 2026 Aqua Portal. All Rights Reserved.</p>
+            <p>Developed by <b>Shaikh Sarfraj</b></p>
+        </footer>
+
+    </main>
+
+</body>
+
+</html>
