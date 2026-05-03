@@ -213,7 +213,6 @@ Aqua Portal/
 │   ├── dashboard.html
 │   ├── contact.html
 │   ├── profile-photo.html
-│   ├── video-player.html
 │
 ├── Assets/
 │   ├── css/
@@ -225,7 +224,6 @@ Aqua Portal/
 │   │   │   ├── dashboard.css
 │   │   │   ├── contact.css
 │   │   │   ├── profile-photo.css
-│   │   │   ├── video-player.css
 │   │
 │   ├── js/
 │   │   ├── common.js
@@ -236,7 +234,6 @@ Aqua Portal/
 │   │       ├── dashboard.js
 │   │       ├── contact.js
 │   │       ├── profile-photo.js
-│   │       ├── video-player.js
 │   │
 │   ├── img/
 │       ├── logo.avif
@@ -546,31 +543,3 @@ Admin deleted contacts ke liye following actions perform kar sakta hai:
 - Deleted contact ko restore kar sakta hai
 - Agar admin chahe toh contact ko permanently delete bhi kar sakta hai
 
-# Admin Panel – All Users Page Validation
-
-## Access Control
-Yeh page sirf authenticated admin users ke liye accessible hai.  
-Agar koi unauthorized user access karne ki koshish karta hai, toh use directly login page par redirect kar diya jayega.
-
-## User Data Display
-Agar users ka data available hai, toh woh list me display hoga.  
-Agar data available nahi hai, toh “No records found” ka message show hoga.
-
-## Search Functionality
-Search karne par agar matching data milta hai, toh woh show hoga.  
-Agar koi matching result nahi milta, toh “No results found” message display hoga.
-
-## Actions
-Admin ke paas following actions available honge:
-- User details ko view kar sakta hai  
-- User details ko PDF ke form me export (save as PDF) kar sakta hai  
-- User details ko edit / update kar sakta hai  
-- Agar zarurat ho toh user account ko permanently delete bhi kar sakta hai  
-
-## Create New Account
-Admin directly new user account create kar sakta hai.
-
-## Form Validation (Add / Edit / Update User)
-Sabhi fields mandatory hain.  
-Agar koi field empty hoti hai, toh error message show hoga.  
-Yeh validation bilkul same hai jo normal user registration ke time use hoti hai.

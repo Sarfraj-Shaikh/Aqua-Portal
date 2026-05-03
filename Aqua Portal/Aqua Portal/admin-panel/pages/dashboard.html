@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- =============== WEBSITE META DATA =============== -->
+    <title>Admin Dashboard | Aqua Portal</title>
+    <link rel="shortcut icon" href="../../assets/img/logo.avif" type="image/x-icon">
+
+    <!-- =============== AUTHOR META DATA =============== -->
+    <meta name="author" content="Sarfraj Shaikh">
+    <meta name="publisher" content="Sarfraj Shaikh">
+    <meta name="creator" content="Sarfraj Shaikh">
+
+    <!-- =============== CSS FILE =============== -->
+    <link rel="stylesheet" href="../assets/files/css/common.css">
+    <link rel="stylesheet" href="../assets/files/css/pages/dashboard.css">
+
+    <!-- =============== JS FILE =============== -->
+    <script src="../assets/files/js/common.js" defer></script>
+    <script src="../assets/files/js/pages/dashboard.js" defer></script>
+
+    <!-- =============== ICON CDN =============== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <!-- =============== AOS & ANIMATE CDN =============== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- =============== LOADER =============== -->
+    <div class="page-loader" id="pageLoader">
+        <div class="dot-spinner">
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+        </div>
+    </div>
+
+    <!-- =============== NO NETWORK =============== -->
+    <div class="no-internet" id="noInternet">
+        <div class="no-internet-card">
+
+            <div class="icon-circle">
+                <i class="ri-wifi-off-line"></i>
+            </div>
+
+            <h2>No Internet</h2>
+            <p>
+                You're offline. Please check your Wi-Fi or mobile data connection.
+            </p>
+
+            <div class="btn-group">
+                <button class="retry-btn" onclick="location.reload()">
+                    <i class="ri-refresh-line"></i> Retry
+                </button>
+            </div>
+
+            <span class="hint">
+                Waiting for network...
+            </span>
+
+        </div>
+    </div>
+
+    <!-- =============== SIDEBAR SECTION =============== -->
+    <div class="sidebar" id="sidebar">
+
+        <div class="sidebar-header">
+            <div class="left" id="adminProfile" onclick="profileRefresh()">
+                <img src="../assets/img/admin.png" alt="Admin" loading="lazy">
+                <div class="info">
+                    <h4 id="adminName">Admin</h4>
+                    <p>Verified <i class="ri-checkbox-circle-line"></i></p>
+                </div>
+            </div>
+            <i class="ri-close-large-line closeBtn" onclick="closeSidebar()"></i>
+        </div>
+
+        <div class="sidebar-menu">
+
+            <p class="menu-title">Dashboard</p>
+            <a href="./dashboard.html" class="active"><i class="ri-dashboard-line"></i>Dashboard</a>
+
+            <p class="menu-title">Contacts</p>
+            <a href="./contacts.html"><i class="ri-contacts-line"></i> All Contacts</a>
+            <a href="./deleted-contacts.html"><i class="ri-delete-bin-7-line"></i> Deleted Contacts</a>
+
+            <p class="menu-title">Users</p>
+            <a href="./users.html"><i class="ri-user-3-line"></i> All Users</a>
+
+            <!-- <p class="menu-title">Company</p>
+            <a href="#"><i class="ri-building-line"></i> Accounts Only</a>
+            <a href="#"><i class="ri-store-2-line"></i> With Inventory</a> -->
+        </div>
+
+    </div>
+
+    <!-- =============== NAVBAR SECTION =============== -->
+    <div class="navbar">
+
+        <div class="menu-btn">
+            <i class="ri-menu-line" onclick="openSidebar()"></i>
+            <p>Dashboard</p>
+        </div>
+
+        <img src="../assets/img/admin.png" alt="Profile" loading="lazy">
+
+        <div class="logout-btn" onclick="logoutAdmin()">
+            <i class="ri-logout-box-r-line "></i><span>Logout</span>
+        </div>
+
+    </div>
+
+    <!-- =============== DASHBOARD SECTION =============== -->
+    <div class="dashboard">
+
+        <div class="profile-card">
+
+            <img src="../assets/img/admin.png" alt="Admin" loading="lazy">
+
+            <div class="info">
+                <h4 id="adminNameTxt">Admin <i class="ri-checkbox-circle-line"></i></h4>
+                <p id="adminEmailTxt">admin@gmail.com</p>
+            </div>
+
+        </div>
+
+        <div class="stats-con">
+
+            <div class="stat-box">
+
+                <div class="info">
+                    <h4>Total Users</h4>
+                    <h2 id="totalUsers">0</h2>
+                </div>
+
+                <i class="ri-user-3-line"></i>
+
+            </div>
+
+            <div class="stat-box">
+
+                <div class="info">
+                    <h4>Total Contacts</h4>
+                    <h2 id="totalContacts">0</h2>
+                </div>
+
+                <i class="ri-contacts-line"></i>
+
+            </div>
+
+            <div class="stat-box">
+
+                <div class="info">
+                    <h4>Deleted Contacts</h4>
+                    <h2 id="totalDeleted">0</h2>
+                </div>
+
+                <i class="ri-delete-bin-6-line"></i>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- =============== POPUP DIALOGUE =============== -->
+    <div class="popup-con" id="popupContainer">
+        <div class="popup" id="popupBox">
+
+            <div class="top">
+                <p class="title" id="popTitle">POPUP MESSAGE</p>
+                <i class="ri-close-large-line" id="popupCloseIcon"></i>
+            </div>
+
+            <p class="message" id="popupMessage">Your custom popup message box is now ready</p>
+
+            <div class="btns">
+
+                <div class="cancel-btn" id="popupCancelBtn">Cancel</div>
+
+                <div class="confirm-btn" id="popupConfirmBtn">Confirm</div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

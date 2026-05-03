@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- =============== WEBSITE META DATA =============== -->
-    <title>Dashboard | Aqua Portal</title>
+    <title>Profile Photo | Aqua Portal</title>
     <link rel="shortcut icon" href="../assets/img/logo.avif" type="image/x-icon">
 
     <!-- =============== AUTHOR META DATA =============== -->
@@ -15,10 +14,10 @@
     <meta name="creator" content="Sarfraj Shaikh">
 
     <!-- =============== CSS FILE =============== -->
-    <link rel="stylesheet" href="../assets/files/css/pages/dashboard.css">
+    <link rel="stylesheet" href="../assets/files/css/pages/profile-photo.css">
 
     <!-- =============== JS FILE =============== -->
-    <script src="../assets/files/js/pages/dashboard.js" defer></script>
+    <script src="../assets/files/js/pages/profile_photo.js" defer></script>
 
     <!-- =============== ICON CDN =============== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
@@ -30,7 +29,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
 </head>
-
 <body>
 
     <!-- =============== LOADER =============== -->
@@ -73,27 +71,6 @@
         </div>
     </div>
 
-    <!-- =============== POPUP DIALOGUE =============== -->
-    <div class="popup-con" id="popupContainer">
-        <div class="popup" id="popupBox">
-
-            <div class="top">
-                <p class="title" id="popTitle">POPUP MESSAGE</p>
-                <i class="ri-close-large-line" id="popupCloseIcon"></i>
-            </div>
-
-            <p class="message" id="popupMessage">Your custom popup message box is now ready</p>
-
-            <div class="btns">
-
-                <div class="cancel-btn" id="popupCancelBtn">Cancel</div>
-
-                <div class="confirm-btn" id="popupConfirmBtn">Confirm</div>
-
-            </div>
-        </div>
-    </div>
-
     <!-- =============== NAVBAR =============== -->
     <nav class="navbar" id="navBar">
 
@@ -113,82 +90,36 @@
 
     </nav>
 
-    <!-- =============== DASHBOARD =============== -->
-    <div class="dashboard">
+    <!-- =============== UPLOAD PHOTO SECTION =============== -->
+    <div class="main-container">
 
-        <div class="pfp-bg">
+        <div class="upload-con">
 
-            <img src="../assets/img/default-dp.jpg" alt="Profile" loading="lazy" id="userPfp">
-
-            <div class="pfp-info">
-
-                <h3 id="userName">Aqua Portal</h3>
-                <p>
-                    <i class="ri-mail-line"></i>
-                    <span id="userEmail">your-email@gmail.com</span>
-                </p>
-
-                <div class="logout-btn" id="logoutBtn">
-                    <i class="ri-logout-box-r-line"></i> Logout
-                </div>
+            <div class="headBox">
+                <h2>Upload Your Profile Photo</h2>
+                <h3>Upload a profile picture (Max 1MB)</h3>
             </div>
-        </div>
 
-        <!-- =============== DASHBOARD CARDS =============== -->
-        <div class="card-bg">
+            <img src="../assets/img/default-dp.jpg" alt="Profile Photo" loading="lazy" id="userPic">
 
-            <!-- <div class="card">
+            <div class="btnBox">
 
-                <i class="ri-store-2-line"></i>
+                <label for="fileInput" id="fileLabel">
 
-                <div class="info">
-                    <h3>Businesses</h3>
-                    <p>Manage your business listings and details.</p>
-                </div>
+                   <i class="ri-attachment-line"></i>
+                    Choose Profile Photo
 
-            </div> -->
+                    <input type="file" id="fileInput" hidden accept="image/*">
 
-            <!-- <div class="card">
+                </label>
 
-                <i class="ri-user-3-line"></i>
-
-                <div class="info">
-                    <h3>About Me</h3>
-                    <p>Update your personal profile information.</p>
-                </div>
-
-            </div> -->
-
-            <div class="card" onclick='window.open("./contact.html", "_self")'>
-
-                <i class="ri-contacts-book-2-line"></i>
-
-                <div class="info">
-                    <h3>All Contacts</h3>
-                    <p>View and manage all saved contacts.</p>
+                <div class="btn" id="nextBtn">
+                    Next
                 </div>
 
             </div>
 
-            <!-- <div class="card" onclick='window.open("./video-player.html", "_self")'>
-
-                <i class="ri-play-list-2-line"></i>
-
-                <div class="info">
-                    <h3>Video Player</h3>
-                    <p>Custom video player for smooth experiences.</p>
-                </div>
-
-            </div> -->
-
         </div>
-
-        <!-- =============== FOOTER & CREDIT SECTION =============== -->
-        <footer class="dashboard-footer">
-            <p id="copyright">© 2026 MyDashboard. All Rights Reserved.</p>
-            <p>Developed by <span id="devCredit">Shaikh Sarfraj</span></p>
-        </footer>
-
     </div>
 
 
