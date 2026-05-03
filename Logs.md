@@ -2,6 +2,24 @@
 ---
 
 # Dashboard - Video Player
+### Log No: 20
+
+## Time Line
+- **Date: ** 03-5-2026
+- **Start at** 08:59 AM
+- **Complete at** 02:49 PM
+
+## Features
+- 12th Release
+- Created Video Player Pages
+- Updated Folder Structure (ReadMe.md - Line No: 200)
+- Removed Video Player Option Temporary (Dashboard Page)
+- Added All Videos Player Functionalities
+- Maked Design Responsive
+
+---
+
+# Dashboard - Video Player
 ### Log No: 19
 
 ## Time Line

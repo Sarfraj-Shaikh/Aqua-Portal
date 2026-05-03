@@ -213,6 +213,7 @@ Aqua Portal/
 │   ├── dashboard.html
 │   ├── contact.html
 │   ├── profile-photo.html
+│   ├── video-player.html
 │
 ├── Assets/
 │   ├── css/
@@ -224,6 +225,7 @@ Aqua Portal/
 │   │   │   ├── dashboard.css
 │   │   │   ├── contact.css
 │   │   │   ├── profile-photo.css
+│   │   │   ├── video-player.css
 │   │
 │   ├── js/
 │   │   ├── common.js
@@ -234,6 +236,7 @@ Aqua Portal/
 │   │       ├── dashboard.js
 │   │       ├── contact.js
 │   │       ├── profile-photo.js
+│   │       ├── video-player.js
 │   │
 │   ├── img/
 │       ├── logo.avif
