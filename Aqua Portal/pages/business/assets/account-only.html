@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- =============== WEBSITE META DATA =============== -->
+    <title>Account Only | Aqua Portal</title>
+    <link rel="shortcut icon" href="../../../assets/img/logo.avif" type="image/x-icon">
+
+    <!-- =============== AUTHOR META DATA =============== -->
+    <meta name="author" content="Sarfraj Shaikh">
+    <meta name="publisher" content="Sarfraj Shaikh">
+    <meta name="creator" content="Sarfraj Shaikh">
+
+    <!-- =============== CSS FILE =============== -->
+    <link rel="stylesheet" href="./account-only.css">
+
+    <!-- =============== JS FILE =============== -->
+    <script src="./account-only.js" defer></script>
+
+    <!-- =============== ICON CDN =============== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <!-- =============== AOS & ANIMATE CDN =============== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- =============== LOADER =============== -->
+    <div class="page-loader" id="pageLoader">
+        <div class="dot-spinner">
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+        </div>
+    </div>
+
+    <!-- =============== NO NETWORK =============== -->
+    <div class="no-internet" id="noInternet">
+        <div class="no-internet-card">
+
+            <div class="icon-circle">
+                <i class="ri-wifi-off-line"></i>
+            </div>
+
+            <h2>No Internet</h2>
+            <p>
+                You're offline. Please check your Wi-Fi or mobile data connection.
+            </p>
+
+            <div class="btn-group">
+                <button class="retry-btn" onclick="location.reload()">
+                    <i class="ri-refresh-line"></i> Retry
+                </button>
+            </div>
+
+            <span class="hint">
+                Waiting for network...
+            </span>
+
+        </div>
+    </div>
+
+    <!-- =============== POPUP DIALOGUE =============== -->
+    <div class="popup-con" id="popupContainer">
+        <div class="popup" id="popupBox">
+
+            <div class="top">
+                <p class="title" id="popTitle">POPUP MESSAGE</p>
+                <i class="ri-close-large-line" id="popupCloseIcon"></i>
+            </div>
+
+            <p class="message" id="popupMessage">Your custom popup message box is now ready</p>
+
+            <div class="btns">
+
+                <div class="cancel-btn" id="popupCancelBtn">Cancel</div>
+
+                <div class="confirm-btn" id="popupConfirmBtn">Confirm</div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- =============== NAVBAR =============== -->
+    <nav class="navbar" id="navBar">
+
+        <div class="nav-left" id="navLeft">
+            <img src="../../../assets/img/logo.avif" alt="Aqua Portal" loading="lazy">
+            <p id="navWebName"></p>
+        </div>
+
+        <div class="nav-right">
+
+            <div class="cta-btn" id="navPrimaryCtaBtn">
+                <i class="ri-dashboard-line"></i>
+                <span>Business</span>
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- =============== DASHBOARD =============== -->
+    <div class="dashboard">
+
+        <div class="account-only-page">
+
+            <header class="company-header">
+                <div class="company-info">
+                    <img id="companyLogoImg" src="" alt="Logo">
+                    <div>
+                        <h1 id="companyNameText">Company Name</h1>
+                        <p>Account Only Mode</p>
+                    </div>
+                </div>
+
+                <button class="btn dark" id="backBtn">
+                    <i class="ri-arrow-left-line"></i> Back
+                </button>
+            </header>
+
+            <main class="company-actions">
+                <button class="btn primary" id="unitMeasureBtn">
+                    <i class="ri-ruler-line"></i> Unit Of Measure
+                </button>
+
+                <button class="btn info" id="salesVoucherBtn">
+                    <i class="ri-file-list-3-line"></i> Sales Voucher
+                </button>
+
+                <button class="btn warning" id="taxSetupBtn">
+                    <i class="ri-percent-line"></i> Tax Setup
+                </button>
+
+                <button class="btn secondary" id="viewTaxBtn">
+                    <i class="ri-eye-line"></i> View All Tax
+                </button>
+
+                <button class="btn danger" id="shutCompanyBtn">
+                    <i class="ri-shut-down-line"></i> Shut Company
+                </button>
+            </main>
+
+        </div>
+
+
+        <!-- ================= UNIT MODAL ================= -->
+        <div class="modal-overlay" id="unitModal">
+            <div class="modal-box">
+
+                <div class="modal-header">
+                    <h2><i class="ri-ruler-line"></i> Add Unit Of Measure</h2>
+                    <button class="close-btn" id="closeUnitModal"><i class="ri-close-line"></i></button>
+                </div>
+
+                <form id="unitForm" class="unit-form">
+                    <div class="form-group">
+                        <label>Symbol (Kg, Pc)</label>
+                        <input type="text" id="unitSymbol" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Formal Name (Kilo Gram, Piece)</label>
+                        <input type="text" id="unitFormalName" required>
+                    </div>
+
+                    <button class="btn primary full" type="submit">
+                        <i class="ri-save-3-line"></i> Save
+                    </button>
+                </form>
+
+                <div class="view-section" id="viewUnitBox"></div>
+
+            </div>
+        </div>
+
+
+        <!-- ================= TAX MODAL ================= -->
+        <div class="modal-overlay" id="taxModal">
+            <div class="modal-box">
+
+                <div class="modal-header">
+                    <h2><i class="ri-percent-line"></i> Tax Setup</h2>
+                    <button class="close-btn" id="closeTaxModal"><i class="ri-close-line"></i></button>
+                </div>
+
+                <form id="taxForm" class="unit-form">
+                    <div class="form-group">
+                        <label>Tax Name</label>
+                        <input type="text" id="taxName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tax %</label>
+                        <input type="number" id="taxPercent" min="0" max="100" required>
+                    </div>
+
+                    <button class="btn warning full" type="submit">
+                        <i class="ri-save-3-line"></i> Save Tax
+                    </button>
+                </form>
+
+            </div>
+        </div>
+
+
+        <!-- ================= VIEW TAX MODAL ================= -->
+        <div class="modal-overlay" id="viewTaxModal">
+            <div class="modal-box">
+
+                <div class="modal-header">
+                    <h2><i class="ri-eye-line"></i> All Tax Details</h2>
+                    <button class="close-btn" id="closeViewTaxModal"><i class="ri-close-line"></i></button>
+                </div>
+
+                <div class="tax-list-box" id="taxListBox"></div>
+
+            </div>
+        </div>
+
+
+        <!-- ================= SALES VOUCHER MODAL ================= -->
+        <div class="modal-overlay" id="salesVoucherModal">
+            <div class="sales-modal-box">
+
+                <div class="modal-header">
+                    <h2><i class="ri-file-list-3-line"></i> Sales Voucher</h2>
+                    <button class="close-btn" id="closeSalesVoucherModal"><i class="ri-close-line"></i></button>
+                </div>
+
+                <!-- Voucher Header -->
+                <div class="voucher-header">
+                    <div>
+                        <h3>Voucher No: <span id="voucherNumberText">1</span></h3>
+                    </div>
+
+                    <div>
+                        <h3>Date: <span id="voucherDateText"></span></h3>
+                    </div>
+                </div>
+
+                <!-- Company Details -->
+                <div class="company-details">
+                    <div class="company-left">
+                        <p><b>Company:</b> <span id="invCompanyName"></span></p>
+                        <p><b>Address:</b> <span id="invCompanyAddress"></span></p>
+                        <p><b>Fax:</b> <span id="invCompanyFax"></span></p>
+                        <p><b>CIN:</b> <span id="invCompanyCIN"></span></p>
+                    </div>
+
+                    <div class="company-right">
+                        <img id="invCompanyLogo" src="" alt="Logo">
+                    </div>
+                </div>
+
+                <!-- Customer Inputs -->
+                <div class="customer-section">
+                    <h3>Customer Details</h3>
+
+                    <div class="customer-grid">
+                        <div class="form-group">
+                            <label>Customer Name</label>
+                            <input type="text" id="customerName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Customer Email</label>
+                            <input type="email" id="customerEmail" required>
+                        </div>
+
+                        <div class="form-group full">
+                            <label>Customer Address</label>
+                            <textarea id="customerAddress" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Customer Mobile Number</label>
+                            <input type="tel" id="customerMobile" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Items Table -->
+                <div class="items-section">
+                    <h3>Items / Products</h3>
+
+                    <div class="table-responsive">
+                        <table class="invoice-table">
+                            <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Amount</th>
+                                    <th>Remarks</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="invoiceBody">
+                                <!-- Rows dynamically added -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <button class="btn primary add-btn" id="addRowBtn">
+                        <i class="ri-add-line"></i> Add Item
+                    </button>
+                </div>
+
+                <!-- Calculations -->
+                <div class="calc-section">
+                    <div class="calc-box">
+                        <p>Subtotal: <span id="subTotalText">0</span></p>
+                        <p>Tax: <span id="taxText">0</span></p>
+                        <p class="total-line">Total: <span id="totalText">0</span></p>
+                        <p class="balance-line">Balance Due: <span id="balanceText">0</span></p>
+                    </div>
+                </div>
+
+                <div class="invoice-actions">
+                    <button class="btn success" id="saveInvoiceBtn">
+                        <i class="ri-save-3-line"></i> Save Invoice
+                    </button>
+
+                    <button class="btn secondary" id="viewInvoicesBtn">
+                        <i class="ri-eye-line"></i> View Saved Invoices
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ================= SAVED INVOICE LIST MODAL ================= -->
+        <div class="modal-overlay" id="invoiceListModal">
+            <div class="modal-box">
+
+                <div class="modal-header">
+                    <h2><i class="ri-folder-line"></i> Saved Invoices</h2>
+                    <button class="close-btn" id="closeInvoiceListModal"><i class="ri-close-line"></i></button>
+                </div>
+
+                <div class="invoice-list-box" id="invoiceListBox"></div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- =============== FOOTER & CREDIT SECTION =============== -->
+    <footer class="dashboard-footer">
+        <p id="copyright">© 2026 MyDashboard. All Rights Reserved.</p>
+        <p>Developed by <span id="devCredit">Shaikh Sarfraj</span></p>
+    </footer>
+
+</body>
+
+</html>

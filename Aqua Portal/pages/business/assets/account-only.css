@@ -538,487 +538,376 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px;
+    padding: 0px 0px;
     background-color: #F1F5F9;
     flex-wrap: wrap;
 }
 
-/* =============== VIDEO UPLOAD SECTION =============== */
+/* =============== BUSINESS SECTION =============== */
 
-.video-uploader {
-    width: 100%;
+.account-only-page {
+    min-height: 100vh;
+}
+
+/* HEADER */
+.company-header {
+    background: #0b1f3a;
+    padding: 18px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.company-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+}
+
+.company-info img {
+    width: 65px;
+    height: 65px;
+    border-radius: 10px;
+    border: 2px solid #00d4ff;
+    object-fit: cover;
+}
+
+.company-info h1 {
+    font-size: 20px;
+}
+
+.company-info p {
+    font-size: 13px;
+    color: #cfd9e6;
+}
+
+/* ACTIONS */
+.company-actions {
     padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 8px;
 }
 
-.upload-box {
-    width: 50%;
-    background-color: #FFFFFF;
-    border-radius: 20px;
-    padding: 30px;
+.btn i {
+    font-size: 18px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.primary {
+    background: #007bff;
+    color: white;
+}
+
+.danger {
+    background: #dc3545;
+    color: white;
+}
+
+.info {
+    background: #17a2b8;
+    color: white;
+}
+
+.dark {
+    background: #343a40;
+    color: white;
+}
+
+.full {
+    width: 100%;
+}
+
+/* MODAL */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 999;
+}
+
+.modal-box {
+    background: white;
+    width: 500px;
+    max-width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.modal-header {
+    background: #0b1f3a;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* FORM */
+.unit-form {
+    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.upload-box .info {
-    width: 100%;
+.form-group {
     display: flex;
     flex-direction: column;
+    gap: 6px;
 }
 
-.upload-box .info .title {
-    color: #074ada;
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
+.form-group label {
+    font-weight: bold;
+    font-size: 13px;
 }
 
-.upload-box .info .title i {
-    font-size: 20px;
+.form-group input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
 }
 
-.upload-box .info .title span {
-    font-size: 18px;
-    font-weight: 700;
+.form-group input:focus {
+    border-color: #007bff;
 }
 
-.upload-box .info p {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 20px;
-}
-
-.videoFile {
-    width: 100%;
-    font-size: 16px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    background-color: #1d4ed8;
-    color: #FFFFFF;
-    padding: 15px 10px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease-in;
-    border-style: dashed;
-    border: 2px dashed transparent;
-}
-
-.videoFile:hover {
-    border-color: #FFFFFF;
-}
-
-.errorMsg {
-    font-size: 14px;
-    color: #ff2d2d;
-    font-weight: 600;
-    transition: all 0.3s ease-in;
-    display: none;
-}
-
-/* =============== VIDEO PLAYER SECTION =============== */
-
-.video-player-con {
-    width: 100%;
-    display: none;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 24px;
-    flex-wrap: wrap;
+/* VIEW SAVED UNIT */
+.view-section {
     padding: 20px;
-}
-
-.left {
-    flex: 1;
-    min-width: 320px;
-    max-width: 850px;
-    background: #FFFFFF;
-    border: 1px solid #E5E7EB;
-    border-radius: 16px;
-    padding: 18px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
-
-.right {
-    width: 320px;
-    min-width: 280px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.video-wrapper {
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid #E5E7EB;
-    background: #000000;
-    position: relative;
-}
-
-.video-element {
-    width: 100%;
-    height: 420px;
-    object-fit: contain;
-    display: block;
-    background: #000000;
-}
-
-.video-control {
-    opacity: 0;
-    transform: translateY(500px);
-    transition: all 0.3s ease;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
-}
-
-.video-control.active {
-    opacity: 1;
-    transform: translateY(0px);
-    pointer-events: auto;
-}
-
-.videoStatusLoader {
-    width: 100%;
-    height: 100%;
-    background-color: #0000009e;
-    position: absolute;
-    top: 0;
-    left: 0;
+    font-size: 14px;
     display: none;
-    justify-content: center;
-    align-items: center;
+    border-top: 1px solid #ddd;
 }
 
-.videoStatusLoader .spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid #ddd;
-    border-top: 4px solid #333;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    outline: none;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
+@media (max-width: 800px) {
+    .company-actions {
+        grid-template-columns: 1fr;
     }
 }
 
-.video-progress {
-    width: 100%;
-    height: 6px;
-    border-radius: 10px;
+.warning {
+    background: #ffc107;
+    color: black;
+}
+
+.secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.success {
+    background: #28a745;
+    color: white;
+}
+
+.sales-modal-box {
+    background: white;
+    width: 1100px;
+    max-width: 100%;
+    border-radius: 12px;
     overflow: hidden;
-    margin-bottom: 10px;
-    cursor: pointer;
 }
 
-.options {
+.voucher-header {
+    padding: 15px 20px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap;
+    background: #f0f4ff;
+    border-bottom: 1px solid #ddd;
 }
 
-.icon-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    background: rgba(255, 255, 255, 0.08);
-    color: #FFFFFF;
-    cursor: pointer;
-    font-size: 18px;
+.company-details {
+    padding: 18px 20px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.2s ease;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    border-bottom: 1px solid #ddd;
 }
 
-.icon-btn:hover {
-    background: rgba(255, 255, 255, 0.18);
-}
-
-.icon-btn.primary {
-    background: #2563EB;
-    border: 1px solid transparent;
-}
-
-.icon-btn.primary:hover {
-    background: #074ADA;
-}
-
-.video-timeline {
-    color: #FFFFFF;
+.company-left p {
     font-size: 14px;
-    font-weight: 500;
-    opacity: 0.9;
-    white-space: nowrap;
+    line-height: 1.8;
 }
 
-.speed-select {
-    background: rgba(255, 255, 255, 0.12);
-    color: #FFFFFF;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 10px 12px;
-    border-radius: 12px;
-    outline: none;
-    cursor: pointer;
-}
-
-.speed-select option {
-    background: #111111;
-    color: #FFFFFF;
-}
-
-.volume-progress {
-    width: 90px;
-    height: 6px;
+.company-right img {
+    width: 110px;
+    height: 110px;
     border-radius: 10px;
-    cursor: pointer;
+    border: 2px solid #ddd;
+    object-fit: cover;
 }
 
-.video-info {
-    margin-top: 16px;
-    padding: 16px;
-    background: #DBEAFE;
-    border: 1px solid #E5E7EB;
-    border-radius: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
+.customer-section {
+    padding: 18px 20px;
+    border-bottom: 1px solid #ddd;
 }
 
-.video-meta p {
-    font-size: 14px;
-    margin-bottom: 6px;
-    color: #1E40AF;
+.customer-section h3 {
+    margin-bottom: 12px;
 }
 
-.video-meta p:nth-child(1) {
-    font-size: 16px;
-    font-weight: 700;
-    color: #1E40AF;
+.customer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
 }
 
-.video-actions {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    flex-wrap: wrap;
+.customer-grid textarea {
+    height: 70px;
+    resize: none;
 }
 
-.action-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    border: 1px solid #2563EB;
-    background: #FFFFFF;
-    color: #2563EC;
-    cursor: pointer;
-    font-size: 18px;
-    transition: 0.2s ease;
+.items-section {
+    padding: 18px 20px;
+    border-bottom: 1px solid #ddd;
 }
 
-.action-btn:hover {
-    background: #558bff23;
+.items-section h3 {
+    margin-bottom: 12px;
 }
 
-.change-video-btn {
-    padding: 10px 14px;
-    border-radius: 12px;
-    border: 1px solid transparent;
-    background: #2563EB;
-    color: #FFFFFF;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    transition: 0.2s ease;
-}
-
-.change-video-btn:hover {
-    background: #074ADA;
-}
-
-.card {
-    background: #FFFFFF;
-    border: 1px solid #E5E7EB;
-    border-radius: 16px;
-    padding: 16px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.card-title-box {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.card-title-box i {
-    font-size: 20px;
-    color: #2563EC;
-}
-
-.card-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #1E40AF;
-}
-
-.card-body {
-    margin-top: 14px;
-}
-
-.theme-picker {
+.table-responsive {
     width: 100%;
-    height: 50px;
-    border-radius: 12px;
-    border: 1px solid #E5E7EB;
-    cursor: pointer;
-    background: #FFFFFF;
+    overflow-x: auto;
 }
 
-.last-played-body {
-    display: flex;
-    height: 400px;
-    flex-direction: column;
-    gap: 10px;
-    overflow: auto;
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
 }
 
-.last-played-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px;
-    border-radius: 12px;
-    border: 1px solid #E5E7EB;
-    background: #F9FAFB;
-    transition: 0.2s ease;
-}
-
-.last-played-item:hover {
-    background: #558bff23;
-    border: 1px solid #2563EB;
-}
-
-.last-played-item i {
-    font-size: 18px;
-    color: #2563EC;
-}
-
-.last-played-label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #111827;
-    overflow: auto;
-}
-
-/* =============== VIDEO PLAYER ERROR SECTION =============== */
-
-.errorPage {
-    width: 80%;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 40px 20px;
-    background: #FFFFFF;
-    border-radius: 14px;
+.invoice-table th,
+.invoice-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 13px;
     text-align: center;
-    gap: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Icon Circle */
-.errorPage i {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background: rgba(255, 77, 79, 0.12);
-    border: 1px solid rgba(255, 77, 79, 0.35);
-    color: #ff4d4f;
+.invoice-table th {
+    background: #0b1f3a;
+    color: white;
+}
+
+.invoice-table input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    outline: none;
+}
+
+.invoice-table input:disabled {
+    background: #e9ecef;
+    cursor: not-allowed;
+}
+
+.add-btn {
+    margin-top: 12px;
+}
+
+.calc-section {
+    padding: 18px 20px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 42px;
-    margin-bottom: 20px;
+    justify-content: flex-end;
 }
 
-/* Heading */
-.errorPage h3 {
-    font-size: 22px;
-    font-weight: 700;
-    color: #000000;
-    margin: 0;
-    letter-spacing: 0.4px;
+.calc-box {
+    width: 300px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    line-height: 2;
 }
 
-/* Message */
-.errorPage p {
-    font-size: 15px;
-    font-weight: 400;
-    color: #555;
-    max-width: 420px;
-    line-height: 1.6;
-    margin: 0;
+.total-line {
+    font-size: 16px;
+    font-weight: bold;
+    color: #007bff;
 }
 
-/* Optional: Smooth Fade Animation */
-.errorPage {
-    animation: fadeIn 0.4s ease-in-out;
+.balance-line {
+    font-size: 16px;
+    font-weight: bold;
+    color: #dc3545;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0px);
-    }
+.invoice-actions {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-    .errorPage h3 {
-        font-size: 18px;
-    }
+.invoice-actions .btn {
+    flex: 1;
+}
 
-    .errorPage p {
-        font-size: 14px;
-    }
+.tax-list-box,
+.invoice-list-box {
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.8;
+}
 
-    .errorPage i {
-        width: 75px;
-        height: 75px;
-        font-size: 36px;
+.invoice-card {
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    background: #f8f9fa;
+}
+
+.invoice-card h4 {
+    margin-bottom: 6px;
+}
+
+@media (max-width: 900px) {
+    .customer-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -1093,45 +982,6 @@ body {
         font-size: 16px;
     }
 
-    /* =============== DASHBOARD SECTION =============== */
-
-    .dashboard {
-        width: 100%;
-        padding: 30px 10px;
-    }
-
-    /* =============== VIDEO UPLOAD SECTION =============== */
-
-    .video-uploader {
-        padding: 10px;
-    }
-
-    .upload-box {
-        width: 100%;
-    }
-
-    /* =============== VIDEO PLAYER SECTION =============== */
-
-    .video-player-con {
-        flex-direction: column;
-        align-items: center;
-        padding: 15px;
-    }
-
-    .left {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .right {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .video-element {
-        height: 300px;
-    }
-
     /* =============== FOOTER & CREDIT SECTION =============== */
 
     .dashboard-footer {
@@ -1187,13 +1037,6 @@ body {
         font-size: 16px;
     }
 
-    /* =============== DASHBOARD SECTION =============== */
-
-    .dashboard {
-        width: 100%;
-        padding: 20px 10px;
-    }
-
     /* =============== FOOTER & CREDIT SECTION =============== */
 
     .dashboard-footer {
@@ -1245,27 +1088,6 @@ body {
     .nav-right .cta-btn span {
         margin-inline: 8px;
         font-size: 16px;
-    }
-
-    /* =============== DASHBOARD SECTION =============== */
-
-    .dashboard {
-        width: 100%;
-        padding: 20px 10px;
-    }
-
-    /* =============== VIDEO PLAYER SECTION =============== */
-
-    .video-element {
-        height: 240px;
-    }
-
-    .volume-progress {
-        width: 70px;
-    }
-
-    .video-timeline {
-        font-size: 13px;
     }
 
     /* =============== FOOTER & CREDIT SECTION =============== */
@@ -1323,23 +1145,6 @@ body {
         margin-inline: 8px;
         font-size: 16px;
         display: none;
-    }
-
-    /* =============== DASHBOARD SECTION =============== */
-
-    .dashboard {
-        width: 100%;
-        padding: 20px 0px;
-    }
-
-    /* =============== VIDEO PLAYER SECTION =============== */
-
-    .video-element {
-        height: 200px;
-    }
-
-    .volume-progress {
-        width: 50px;
     }
 
     /* =============== FOOTER & CREDIT SECTION =============== */
