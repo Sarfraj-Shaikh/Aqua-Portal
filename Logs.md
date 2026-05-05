@@ -1,6 +1,75 @@
 
 ---
 
+# Business - Account Only Page
+### Log No: 24
+
+## Time Line
+- **Date: ** 05-5-2026
+- **Start at** 10:28 AM
+- **Complete at** 05:15 AM
+
+## Features
+- 14th Release
+- Added Company Redirection Security and Showing Company Details
+- Added Create Unit Of Measure and Tax Setup Features
+- Added Create Sales Voucher With Confirmation Features
+
+---
+
+# Business - Home Page
+### Log No: 23
+
+## Time Line
+- **Date: ** 05-5-2026
+- **Start at** 10:12 AM
+- **Complete at** 10:28 AM
+
+## Features
+- 14th Release
+- Updated ReadMe.md File - Line No: 679
+- Create and Update Company Financial Year Input Type Has Been Fixed Now Its Number Type and Support Numeric Input Only
+- Added Redirection For My Company (Account Only or Account With Inventory)
+- Fixed Video Player Info Section Content Overflow Issue From Video Player Page
+
+---
+
+# Business - Home Page
+### Log No: 22
+
+## Time Line
+- **Date: ** 04-5-2026
+- **Start at** 11:45 AM
+- **Complete at** 04:44 PM
+
+## Features
+- 13th Release
+- Created Business Folder and Its Files
+- Updated Folder Structure (ReadMe.md File - Line No: 200)
+- Maked Folder Structure More Neat and Clean and Readable (ReadMe.md File - Line No: 200)
+- Added Create, Delete, Update Business Details Features
+
+---
+
+# Dashboard - Video Player
+### Log No: 21
+
+## Time Line
+- **Date: ** 04-5-2026
+- **Start at** 10:50 AM
+- **Complete at** 11:35 AM
+
+## Features
+- 13th Release
+- Last Played (Logs) Height Fixed
+- Last Played Text Overflow Issue Fixed
+- Updated ReadMe.md File - Line No: 578
+- Unwanted or Unnecessary Errors Occurs After Clicking Change Video Button Issue Fixed
+- Added Theme Change Option Based On Accounts
+- Added Video Player Option (Dashboard Page)
+
+---
+
 # Dashboard - Video Player
 ### Log No: 20
 

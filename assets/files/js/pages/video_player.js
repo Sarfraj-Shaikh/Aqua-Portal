@@ -243,6 +243,8 @@ videoFile.onchange = () => {
         videoTimeline.innerHTML = `${currentTime} : ${maxTime}`;
         videoProgress.max = mainVideo.duration;
 
+        setLastPlay(videoNameText.innerText, videoSizeText.innerText);
+
     }
 }
 
@@ -567,6 +569,7 @@ function uploadOtherVideo() {
     let videoUploader = document.getElementById("videoUploader");
     let errorBox = document.getElementById("videoErrorPage");
     let errorMessage = document.getElementById("videoErrorMsg");
+    let speedSelect = document.getElementById("speedSelect");
 
     let likeIcon = document.getElementById("likeIcon");
     let dislikeIcon = document.getElementById("dislikeIcon");
@@ -635,10 +638,12 @@ function uploadOtherVideo() {
         videoUploader.style.display = "flex";
         videoPlayerContainer.style.display = "none";
 
-        mainVideo.src = "";
+        // mainVideo.src = "";
         videoInput.value = "";
 
         sessionStorage.removeItem("videoLikeStatus");
+        videoSpeed(1);
+        speedSelect.value = 1;
 
         likeIcon.classList = "ri-thumb-up-line";
         dislikeIcon.classList = "ri-thumb-down-line";
@@ -682,3 +687,218 @@ mainVideo.addEventListener("mouseleave", () => {
     }, 3500);
 });
 
+/* =============== THEME CHANGE =============== */
+
+function themeChange(value) {
+
+    let currentUser = null;
+
+    if (sessionLogin === true) {
+
+        currentUser = sessionStorage.getItem("currentUser");
+
+    } else {
+
+        currentUser = localStorage.getItem("currentUser");
+
+    }
+
+    /* =============== LOAD THEME DETAILS =============== */
+    let videoPlayerTheme = JSON.parse(localStorage.getItem("videoPlayerTheme")) || [];
+
+    let theme = {
+        color: value,
+        email: currentUser
+    }
+
+    if (videoPlayerTheme.length === 0) {
+
+        videoPlayerTheme.push(theme);
+        localStorage.setItem("videoPlayerTheme", JSON.stringify(videoPlayerTheme));
+        loadTheme();
+
+    } else {
+
+        let themeFound = false;
+
+        for (let i = 0; i < videoPlayerTheme.length; i++) {
+
+            if (videoPlayerTheme[i].email === currentUser) {
+
+                themeFound = true;
+                videoPlayerTheme[i].color = value;
+                break;
+            }
+
+        }
+
+        if (themeFound) {
+
+            localStorage.setItem("videoPlayerTheme", JSON.stringify(videoPlayerTheme));
+            loadTheme();
+
+        } else {
+
+            videoPlayerTheme.push(theme);
+            localStorage.setItem("videoPlayerTheme", JSON.stringify(videoPlayerTheme));
+            loadTheme();
+
+        }
+
+    }
+
+}
+
+/* =============== LOAD THEME =============== */
+
+function loadTheme() {
+
+    let currentUser = null;
+
+    if (sessionLogin === true) {
+
+        currentUser = sessionStorage.getItem("currentUser");
+
+    } else {
+
+        currentUser = localStorage.getItem("currentUser");
+
+    }
+
+    let videoLeftSection = document.getElementById("videoLeftSection");
+    let themePicker = document.getElementById("themePicker");
+    let themeCard = document.getElementById("themeCard");
+    let lastPlayedCard = document.getElementById("lastPlayedCard");
+
+    /* =============== LOAD THEME DETAILS =============== */
+    let videoPlayerTheme = JSON.parse(localStorage.getItem("videoPlayerTheme")) || [];
+
+    if (videoPlayerTheme.length !== 0) {
+
+        for (let i = 0; i < videoPlayerTheme.length; i++) {
+
+            if (videoPlayerTheme[i].email === currentUser) {
+
+                videoLeftSection.style.background = videoPlayerTheme[i].color;
+                themeCard.style.background = videoPlayerTheme[i].color;;
+                lastPlayedCard.style.background = videoPlayerTheme[i].color;;
+                themePicker.value = videoPlayerTheme[i].color;;
+                break;
+            }
+
+        }
+
+    }
+
+}
+
+loadTheme();
+
+/* =============== SET LAST PLAYED VIDEO =============== */
+
+function setLastPlay(name, size) {
+
+    let currentUser = null;
+
+    if (sessionLogin === true) {
+
+        currentUser = sessionStorage.getItem("currentUser");
+
+    } else {
+
+        currentUser = localStorage.getItem("currentUser");
+
+    }
+
+    /* =============== LOAD ALL LAST PLAYED VIDEO LIST =============== */
+    let lastPlayedVideo = JSON.parse(localStorage.getItem("lastPlayedVideo")) || [];
+
+    let currentDate = new Date();
+
+    let videoDetail = {
+        name: name,
+        size: size,
+        dateTime: currentDate.toLocaleDateString() + " at " + currentDate.toLocaleTimeString(),
+        email: currentUser
+    }
+
+    lastPlayedVideo.push(videoDetail);
+    localStorage.setItem("lastPlayedVideo", JSON.stringify(lastPlayedVideo));
+    loadLastPlay();
+
+}
+
+/* =============== LOAD LAST PLAYED VIDEO =============== */
+
+function loadLastPlay() {
+
+    let lastPlayedCard = document.getElementById("lastPlayedCard");
+    let lastPlayedBody = document.getElementById("lastPlayedBody");
+
+    let currentUser = null;
+
+    if (sessionLogin === true) {
+
+        currentUser = sessionStorage.getItem("currentUser");
+
+    } else {
+
+        currentUser = localStorage.getItem("currentUser");
+
+    }
+
+    /* =============== LOAD ALL LAST PLAYED VIDEO LIST =============== */
+    let lastPlayedVideo = JSON.parse(localStorage.getItem("lastPlayedVideo")) || [];
+
+    if (lastPlayedVideo.length === 0) {
+
+        lastPlayedCard.style.display = "none";
+
+    } else {
+
+        lastPlayedBody.innerHTML = "";
+        let found = false;
+
+        for (let i = 0; i < lastPlayedVideo.length; i++) {
+
+            if (lastPlayedVideo[i].email === currentUser) {
+
+                found = true;
+
+                lastPlayedBody.innerHTML += `
+
+                        <div class="last-played-item">
+                            <i class="ri-video-on-fill"></i>
+                            <span class="last-played-label">${lastPlayedVideo[i].name}</span>
+                        </div>
+
+                        <div class="last-played-item">
+                            <i class="ri-file-fill"></i>
+                            <span class="last-played-label">${lastPlayedVideo[i].size}</span>
+                        </div>
+
+                        <div class="last-played-item">
+                            <i class="ri-calendar-fill"></i>
+                            <span class="last-played-label">${lastPlayedVideo[i].dateTime}</span>
+                        </div>
+                `;
+
+            }
+        }
+
+        if (!found) {
+
+            lastPlayedCard.style.display = "none";
+
+        } else {
+
+            lastPlayedCard.style.display = "block";
+
+        }
+
+    }
+
+
+}
+
+loadLastPlay();

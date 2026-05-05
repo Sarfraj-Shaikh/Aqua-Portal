@@ -263,7 +263,7 @@
                     </div>
 
                     <div class="card-body" id="themeCardBody">
-                        <input class="theme-picker" id="themePicker" type="color">
+                        <input class="theme-picker" id="themePicker" type="color" oninput="themeChange(this.value)">
                     </div>
 
                 </div>
@@ -286,12 +286,12 @@
                         </div>
 
                         <div class="last-played-item" id="lastPlayedSize">
-                            <i class="ri-video-on-fill" id="lastPlayedSizeIcon"></i>
+                            <i class="ri-file-fill" id="lastPlayedSizeIcon"></i>
                             <span class="last-played-label" id="lastPlayedSizeText">Video Size</span>
                         </div>
 
                         <div class="last-played-item" id="lastPlayedDate">
-                            <i class="ri-video-on-fill" id="lastPlayedDateIcon"></i>
+                            <i class="ri-calendar-fill" id="lastPlayedDateIcon"></i>
                             <span class="last-played-label" id="lastPlayedDateText">Video Date</span>
                         </div>
 
