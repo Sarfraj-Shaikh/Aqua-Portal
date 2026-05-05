@@ -1,0 +1,1041 @@
+/* =============== IMPORT FONT =============== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* =============== UNIVERSAL CODE =============== */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+}
+
+/* =============== HOME PAGE COLOR =============== */
+
+:root {
+
+    --navBg: #dbeafe;
+    --navText: #1E40AF;
+    --navSubTitile: #2563EC;
+
+    --heroBg: #F2F8FF;
+    --signupBorder: #E5E7EB;
+
+    --primaryBtnBg: #2563EB;
+    --primaryBtnHover: #074ada;
+    --primaryBtnText: #FFFFFF;
+    --primaryBtnBorder: transparent;
+
+    --secondaryBtnBg: #FFFFFF;
+    --secondaryBtnHover: #558bff23;
+    --secondaryBtnText: #2563EC;
+    --secondaryBtnBorder: #2563EB;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+}
+
+/* =============== LOADER =============== */
+
+/* FULL SCREEN LOADER OVERLAY */
+.page-loader {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+
+/* SPINNER */
+.dot-spinner {
+    --uib-size: clamp(4.2rem, 5vw, 4rem);
+    --uib-speed: .9s;
+    --uib-color: #183153;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--uib-size);
+    width: var(--uib-size);
+}
+
+.dot-spinner__dot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+}
+
+.dot-spinner__dot::before {
+    content: '';
+    height: 20%;
+    width: 20%;
+    border-radius: 50%;
+    background-color: var(--uib-color);
+    transform: scale(0);
+    opacity: 0.5;
+    animation: pulse0112 calc(var(--uib-speed) * 1.111) ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(18, 31, 53, 0.3);
+}
+
+.dot-spinner__dot:nth-child(2) {
+    transform: rotate(45deg);
+}
+
+.dot-spinner__dot:nth-child(2)::before {
+    animation-delay: calc(var(--uib-speed) * -0.875);
+}
+
+.dot-spinner__dot:nth-child(3) {
+    transform: rotate(90deg);
+}
+
+.dot-spinner__dot:nth-child(3)::before {
+    animation-delay: calc(var(--uib-speed) * -0.75);
+}
+
+.dot-spinner__dot:nth-child(4) {
+    transform: rotate(135deg);
+}
+
+.dot-spinner__dot:nth-child(4)::before {
+    animation-delay: calc(var(--uib-speed) * -0.625);
+}
+
+.dot-spinner__dot:nth-child(5) {
+    transform: rotate(180deg);
+}
+
+.dot-spinner__dot:nth-child(5)::before {
+    animation-delay: calc(var(--uib-speed) * -0.5);
+}
+
+.dot-spinner__dot:nth-child(6) {
+    transform: rotate(225deg);
+}
+
+.dot-spinner__dot:nth-child(6)::before {
+    animation-delay: calc(var(--uib-speed) * -0.375);
+}
+
+.dot-spinner__dot:nth-child(7) {
+    transform: rotate(270deg);
+}
+
+.dot-spinner__dot:nth-child(7)::before {
+    animation-delay: calc(var(--uib-speed) * -0.25);
+}
+
+.dot-spinner__dot:nth-child(8) {
+    transform: rotate(315deg);
+}
+
+.dot-spinner__dot:nth-child(8)::before {
+    animation-delay: calc(var(--uib-speed) * -0.125);
+}
+
+@keyframes pulse0112 {
+
+    0%,
+    100% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* =============== NO NETWORK =============== */
+.no-internet {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #eef3ff, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    display: none;
+    font-family: Arial, sans-serif;
+}
+
+.no-internet-card {
+    width: 100%;
+    height: 100%;
+    background: white;
+    padding: 35px 25px;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    animation: popup 0.35s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.icon-circle {
+    width: 90px;
+    height: 90px;
+    background: rgba(255, 0, 0, 0.08);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.icon-circle i {
+    font-size: 50px;
+    color: #ff2d2d;
+}
+
+.no-net-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.no-internet-card h2 {
+    font-size: 26px;
+    color: #183153;
+    margin-bottom: 10px;
+}
+
+.no-internet-card p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.retry-btn,
+.settings-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.retry-btn {
+    background: #183153;
+    color: white;
+}
+
+.retry-btn:hover {
+    background: #0f223d;
+}
+
+.settings-btn {
+    background: #f1f3f8;
+    color: #183153;
+}
+
+.settings-btn:hover {
+    background: #e3e7f1;
+}
+
+.hint {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 13px;
+    color: #888;
+    position: relative;
+}
+
+.hint::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: #ff2d2d;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes popup {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* =============== NAVBAR =============== */
+
+.navbar {
+    height: 70px;
+    background-color: var(--navBg);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    transition: all 0.5s ease;
+}
+
+.navbar.scrolled {
+    background-color: #ffffff;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.nav-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.nav-left img {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    margin-inline: 10px;
+}
+
+.nav-left p {
+    font-size: 22px;
+    color: var(--navText);
+    font-weight: bold;
+}
+
+.nav-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.nav-right .cta-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primaryBtnBg);
+    border-radius: 8px;
+    padding: 13px 10px;
+    color: var(--primaryBtnText);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-right .cta-btn:hover {
+    background-color: var(--primaryBtnHover);
+    transition: all 0.3s ease-in;
+}
+
+.nav-right .cta-btn i {
+    margin-left: 5px;
+    font-size: 18px;
+}
+
+.nav-right .cta-btn span {
+    margin-inline: 5px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* =============== SIGNUP SECTION =============== */
+
+.signup-con {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
+    background-color: #FFFFFF;
+}
+
+.signup-con .left-side {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EEEEEE;
+}
+
+.signup-con .right-side {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-side .signupForm {
+    width: 90%;
+    padding: 5%;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    margin: 50px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.signupForm .signupMessage {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.signupMessage h3 {
+    font-size: 34px;
+    margin-bottom: 10px;
+    color: #0F141F;
+}
+
+.signupMessage p {
+    font-size: 16px;
+    color: #10141C;
+}
+
+.signupForm .input-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.input-container .title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.input-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid var(--signupBorder);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    height: 45px;
+}
+
+.input-box i {
+    color: #10141C;
+    font-size: 18px;
+    margin-inline: 10px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    color: #10141C;
+    border-radius: 5px;
+    font-weight: 500;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.input-box input::placeholder {
+    color: #455065;
+}
+
+.input-box .passIcon {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.input-box .passIcon:hover {
+    transition: all 0.3s ease-in-out;
+    background-color: #EEEEEE;
+}
+
+.input-container .errorText {
+    color: #ff0000;
+    font-size: 14px;
+    font-weight: 500;
+    display: none;
+}
+
+.signupBtn {
+    width: 100%;
+    background-color: #3e61fe;
+    padding: 15px 10px;
+    font-size: 16px;
+    color: #FFFFFF;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 10px;
+}
+
+.signupBtn:hover {
+    background-color: #2343d1;
+    transition: all 0.3s ease-in-out;
+}
+
+.olduser {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #10141C;
+    font-size: 15px;
+    flex-wrap: wrap;
+    gap: 5px;
+    font-weight: 500;
+}
+
+.olduser span {
+    color: #0077ff;
+    cursor: pointer;
+}
+
+.olduser span:hover {
+    text-decoration: underline;
+}
+
+
+/* =============== RESPONSIVE SECTION =============== */
+
+
+@media (max-width: 992px) {
+
+    /* =============== NAVBAR =============== */
+
+    .navbar {
+        width: 100%;
+        height: 70px;
+        padding: 5px 3%;
+    }
+
+    .nav-left {
+        padding: 5px;
+    }
+
+    .nav-left img {
+        width: 40px;
+        height: 40px;
+        margin-inline: 10px;
+    }
+
+    .nav-left p {
+        font-size: 22px;
+    }
+
+    .nav-right {
+        padding: 5px;
+    }
+
+    .nav-right .cta-btn {
+        width: 130px;
+        padding: 13px 10px;
+    }
+
+    .nav-right .cta-btn i {
+        margin-left: 5px;
+        font-size: 18px;
+    }
+
+    .nav-right .cta-btn span {
+        margin-inline: 8px;
+        font-size: 16px;
+    }
+
+    /* =============== SIGNUP SECTION =============== */
+
+    .signup-con {
+        width: 100%;
+        margin-top: 70px;
+    }
+
+    .signup-con .left-side {
+        display: none;
+    }
+
+    .signup-con .right-side {
+        width: 100%;
+    }
+
+    .right-side .signupForm {
+        width: 90%;
+        padding: 5%;
+        margin: 50px 10px;
+        gap: 20px;
+    }
+
+    .signupForm .signupMessage {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .signupMessage h3 {
+        font-size: 34px;
+        margin-bottom: 10px;
+    }
+
+    .signupMessage p {
+        font-size: 16px;
+    }
+
+    .signupForm .input-container {
+        width: 100%;
+    }
+
+    .input-container .title {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .input-box {
+        width: 100%;
+        margin-bottom: 10px;
+        height: 45px;
+    }
+
+    .input-box i {
+        font-size: 18px;
+        margin-inline: 10px;
+    }
+
+    .input-box input {
+        width: 100%;
+        height: 100%;
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    .input-box .passIcon {
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+    }
+
+    .signupBtn {
+        width: 100%;
+        padding: 15px 10px;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* =============== NAVBAR =============== */
+
+    .navbar {
+        width: 100%;
+        height: 70px;
+        padding: 5px 3%;
+    }
+
+    .nav-left {
+        padding: 5px;
+    }
+
+    .nav-left img {
+        width: 40px;
+        height: 40px;
+        margin-inline: 10px;
+    }
+
+    .nav-left p {
+        font-size: 22px;
+    }
+
+    .nav-right {
+        padding: 5px;
+    }
+
+    .nav-right .cta-btn {
+        width: 110px;
+        padding: 13px 10px;
+    }
+
+    .nav-right .cta-btn i {
+        margin-left: 5px;
+        font-size: 18px;
+    }
+
+    .nav-right .cta-btn span {
+        margin-inline: 8px;
+        font-size: 16px;
+    }
+
+    /* =============== SIGNUP SECTION =============== */
+
+    .signup-con {
+        width: 100%;
+        margin-top: 70px;
+    }
+
+    .signup-con .left-side {
+        display: none;
+    }
+
+    .signup-con .right-side {
+        width: 100%;
+    }
+
+    .right-side .signupForm {
+        width: 100%;
+        padding: 5%;
+        margin: 50px 10px;
+        gap: 20px;
+    }
+
+    .signupForm .signupMessage {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .signupMessage h3 {
+        font-size: 34px;
+        margin-bottom: 10px;
+    }
+
+    .signupMessage p {
+        font-size: 16px;
+    }
+
+    .signupForm .input-container {
+        width: 100%;
+    }
+
+    .input-container .title {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .input-box {
+        width: 100%;
+        margin-bottom: 10px;
+        height: 45px;
+    }
+
+    .input-box i {
+        font-size: 18px;
+        margin-inline: 10px;
+    }
+
+    .input-box input {
+        width: 100%;
+        height: 100%;
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    .input-box .passIcon {
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+    }
+
+    .signupBtn {
+        width: 100%;
+        padding: 15px 10px;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    /* =============== NAVBAR =============== */
+
+    .navbar {
+        width: 100%;
+        height: 70px;
+        padding: 5px 3%;
+    }
+
+    .nav-left {
+        padding: 0px;
+    }
+
+    .nav-left img {
+        width: 40px;
+        height: 40px;
+        margin-inline: 10px;
+    }
+
+    .nav-left p {
+        font-size: 20px;
+    }
+
+    .nav-right {
+        padding: 5px;
+    }
+
+    .nav-right .cta-btn {
+        width: 100px;
+        padding: 13px 10px;
+    }
+
+    .nav-right .cta-btn i {
+        margin-left: 5px;
+        font-size: 18px;
+    }
+
+    .nav-right .cta-btn span {
+        margin-inline: 8px;
+        font-size: 16px;
+    }
+
+    /* =============== SIGNUP SECTION =============== */
+
+    .signup-con {
+        width: 100%;
+        margin-top: 70px;
+    }
+
+    .signup-con .left-side {
+        display: none;
+    }
+
+    .signup-con .right-side {
+        width: 100%;
+    }
+
+    .right-side .signupForm {
+        width: 100%;
+        padding: 5%;
+        margin: 50px 10px;
+        gap: 20px;
+    }
+
+    .signupForm .signupMessage {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .signupMessage h3 {
+        font-size: 31px;
+        margin-bottom: 10px;
+    }
+
+    .signupMessage p {
+        font-size: 15px;
+    }
+
+    .signupForm .input-container {
+        width: 100%;
+    }
+
+    .input-container .title {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .input-box {
+        width: 100%;
+        margin-bottom: 10px;
+        height: 45px;
+    }
+
+    .input-box i {
+        font-size: 18px;
+        margin-inline: 10px;
+    }
+
+    .input-box input {
+        width: 100%;
+        height: 100%;
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    .input-box .passIcon {
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+    }
+
+    .signupBtn {
+        width: 100%;
+        padding: 15px 10px;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 397px) {
+
+    /* =============== NAVBAR =============== */
+
+    .navbar {
+        width: 100%;
+        height: 70px;
+        padding: 5px 3%;
+    }
+
+    .nav-left {
+        padding: 0px;
+    }
+
+    .nav-left img {
+        width: 40px;
+        height: 40px;
+        margin-inline: 10px;
+    }
+
+    .nav-left p {
+        font-size: 20px;
+    }
+
+    .nav-right {
+        padding: 5px;
+    }
+
+    .nav-right .cta-btn {
+        width: 40px;
+        height: 40px;
+        padding: 13px 10px;
+        border-radius: 10px;
+    }
+
+    .nav-right .cta-btn i {
+        margin-left: 0px;
+        font-size: 18px;
+    }
+
+    .nav-right .cta-btn span {
+        margin-inline: 8px;
+        font-size: 16px;
+        display: none;
+    }
+
+    /* =============== SIGNUP SECTION =============== */
+
+    .signup-con {
+        width: 100%;
+        margin-top: 70px;
+    }
+
+    .signup-con .left-side {
+        display: none;
+    }
+
+    .signup-con .right-side {
+        width: 100%;
+    }
+
+    .right-side .signupForm {
+        width: 100%;
+        padding: 5%;
+        margin: 50px 10px;
+        gap: 20px;
+    }
+
+    .signupForm .signupMessage {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .signupMessage h3 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .signupMessage p {
+        font-size: 14px;
+    }
+
+    .signupForm .input-container {
+        width: 100%;
+    }
+
+    .input-container .title {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .input-box {
+        width: 100%;
+        margin-bottom: 10px;
+        height: 45px;
+    }
+
+    .input-box i {
+        font-size: 18px;
+        margin-inline: 10px;
+    }
+
+    .input-box input {
+        width: 100%;
+        height: 100%;
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    .input-box .passIcon {
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+    }
+
+    .signupBtn {
+        width: 100%;
+        padding: 15px 10px;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+}

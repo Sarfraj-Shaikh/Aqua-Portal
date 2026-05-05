@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- =============== WEBSITE META DATA =============== -->
-    <title>Dashboard | Aqua Portal</title>
+    <title>Login | Aqua Portal</title>
     <link rel="shortcut icon" href="../assets/img/logo.avif" type="image/x-icon">
 
     <!-- =============== AUTHOR META DATA =============== -->
@@ -15,10 +15,10 @@
     <meta name="creator" content="Sarfraj Shaikh">
 
     <!-- =============== CSS FILE =============== -->
-    <link rel="stylesheet" href="../assets/files/css/pages/dashboard.css">
+    <link rel="stylesheet" href="../assets/files/css/pages/login.css">
 
     <!-- =============== JS FILE =============== -->
-    <script src="../assets/files/js/pages/dashboard.js" defer></script>
+    <script src="../assets/files/js/pages/login.js" defer></script>
 
     <!-- =============== ICON CDN =============== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
@@ -73,27 +73,6 @@
         </div>
     </div>
 
-    <!-- =============== POPUP DIALOGUE =============== -->
-    <div class="popup-con" id="popupContainer">
-        <div class="popup" id="popupBox">
-
-            <div class="top">
-                <p class="title" id="popTitle">POPUP MESSAGE</p>
-                <i class="ri-close-large-line" id="popupCloseIcon"></i>
-            </div>
-
-            <p class="message" id="popupMessage">Your custom popup message box is now ready</p>
-
-            <div class="btns">
-
-                <div class="cancel-btn" id="popupCancelBtn">Cancel</div>
-
-                <div class="confirm-btn" id="popupConfirmBtn">Confirm</div>
-
-            </div>
-        </div>
-    </div>
-
     <!-- =============== NAVBAR =============== -->
     <nav class="navbar" id="navBar">
 
@@ -113,84 +92,78 @@
 
     </nav>
 
-    <!-- =============== DASHBOARD =============== -->
-    <div class="dashboard">
+    <!-- =============== LOGIN SECTION =============== -->
+    <div class="login-section">
 
-        <div class="pfp-bg">
+        <div class="login-img">
+        </div>
 
-            <img src="../assets/img/default-dp.jpg" alt="Profile" loading="lazy" id="userPfp">
+        <form class="loginForm" autocomplete="off">
 
-            <div class="pfp-info">
+            <div class="loginMessage">
+                <h3>Welcome Back! 👋🏻</h3>
+                <p>Please sign into account and start manage your businesses</p>
+            </div>
 
-                <h3 id="userName">Aqua Portal</h3>
-                <p>
+            <div class="input-container">
+
+                <p class="title">Email ID</p>
+
+                <div class="input-box" id="emailIBox">
+
                     <i class="ri-mail-line"></i>
-                    <span id="userEmail">your-email@gmail.com</span>
-                </p>
+                    <input type="email" inputmode="email" id="emailInput" placeholder="Enter Your Email ID" autocomplete="off">
 
-                <div class="logout-btn" id="logoutBtn">
-                    <i class="ri-logout-box-r-line"></i> Logout
-                </div>
-            </div>
-        </div>
-
-        <!-- =============== DASHBOARD CARDS =============== -->
-        <div class="card-bg">
-
-            <!-- <div class="card">
-
-                <i class="ri-store-2-line"></i>
-
-                <div class="info">
-                    <h3>Businesses</h3>
-                    <p>Manage your business listings and details.</p>
                 </div>
 
-            </div> -->
-
-            <!-- <div class="card">
-
-                <i class="ri-user-3-line"></i>
-
-                <div class="info">
-                    <h3>About Me</h3>
-                    <p>Update your personal profile information.</p>
-                </div>
-
-            </div> -->
-
-            <div class="card" onclick='window.open("./contact.html", "_self")'>
-
-                <i class="ri-contacts-book-2-line"></i>
-
-                <div class="info">
-                    <h3>All Contacts</h3>
-                    <p>View and manage all saved contacts.</p>
-                </div>
+                <p class="errorText" id="errorText1">Error Message</p>
 
             </div>
 
-            <div class="card" onclick='window.open("./video-player.html", "_self")'>
+            <div class="input-container">
 
-                <i class="ri-play-list-2-line"></i>
+                <p class="title">Password</p>
 
-                <div class="info">
-                    <h3>Video Player</h3>
-                    <p>Custom video player for smooth experiences.</p>
+                <div class="input-box" id="passIBox">
+
+                    <i class="ri-lock-line"></i>
+                    <input type="password" id="passwordInput" placeholder="Enter Your Password" autocomplete="off">
+                    <i class="ri-eye-line passIcon" id="passToggleIcon" onclick="passToggle()"></i>
+
                 </div>
+
+                <p class="errorText" id="errorText2">Error Message</p>
 
             </div>
 
-        </div>
+            <div class="remBox">
+                <div class="checkbox-wrapper-4">
+                    <input class="inp-cbx" id="morning" type="checkbox" checked/>
+                    <label class="cbx" for="morning">
+                        <span>
+                            <svg width="12px" height="10px">
+                                <use xlink:href="#check-4"></use>
+                            </svg>
+                        </span>
+                        <span>Remember Me</span>
+                    </label>
+                    <svg class="inline-svg">
+                        <symbol id="check-4" viewbox="0 0 12 10">
+                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                        </symbol>
+                    </svg>
+                </div>
+            </div>
 
-        <!-- =============== FOOTER & CREDIT SECTION =============== -->
-        <footer class="dashboard-footer">
-            <p id="copyright">© 2026 MyDashboard. All Rights Reserved.</p>
-            <p>Developed by <span id="devCredit">Shaikh Sarfraj</span></p>
-        </footer>
+            <div class="loginBtn" onclick="formVal()">
+                Login Now
+            </div>
 
+            <div class="newuser">
+                New on our platform? <span id="createNewAc">Create an account</span>
+            </div>
+        </form>
     </div>
-
 
 </body>
 

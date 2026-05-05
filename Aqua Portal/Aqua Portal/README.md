@@ -203,68 +203,39 @@ Aqua Portal ka folder structure kuch is tarah se organized hai:
 
 ```plaintext
 Aqua Portal/
-│
 │── index.html
 │── Readme.md
 │── Task.md
 │
 ├── Pages/
-│   │
 │   ├── login.html
 │   ├── signup.html
 │   ├── dashboard.html
 │   ├── contact.html
 │   ├── profile-photo.html
-│   ├── video-player.html
 │
-├── Pages/Business
-│   │
-│   ├── index.html
-│   ├── style.css
-│   ├── common.css
-│   ├── main.js
-│   ├── common.js
-│   │
-│   ├──────── Business/
-│             │
-│             ├──Assets/
-│                 │
-│                 ├── account-only.html
-│                 ├── account-only.css
-│                 ├── account-only.js
-│             
-│ 
 ├── Assets/
-│   │
 │   ├── css/
-│   │   │
 │   │   ├── common.css
 │   │   ├── style.css
 │   │   ├── pages/
-│   │   │   │
 │   │   │   ├── login.css
 │   │   │   ├── signup.css
 │   │   │   ├── dashboard.css
 │   │   │   ├── contact.css
 │   │   │   ├── profile-photo.css
-│   │   │   ├── video-player.css
 │   │
 │   ├── js/
-│   │   │
 │   │   ├── common.js
 │   │   ├── main.js
-│   │   │
 │   │   ├── pages/
-│   │       │
 │   │       ├── login.js
 │   │       ├── signup.js
 │   │       ├── dashboard.js
 │   │       ├── contact.js
 │   │       ├── profile-photo.js
-│   │       ├── video-player.js
 │   │
 │   ├── img/
-│   │   │
 │       ├── logo.avif
 │       ├── default-dp.png
 │       ├── login.png
@@ -281,24 +252,18 @@ Aqua Portal/
     ├── Assets/
     │   │
     │   ├── css/
-    │   │   │
     │   │   ├── admin-common.css
     │   │   ├── admin-style.css
-    │   │   │
     │   │   ├── pages/
-    │   │   │   │
     │   │       ├── dashboard.css
     │   │       ├── users.css
     │   │       ├── contacts.css
     │   │       ├── deleted-contacts.css
     │   │
     │   ├── js/
-    │   │   │
     │   │   ├── admin-common.js
     │   │   ├── admin-main.js
-    │   │   │
     │   │   ├── pages/
-    │   │   │   │
     │   │       ├── dashboard.js
     │   │       ├── users.js
     │   │       ├── contacts.js
@@ -578,100 +543,3 @@ Admin deleted contacts ke liye following actions perform kar sakta hai:
 - Deleted contact ko restore kar sakta hai
 - Agar admin chahe toh contact ko permanently delete bhi kar sakta hai
 
-# Admin Panel – All Users Page Validation
-
-## Access Control
-Yeh page sirf authenticated admin users ke liye accessible hai.  
-Agar koi unauthorized user access karne ki koshish karta hai, toh use directly login page par redirect kar diya jayega.
-
-## User Data Display
-Agar users ka data available hai, toh woh list me display hoga.  
-Agar data available nahi hai, toh “No records found” ka message show hoga.
-
-## Search Functionality
-Search karne par agar matching data milta hai, toh woh show hoga.  
-Agar koi matching result nahi milta, toh “No results found” message display hoga.
-
-## Actions
-Admin ke paas following actions available honge:
-- User details ko view kar sakta hai  
-- User details ko PDF ke form me export (save as PDF) kar sakta hai  
-- User details ko edit / update kar sakta hai  
-- Agar zarurat ho toh user account ko permanently delete bhi kar sakta hai  
-
-## Create New Account
-Admin directly new user account create kar sakta hai.
-
-## Form Validation (Add / Edit / Update User)
-Sabhi fields mandatory hain.  
-Agar koi field empty hoti hai, toh error message show hoga.  
-Yeh validation bilkul same hai jo normal user registration ke time use hoti hai.
-
-# Video Player Page – Validation & Features
-
-## 1. Access Control
-Is page ko access karne ke liye user ka valid account hona zaroori hai.  
-Agar login nahi kiya gaya hai, toh user ko page open karne ki permission nahi milegi aur automatically login page par redirect kar diya jayega.
-
----
-
-## 2. Invalid File Handling
-Agar user koi invalid ya unsupported video/file select karta hai, toh error message show kiya jayega.  
-Is condition me video upload ka option temporarily hide kar diya jayega taaki further invalid actions avoid ho sake.
-
----
-
-## 3. Customisation
-User apna preferred theme color select kar sakta hai.  
-Ye theme `localStorage` me save rahega, taaki next time jab user page open kare toh wahi selected theme apply ho.
-
----
-
-## 4. Logs (User Activity History)
-System har user ke last played video ka record maintain karega, jisme include hoga:
-- Video ka naam  
-- File size  
-- Date aur time jab video play kiya gaya tha  
-
-Har user ka apna separate log hoga jo unke account ke basis par store aur show hoga.
-
----
-
-## 5. Video Playing Conditions
-Jab video play ho raha hoga:
-
-- Play button pause icon me convert ho jayega  
-- Progress bar real-time update hoga  
-- Current time aur total duration show hoga  
-- Mute / unmute option available hoga  
-- Volume control diya gaya hai  
-- Agar network issue ya buffering ho, toh loader show hoga  
-- Video full screen me play ho sakta hai  
-- Forward aur rewind options available hain  
-- Video end hone par replay option show hoga  
-
-Video ke niche extra details bhi show hongi:
-- Title  
-- File size  
-- Last modified date  
-
----
-
-## 6. Additional Features
-
-### Like / Dislike
-Like aur dislike buttons available hain.  
-Although ye offline video player hai, phir bhi ye feature diya gaya hai.  
-Iska data `sessionStorage` me store hota hai, jo temporary hota hai.
-
----
-
-### Change Video Option
-User ko dusra video select karne ke liye “Change Video” button diya gaya hai.  
-
-Is action par confirmation popup aata hai taaki accidental click se current video reset na ho.
-
-- Popup open hone par video pause ho jata hai  
-- Popup close hone ke baad video wapas resume ho jata hai  
-
----

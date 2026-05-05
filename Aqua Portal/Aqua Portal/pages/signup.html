@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- =============== WEBSITE META DATA =============== -->
-    <title>Dashboard | Aqua Portal</title>
+    <title>Register | Aqua Portal</title>
     <link rel="shortcut icon" href="../assets/img/logo.avif" type="image/x-icon">
 
     <!-- =============== AUTHOR META DATA =============== -->
@@ -15,10 +15,10 @@
     <meta name="creator" content="Sarfraj Shaikh">
 
     <!-- =============== CSS FILE =============== -->
-    <link rel="stylesheet" href="../assets/files/css/pages/dashboard.css">
+    <link rel="stylesheet" href="../assets/files/css/pages/signup.css">
 
     <!-- =============== JS FILE =============== -->
-    <script src="../assets/files/js/pages/dashboard.js" defer></script>
+    <script src="../assets/files/js/pages/signup.js" defer></script>
 
     <!-- =============== ICON CDN =============== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
@@ -73,27 +73,6 @@
         </div>
     </div>
 
-    <!-- =============== POPUP DIALOGUE =============== -->
-    <div class="popup-con" id="popupContainer">
-        <div class="popup" id="popupBox">
-
-            <div class="top">
-                <p class="title" id="popTitle">POPUP MESSAGE</p>
-                <i class="ri-close-large-line" id="popupCloseIcon"></i>
-            </div>
-
-            <p class="message" id="popupMessage">Your custom popup message box is now ready</p>
-
-            <div class="btns">
-
-                <div class="cancel-btn" id="popupCancelBtn">Cancel</div>
-
-                <div class="confirm-btn" id="popupConfirmBtn">Confirm</div>
-
-            </div>
-        </div>
-    </div>
-
     <!-- =============== NAVBAR =============== -->
     <nav class="navbar" id="navBar">
 
@@ -113,81 +92,92 @@
 
     </nav>
 
-    <!-- =============== DASHBOARD =============== -->
-    <div class="dashboard">
+    <!-- =============== SIGNUP SECTION =============== -->
+    <div class="signup-con">
 
-        <div class="pfp-bg">
-
-            <img src="../assets/img/default-dp.jpg" alt="Profile" loading="lazy" id="userPfp">
-
-            <div class="pfp-info">
-
-                <h3 id="userName">Aqua Portal</h3>
-                <p>
-                    <i class="ri-mail-line"></i>
-                    <span id="userEmail">your-email@gmail.com</span>
-                </p>
-
-                <div class="logout-btn" id="logoutBtn">
-                    <i class="ri-logout-box-r-line"></i> Logout
-                </div>
-            </div>
-        </div>
-
-        <!-- =============== DASHBOARD CARDS =============== -->
-        <div class="card-bg">
-
-            <!-- <div class="card">
-
-                <i class="ri-store-2-line"></i>
-
-                <div class="info">
-                    <h3>Businesses</h3>
-                    <p>Manage your business listings and details.</p>
-                </div>
-
-            </div> -->
-
-            <!-- <div class="card">
-
-                <i class="ri-user-3-line"></i>
-
-                <div class="info">
-                    <h3>About Me</h3>
-                    <p>Update your personal profile information.</p>
-                </div>
-
-            </div> -->
-
-            <div class="card" onclick='window.open("./contact.html", "_self")'>
-
-                <i class="ri-contacts-book-2-line"></i>
-
-                <div class="info">
-                    <h3>All Contacts</h3>
-                    <p>View and manage all saved contacts.</p>
-                </div>
-
-            </div>
-
-            <div class="card" onclick='window.open("./video-player.html", "_self")'>
-
-                <i class="ri-play-list-2-line"></i>
-
-                <div class="info">
-                    <h3>Video Player</h3>
-                    <p>Custom video player for smooth experiences.</p>
-                </div>
-
-            </div>
+        <div class="left-side">
 
         </div>
 
-        <!-- =============== FOOTER & CREDIT SECTION =============== -->
-        <footer class="dashboard-footer">
-            <p id="copyright">© 2026 MyDashboard. All Rights Reserved.</p>
-            <p>Developed by <span id="devCredit">Shaikh Sarfraj</span></p>
-        </footer>
+        <div class="right-side">
+
+            <form class="signupForm" autocomplete="off">
+
+                <div class="signupMessage">
+                    <h3>Welcome Dear! 🫀</h3>
+                    <p>Create your account and start managing your business</p>
+                </div>
+
+                <div class="input-container">
+
+                    <p class="title">Full Name</p>
+
+                    <div class="input-box" id="nameIBox">
+                        <i class="ri-user-6-line"></i>
+                        <input type="text" id="nameInput" placeholder="Enter Your Full Name" autocomplete="off">
+                    </div>
+
+                    <p class="errorText" id="errorText1">Error Message</p>
+
+                </div>
+
+                <div class="input-container">
+
+                    <p class="title">Email ID</p>
+
+                    <div class="input-box" id="emailIBox">
+                        <i class="ri-mail-line"></i>
+                        <input type="email" inputmode="email" id="emailInput" placeholder="Enter Your Email ID" autocomplete="off">
+                    </div>
+
+                    <p class="errorText" id="errorText2">Error Message</p>
+
+                </div>
+
+                <div class="input-container">
+
+                    <p class="title">Mobile Number</p>
+
+                    <div class="input-box" id="numberIBox">
+
+                        <i class="ri-phone-line"></i>
+                        <input type="number" inputmode="numeric" id="numberInput" placeholder="Enter Your Mobile Number" autocomplete="off">
+                        
+                    </div>
+
+                    <p class="errorText" id="errorText3">Error Message</p>
+
+                </div>
+
+                <div class="input-container">
+
+                    <p class="title">Password</p>
+
+                    <div class="input-box" id="passIBox">
+
+                        <i class="ri-lock-line"></i>
+                        <input type="password" id="passwordInput" placeholder="Enter Your Password" autocomplete="off">
+                        <i class="ri-eye-line passIcon" id="passToggleIcon" onclick="passToggle()"></i>
+
+                    </div>
+
+                    <p class="errorText" id="errorText4">Error Message</p>
+
+                </div>
+
+                <div class="signupBtn" onclick="formVal()">
+                    Register Now
+                </div>
+
+                <div class="olduser">
+                    Already have account? <span id="signIn">Login Now</span>
+                </div>
+        </div>
+
+
+        </form>
+
+    </div>
 
     </div>
 
