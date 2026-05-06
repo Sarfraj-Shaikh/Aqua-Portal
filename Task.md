@@ -579,6 +579,7 @@ Subtotal, tax, total aur balance due values items ke price, quantity aur tax ke 
 
 ```javascript
 let pdf = new jsPDF('p', 'pt', 'a4');
+```
 
 Kisi specific section ka PDF generate karne ke liye:
 
