@@ -649,6 +649,7 @@ function createCompanyData() {
     let companyData = JSON.parse(localStorage.getItem("companyData")) || [];
 
     let currentDate = new Date();
+    let companyId = Date.now();
 
     let details = {
         address: companyAddress,
@@ -664,7 +665,8 @@ function createCompanyData() {
         stockType: stockType,
         website: companyWebsite,
         creator: currentUser,
-        voucherNo: 1
+        voucherNo: 1,
+        companyId: companyId,
     }
 
     if (companyData.length === 0) {
@@ -1013,6 +1015,8 @@ function deleteCompany() {
 
             if (companyData[i].creator === currentUser) {
 
+                currentCompany = companyData[i].companyId;
+
                 companyName.value = companyData[i].companyName;
                 mailingName.value = companyData[i].mailingName;
                 companyAddress.value = companyData[i].address;
@@ -1025,6 +1029,7 @@ function deleteCompany() {
                 stockType.value = companyData[i].stockType;
                 deletelogoPreviewImg.src = companyData[i].logo;
 
+                break;
             }
 
         }
@@ -1108,20 +1113,13 @@ delCompanyBtn.addEventListener("click", () => {
     popupConfirmBtn.onclick = () => {
 
         let userIndex = null;
+        let index = companyData.findIndex(
+            (c) => c.creator === currentUser && c.companyId === currentCompany
+        );
 
-        for (let i = 0; i < companyData.length; i++) {
+        if (index !== -1) {
 
-            if (companyData[i].creator === currentUser) {
-
-                userIndex = i;
-
-            }
-
-        }
-
-        if (userIndex !== null) {
-
-            companyData.splice(userIndex, 1);
+            companyData.splice(index, 1);
             localStorage.setItem("companyData", JSON.stringify(companyData));
             loadCompanyData();
 
@@ -1132,32 +1130,31 @@ delCompanyBtn.addEventListener("click", () => {
                 gravity: "top",
                 position: "right",
                 style: {
-
                     background: "#009a03",
                     color: "#FFFFFF",
                     borderRadius: "10px"
-
                 }
             }).showToast();
 
-            deleteCompanyModal.style.display = "none";
+            document.getElementById("deleteCompanyModal").style.display = "none";
             window.scrollTo(0, 0);
+
+            popupContainer.classList.remove("active");
+            popupContainer.classList.remove("animate__fadeIn");
+            popupBox.classList.remove("animate__zoomIn");
+
+            popupContainer.classList.add("animate__fadeOut");
+            popupBox.classList.add("animate__zoomOut");
+
+            setTimeout(() => {
+
+                popupContainer.classList.remove("animate__animated", "animate__fadeOut");
+                popupBox.classList.remove("animate__animated", "animate__zoomOut");
+
+            }, 250);
 
         }
 
-        popupContainer.classList.remove("active");
-        popupContainer.classList.remove("animate__fadeIn");
-        popupBox.classList.remove("animate__zoomIn");
-
-        popupContainer.classList.add("animate__fadeOut");
-        popupBox.classList.add("animate__zoomOut");
-
-        setTimeout(() => {
-
-            popupContainer.classList.remove("animate__animated", "animate__fadeOut");
-            popupBox.classList.remove("animate__animated", "animate__zoomOut");
-
-        }, 250);
     }
 
 });
@@ -1169,6 +1166,43 @@ deleteCreateModal.addEventListener("click", () => {
     deleteCompanyModal.style.display = "none";
 
 });
+
+/* =============== LOAD CURRENT COMPANY ID =============== */
+
+let currentCompany = null;
+
+function loadCurrentCompany() {
+
+    let currentUser = null;
+
+    if (sessionLogin === true) {
+
+        currentUser = sessionStorage.getItem("currentUser");
+
+    } else {
+
+        currentUser = localStorage.getItem("currentUser");
+
+    }
+
+    let companyData = JSON.parse(localStorage.getItem("companyData")) || [];
+
+    currentCompany = null;
+
+    for (let i = 0; i < companyData.length; i++) {
+
+        if (companyData[i].creator === currentUser) {
+
+            currentCompany = companyData[i].companyId;
+
+            break;
+        }
+
+    }
+}
+
+loadCurrentCompany();
+
 
 /* =============== EDIT COMPANY DETAILS =============== */
 let updateCompanyBtn = document.getElementById("updateCompanyBtn");
@@ -1220,6 +1254,8 @@ function updateCompanyData() {
 
             if (companyData[i].creator === currentUser) {
 
+                currentCompany = companyData[i].companyId;
+
                 companyName.value = companyData[i].companyName;
                 mailingName.value = companyData[i].mailingName;
                 companyAddress.value = companyData[i].address;
@@ -1232,6 +1268,7 @@ function updateCompanyData() {
                 stockType.value = companyData[i].stockType;
                 editlogoPreviewImg.src = companyData[i].logo;
 
+                break;
             }
 
         }
@@ -1655,27 +1692,25 @@ function editCompanyData() {
 
         if (companyData.length !== 0) {
 
-            for (let i = 0; i < companyData.length; i++) {
+            let index = companyData.findIndex(
+                (c) => c.creator === currentUser && c.companyId === currentCompany
+            );
 
-                if (companyData[i].creator === currentUser) {
+            if (index !== -1) {
 
-                    companyData[i].companyName = companyName.value;
-                    companyData[i].mailingName = mailingName.value;
-                    companyData[i].address = companyAddress.value;
-                    companyData[i].mobile = mobileNumber.value;
-                    companyData[i].fax = faxNumber.value;
-                    companyData[i].cin = cinNumber.value;
-                    companyData[i].email = companyEmail.value;
-                    companyData[i].website = companyWebsite.value;
-                    companyData[i].financialYear = financialYear.value;
-                    companyData[i].stockType = stockType.value;
+                companyData[index].companyName = companyName.value;
+                companyData[index].mailingName = mailingName.value;
+                companyData[index].address = companyAddress.value;
+                companyData[index].mobile = mobileNumber.value;
+                companyData[index].fax = faxNumber.value;
+                companyData[index].cin = cinNumber.value;
+                companyData[index].email = companyEmail.value;
+                companyData[index].website = companyWebsite.value;
+                companyData[index].financialYear = financialYear.value;
+                companyData[index].stockType = stockType.value;
 
-                    if (isNewLogoSelected) {
-
-                        companyData[i].logo = editlogoPreviewImg.src;
-
-                    }
-
+                if (isNewLogoSelected) {
+                    companyData[index].logo = editlogoPreviewImg.src;
                 }
 
             }

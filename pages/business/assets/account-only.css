@@ -610,7 +610,7 @@ body {
 }
 
 #ManageunitMeasureBtn,
-#ManagesalesVoucherBtn,
+#manageSalesVoucherBtn,
 #ManagetaxSetupBtn {
     display: none;
 }

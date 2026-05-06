@@ -1,6 +1,23 @@
 
 ---
 
+# Admin Panel - Account Only & Account With Inventory
+### Log No: 25
+
+## Time Line
+- **Date: ** 06-5-2026
+- **Start at** 01:20 PM
+- **Complete at** 04:01 PM
+
+## Features
+- 15th Release
+- Created Account Only HTML, CSS, JS Pages
+- Created Account With Inventory HTML, CSS, JS Pages
+- Added Account Only and With Inventory Option In Sidebar On All Page Of Admin Panel
+- Fixed Showing Manage Sales Voucher Button From User Panel - Business: Account Only Page
+
+---
+
 # Business - Account Only Page
 ### Log No: 24
 
