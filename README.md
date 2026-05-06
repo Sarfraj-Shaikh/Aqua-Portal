@@ -236,6 +236,16 @@ Aqua Portal/
 │                 ├── account-with-inventory.html
 │                 ├── account-with-inventory.css
 │                 ├── account-with-inventory.js
+│                 │
+│                 ├──Pages/
+│                     │
+│                     ├── manage-uom.html
+│                     ├── manage-uom.css
+│                     ├── manage-uom.js
+│                     │
+│                     ├── manage-tax.html
+│                     ├── manage-tax.css
+│                     ├── manage-tax.js
 │             
 │ 
 ├── Assets/
