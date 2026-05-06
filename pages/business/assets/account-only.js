@@ -163,7 +163,7 @@ function isLogin() {
 
         if (noProfile === true) {
 
-            window.open("./profile-photo.html", "_self");
+            window.open("../../profile-photo.html", "_self");
 
         } else {
 
@@ -1643,3 +1643,17 @@ closeSalesVoucherModal.addEventListener("click", () => {
     customerMobile.value = "";
 
 });
+
+/* =============== OPEN MANAGE PAGE =============== */
+
+function manageUom() {
+
+    window.open("./pages/manage-uom.html", "_self")
+
+}
+
+function manageTax() {
+
+    window.open("./pages/manage-tax.html", "_self")
+
+}

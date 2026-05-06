@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- =============== WEBSITE META DATA =============== -->
+    <title>Manage UOM | Aqua Portal</title>
+    <link rel="shortcut icon" href="../../../../assets/img/logo.avif" type="image/x-icon">
+
+    <!-- =============== AUTHOR META DATA =============== -->
+    <meta name="author" content="Sarfraj Shaikh">
+    <meta name="publisher" content="Sarfraj Shaikh">
+    <meta name="creator" content="Sarfraj Shaikh">
+
+    <!-- =============== CSS FILE =============== -->
+    <link rel="stylesheet" href="./manage-uom.css">
+
+    <!-- =============== JS FILE =============== -->
+    <script src="./manage-uom.js" defer></script>
+
+    <!-- =============== ICON CDN =============== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <!-- =============== TOASTIFY CDN =============== -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <!-- =============== TOASTIFY CDN =============== -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <!-- =============== AOS & ANIMATE CDN =============== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- =============== LOADER =============== -->
+    <div class="page-loader" id="pageLoader">
+        <div class="dot-spinner">
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+            <div class="dot-spinner__dot"></div>
+        </div>
+    </div>
+
+    <!-- =============== NO NETWORK =============== -->
+    <div class="no-internet" id="noInternet">
+        <div class="no-internet-card">
+
+            <div class="icon-circle">
+                <i class="ri-wifi-off-line"></i>
+            </div>
+
+            <h2>No Internet</h2>
+            <p>
+                You're offline. Please check your Wi-Fi or mobile data connection.
+            </p>
+
+            <div class="btn-group">
+                <button class="retry-btn" onclick="location.reload()">
+                    <i class="ri-refresh-line"></i> Retry
+                </button>
+            </div>
+
+            <span class="hint">
+                Waiting for network...
+            </span>
+
+        </div>
+    </div>
+
+    <!-- =============== POPUP DIALOGUE =============== -->
+    <div class="popup-con" id="popupContainer">
+        <div class="popup" id="popupBox">
+
+            <div class="top">
+                <p class="title" id="popTitle">POPUP MESSAGE</p>
+                <i class="ri-close-large-line" id="popupCloseIcon"></i>
+            </div>
+
+            <p class="message" id="popupMessage">Your custom popup message box is now ready</p>
+
+            <div class="btns">
+
+                <div class="cancel-btn" id="popupCancelBtn">Cancel</div>
+
+                <div class="confirm-btn" id="popupConfirmBtn">Confirm</div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- =============== NAVBAR =============== -->
+    <nav class="navbar" id="navBar">
+
+        <div class="nav-left" id="navLeft">
+            <img src="../../../../assets/img/logo.avif" alt="Aqua Portal" loading="lazy">
+            <p id="navWebName"></p>
+        </div>
+
+        <div class="nav-right">
+
+            <div class="cta-btn" id="navPrimaryCtaBtn">
+                <i class="ri-dashboard-line"></i>
+                <span>Business</span>
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- =============== DASHBOARD =============== -->
+    <div class="dashboard">
+
+        <div class="page" id="uomPage">
+
+            <!-- MAIN CONTENT -->
+            <main class="container">
+
+                <!-- TITLE + SEARCH -->
+                <div class="heading-area">
+                    <div class="heading">
+                        <h1>Unit of Measure</h1>
+                        <p>Manage units, values, and measurement systems.</p>
+                    </div>
+
+                    <div class="search-box">
+                        <i class="ri-search-line"></i>
+                        <input type="text" id="searchInput" placeholder="Search Unit System, Name or Value..." onkeyup="searchUom()" />
+                    </div>
+                </div>
+
+
+                <!-- CARD LIST -->
+                <div class="card-grid" id="cardGrid"></div>
+            </main>
+
+
+            <!-- MODAL -->
+            <div class="modal-overlay" id="modalOverlay">
+
+                <div class="modal">
+
+                    <div class="modal-header">
+                        <h2>Edit Unit of Measure</h2>
+                        <button class="close-btn" onclick="closeModal()">
+                            <i class="ri-close-line"></i>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <label>Unit Symbol</label>
+                        <input type="text" id="editSystem" />
+
+                        <label>Formal Name</label>
+                        <input type="text" id="editName" />
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn cancel-btn" onclick="closeModal()">Cancel</button>
+                        <button class="btn save-btn" id="uomUpdateBtn">Update</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =============== FOOTER & CREDIT SECTION =============== -->
+    <footer class="dashboard-footer">
+        <p id="copyright">© 2026 MyDashboard. All Rights Reserved.</p>
+        <p>Developed by <span id="devCredit">Shaikh Sarfraj</span></p>
+    </footer>
+
+</body>
+
+</html>

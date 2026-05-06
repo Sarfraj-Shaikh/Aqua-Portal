@@ -232,6 +232,10 @@ Aqua Portal/
 │                 ├── account-only.html
 │                 ├── account-only.css
 │                 ├── account-only.js
+│                 │
+│                 ├── account-with-inventory.html
+│                 ├── account-with-inventory.css
+│                 ├── account-with-inventory.js
 │             
 │ 
 ├── Assets/
@@ -277,6 +281,8 @@ Aqua Portal/
     ├── users.html
     ├── contacts.html
     ├── deleted-contacts.html
+    ├── account-only.html
+    ├── account-with-inventory.html
     │
     ├── Assets/
     │   │
@@ -291,6 +297,8 @@ Aqua Portal/
     │   │       ├── users.css
     │   │       ├── contacts.css
     │   │       ├── deleted-contacts.css
+    │   │       ├── account-only.css
+    │   │       ├── account-with-inventory.css
     │   │
     │   ├── js/
     │   │   │
@@ -303,6 +311,8 @@ Aqua Portal/
     │   │       ├── users.js
     │   │       ├── contacts.js
     │   │       ├── deleted-contacts.js
+    │   │       ├── account-only.js
+    │   │       ├── account-with-inventory.js
     │   │
     │   ├── img/
     │       ├── 
@@ -703,3 +713,107 @@ Ek user ek account se sirf **ek hi company** create kar sakta hai.
 Agar company ka stock type **Account Only** hai, toh user ko usi page par redirect kiya jayega.  
 
 Aur agar stock type **Account With Inventory** hai, toh user ko uske relevant page par redirect kiya jayega.
+
+# Account Only Page Validation
+
+## Access
+Agar user login nahi hai, toh wo is page ko access nahi kar sakta.
+
+## Redirection
+Agar user ka **company account inventory ke saath enabled** hai, toh wo bhi is page ko access nahi kar sakta.  
+Is page ko access karne ke liye user ke account me **Company Account (Only)** option hona required hai.  
+
+User apne company ka stock type kabhi bhi **Business Page** se update kar sakta hai.
+
+---
+
+# Unit of Measure
+User units add kar sakta hai aur unko manage bhi kar sakta hai.  
+Ye action **account-specific** hota hai, matlab jo user currently login hai sirf usi ke account me Unit of Measure add hoga.
+
+Agar user ke account me Unit of Measure ka data available hai, toh **Manage** button show hoga, warna hide rahega.
+
+Duplicate entry allowed nahi hai.  
+User same unit name ke saath dobara unit add nahi kar sakta.
+
+---
+
+# Tax Setup
+Tax Setup bhi bilkul Unit of Measure ki tarah account-specific hota hai.  
+Jo user login hai, sirf usi ke account me tax setup save hoga.
+
+Agar user ke account me Tax Setup ka data available hai, toh **Manage** button show hoga, warna hide rahega.
+
+Duplicate entry allowed nahi hai.  
+User same tax name ke saath dobara tax add nahi kar sakta.
+
+---
+
+# Sales Voucher
+
+## Voucher Number & Details
+- Voucher number company ke existing data ke according auto-increase hota rahega.
+- Voucher create karte time date by default auto-detect ho jayegi.
+- Company details user ke account ke basis par automatically fetch ho jayengi.
+
+---
+
+# Form Validation (Sales Voucher)
+
+## Required Fields
+Customer details aur product/item details ke sabhi fields fill karna mandatory hai, jaise:
+
+### Customer Details
+- Name  
+- Email  
+- Mobile Number  
+- Address  
+
+### Item/Product Details
+- Item Name  
+- Price  
+- Quantity  
+- Unit (Unit of Measure data se)  
+- Amount  
+- Tax (%)  
+- Tax Amount  
+
+### Payment & Summary Details
+- Total  
+- Paid Amount  
+- Due Amount  
+- Remarks  
+
+---
+
+## Row Deletion Rule
+User voucher create karte time rows delete kar sakta hai, but **minimum 1 row mandatory rahegi**.  
+Last remaining row delete nahi ki ja sakti.
+
+---
+
+## Auto Calculations
+- Jaise hi user price aur quantity enter karega, **amount instantly calculate ho jayega**.
+- Tax select karne par **tax amount automatically calculate hoga**.
+- Paid amount enter karte hi due amount aur baki calculations auto update ho jayenge.
+
+---
+
+## Bottom Summary Display
+Niche user ko automatically ye sab details show hongi:
+- Subtotal  
+- Total Tax  
+- Total Amount  
+- Total Paid Amount  
+- Total Due Amount  
+
+---
+
+## Confirmation
+Voucher create karne se pehle user se **confirmation** liya jayega.
+
+---
+
+## Manage Vouchers Option
+Agar user ke account me already vouchers created hain, toh user ko **Manage Vouchers** ka option show kiya jayega.
+
