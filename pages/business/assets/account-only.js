@@ -1518,6 +1518,7 @@ function storeSalesVoucherInvoice() {
             items: items,
             subTotal: subTotalText.textContent,
             totalTax: taxText.textContent,
+            totalAllAmount: totalText.textContent,
             totalPaid: totalPaidText.textContent,
             totalDue: balanceText.textContent,
             creator: currentUser,
@@ -1655,5 +1656,11 @@ function manageUom() {
 function manageTax() {
 
     window.open("./pages/manage-tax.html", "_self")
+
+}
+
+function manageVoucher() {
+
+    window.open("./pages/manage-voucher.html", "_self")
 
 }

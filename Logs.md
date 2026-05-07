@@ -1,6 +1,24 @@
 
 ---
 
+# Business - Manage Sales Voucher
+### Log No: 27
+
+## Time Line
+- **Date: ** 07-5-2026
+- **Start at** 09:29 AM
+- **Complete at** : PM
+
+## Features
+- 16th Release
+- Created Manage Sales Voucher HTML, CSS, JS Pages
+- Added Business Option In Dashboard Page
+- Added Edit/Update and Search and Delete Features (Manage Sales Voucher Page)
+- Deleted Account With Inventory HTML, CSS, JS Files Pages From Business Page
+- Updated Folder Structure On ReadMe.md File - Line No: 200
+
+---
+
 # Business - Manage UOM + TAX
 ### Log No: 26
 

@@ -233,10 +233,6 @@ Aqua Portal/
 │                 ├── account-only.css
 │                 ├── account-only.js
 │                 │
-│                 ├── account-with-inventory.html
-│                 ├── account-with-inventory.css
-│                 ├── account-with-inventory.js
-│                 │
 │                 ├──Pages/
 │                     │
 │                     ├── manage-uom.html
@@ -246,6 +242,10 @@ Aqua Portal/
 │                     ├── manage-tax.html
 │                     ├── manage-tax.css
 │                     ├── manage-tax.js
+│                     │
+│                     ├── manage-voucher.html
+│                     ├── manage-voucher.css
+│                     ├── manage-voucher.js
 │             
 │ 
 ├── Assets/
